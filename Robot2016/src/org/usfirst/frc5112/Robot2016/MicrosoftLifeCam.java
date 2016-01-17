@@ -1,6 +1,7 @@
 package org.usfirst.frc5112.Robot2016;
 
 import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.GetImageSizeResult;
 import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -9,48 +10,46 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
 public class MicrosoftLifeCam {
 
 	private Image frame;
-//	private int session;
 	private boolean cameraStarted;
 	private USBCamera camera;
 
 	public MicrosoftLifeCam(String cameraName) {
-//		session = NIVision.IMAQdxOpenCamera(cameraName, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-//		NIVision.IMAQdxConfigureGrab(session);
 		camera.openCamera();
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		cameraStarted = false;
 		camera = new USBCamera(cameraName);
 	}
-	
-	public void setBrightness(int brightness){
+
+	public static enum Axis {
+		X, Y
+	}
+
+	public void setBrightness(int brightness) {
 		camera.setBrightness(brightness);
 	}
-	
-	public int getBrightness(){
+
+	public int getBrightness() {
 		return camera.getBrightness();
 	}
-	
-	public void setExposureManual(int exposure){
+
+	public void setExposureManual(int exposure) {
 		camera.setExposureManual(exposure);
 	}
-	
-	public void setExposureAuto(){
+
+	public void setExposureAuto() {
 		camera.setExposureAuto();
 	}
-	
-	public Image getImage(){
+
+	public Image getImage() {
 		return frame;
 	}
 
 	public void start() {
-//		NIVision.IMAQdxStartAcquisition(session);
 		camera.startCapture();
 		cameraStarted = true;
 	}
 
 	public void stop() {
-//		NIVision.IMAQdxStopAcquisition(session);
-//		camera.closeCamera();
 		camera.stopCapture();
 		cameraStarted = false;
 	}
@@ -58,17 +57,25 @@ public class MicrosoftLifeCam {
 	public Image getCurrentFrame() {
 		if (!cameraStarted)
 			start();
-//		NIVision.IMAQdxGrab(session, frame, 1);
 		camera.getImage(frame);
 		return frame;
 	}
-	
-	public void setFPS(int fps){
+
+	public void setFPS(int fps) {
 		camera.setFPS(fps);
 	}
 
 	public void displayOnCameraServer() {
 		CameraServer.getInstance().setImage(getCurrentFrame());
+	}
+
+	public int getResolution(Axis axis) {
+		Image currentImage = getCurrentFrame();
+		GetImageSizeResult size = NIVision.imaqGetImageSize(currentImage);
+		if (axis.equals(Axis.X))
+			return size.width;
+		else
+			return size.height;
 	}
 
 	public double[] convertPixelSystemToAimingSystem(int[] pixel, int resolutionX, int resolutionY) {
