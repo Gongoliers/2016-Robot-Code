@@ -1,4 +1,4 @@
- //Chris V
+//Chris V
 
 
 package org.usfirst.frc5112.Robot2016.subsystems;
@@ -41,5 +41,30 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-}
+    
+    public void operate(double speed, double rotate) {
+    	robotDrive.drive(speed, rotate);
+    }
+    
+    public void stop(){
+    	robotDrive.drive(0, 0);
+    }
+    
+    public void forward(double speed) {
+    	
+    }
+    
+    public void reverse(double speed) {
+    	
+    }
+    
+    public void rotateCW(double rotationSpeed) {
+    	
+    }
+    
+    public void rotateCCW(double rotationSpeed) {
+    	
+    }
 
+
+}
