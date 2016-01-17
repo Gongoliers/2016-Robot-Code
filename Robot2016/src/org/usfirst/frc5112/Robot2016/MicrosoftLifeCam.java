@@ -24,6 +24,11 @@ public class MicrosoftLifeCam {
 		X, Y
 	}
 
+	public double getViewAngle(){
+		// TODO find view angle of camera
+		return 0.0;
+	}
+	
 	public void setBrightness(int brightness) {
 		camera.setBrightness(brightness);
 	}
@@ -85,11 +90,14 @@ public class MicrosoftLifeCam {
 		return aimingPoint;
 	}
 
-	public double getDistanceToTarget(double targetFeet, int targetPixels, double fieldOfViewAngle,
-			int fieldOfViewPixels) {
-		return targetFeet * fieldOfViewPixels / (2 * targetPixels * Math.tan(Math.toDegrees(fieldOfViewAngle)));
-	}
-
+	/**
+	 * Use this for calibration purposes only
+	 * @param targetFeet
+	 * @param targetPixels
+	 * @param fieldOfViewPixels
+	 * @param distanceToTarget
+	 * @return
+	 */
 	public double getFieldOfViewAngle(double targetFeet, int targetPixels, int fieldOfViewPixels,
 			double distanceToTarget) {
 		return Math.toDegrees(Math.atan(targetFeet * fieldOfViewPixels / (targetPixels * distanceToTarget)));
