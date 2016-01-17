@@ -43,15 +43,14 @@ public class Camera extends Subsystem {
 		}
 	};
 
-	private class Goal {
-		double centerX, centerY;
-		boolean isGoal;
-		double distance;
+	public class Goal {
+		public double centerX, centerY;
+		public boolean isGoal;
+		public double distance;
 	}
 
 	private final MicrosoftLifeCam robotCamera = RobotMap.robotCamera;
-	public static double targetDistance = 0;
-	public static Goal targetGoal;
+	public Goal targetGoal;
 	private CameraMode currentMode;
 	private final double AREA_MIN = 0.5;
 	private final double SCORE_MIN = 75.0;
