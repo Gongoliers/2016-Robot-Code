@@ -8,10 +8,11 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc5112.Robot2016;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -26,38 +27,42 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-    public static DualCANTalon driveTrainLeftDriveMotor;
-    public static DualCANTalon driveTrainRightDriveMotor;
-    public static RobotDrive driveTrainRobotDrive;
-    public static SpeedController intakeIntakeBarMotor;
-    public static SpeedController shooterFlywheelMotor;
-    public static Servo hoodServo;
-    public static MicrosoftLifeCam robotCamera;
+	public static DualCANTalon driveTrainLeftDriveMotor;
+	public static DualCANTalon driveTrainRightDriveMotor;
+	public static RobotDrive driveTrainRobotDrive;
+	public static SpeedController intakeIntakeBarMotor;
+	public static SpeedController shooterFlywheelMotor;
+	public static Servo hoodServo;
+	public static MicrosoftLifeCam robotCamera;
+	public static BuiltInAccelerometer accelerometer;
+	public static PowerDistributionPanel pdp;
 
+	public static void init() {
+		driveTrainLeftDriveMotor = new DualCANTalon(0, 1);
 
-    public static void init() {
-        driveTrainLeftDriveMotor = new DualCANTalon(0,1);
-        
-        driveTrainRightDriveMotor = new DualCANTalon(2,3);
-        
-        driveTrainRobotDrive = new RobotDrive(driveTrainLeftDriveMotor, driveTrainRightDriveMotor);
-        
-        driveTrainRobotDrive.setSafetyEnabled(true);
-        driveTrainRobotDrive.setExpiration(0.1);
-        driveTrainRobotDrive.setSensitivity(0.5);
-        driveTrainRobotDrive.setMaxOutput(1.0);
+		driveTrainRightDriveMotor = new DualCANTalon(2, 3);
 
-        driveTrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        intakeIntakeBarMotor = new Jaguar(0);
-        LiveWindow.addActuator("Intake", "Intake Bar Motor", (Jaguar) intakeIntakeBarMotor);
-        
-        shooterFlywheelMotor = new Jaguar(1);
-        LiveWindow.addActuator("Shooter", "Flywheel Motor", (Jaguar) shooterFlywheelMotor);
-        
-        
-        hoodServo = new Servo(3);
-        
-        robotCamera = new MicrosoftLifeCam("cam0");
+		driveTrainRobotDrive = new RobotDrive(driveTrainLeftDriveMotor, driveTrainRightDriveMotor);
 
-    }
+		driveTrainRobotDrive.setSafetyEnabled(true);
+		driveTrainRobotDrive.setExpiration(0.1);
+		driveTrainRobotDrive.setSensitivity(0.5);
+		driveTrainRobotDrive.setMaxOutput(1.0);
+
+		driveTrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		intakeIntakeBarMotor = new Jaguar(0);
+		LiveWindow.addActuator("Intake", "Intake Bar Motor", (Jaguar) intakeIntakeBarMotor);
+
+		shooterFlywheelMotor = new Jaguar(1);
+		LiveWindow.addActuator("Shooter", "Flywheel Motor", (Jaguar) shooterFlywheelMotor);
+
+		hoodServo = new Servo(3);
+
+		robotCamera = new MicrosoftLifeCam("cam0");
+
+		accelerometer = new BuiltInAccelerometer();
+
+		pdp = new PowerDistributionPanel();
+
+	}
 }

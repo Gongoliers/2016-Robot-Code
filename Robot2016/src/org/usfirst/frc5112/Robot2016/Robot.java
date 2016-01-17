@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,83 +26,82 @@ import org.usfirst.frc5112.Robot2016.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
+	Command autonomousCommand;
 
-    public static OI oi;
-    public static DriveTrain driveTrain;
-    public static Scaler scaler;
-    public static Hood hood;
-    public static ObstacleMover obstacleMover;
-    public static Intake intake;
-    public static Camera camera;
-    public static Shooter shooter;
+	public static OI oi;
+	public static DriveTrain driveTrain;
+	public static Scaler scaler;
+	public static Hood hood;
+	public static ObstacleMover obstacleMover;
+	public static Intake intake;
+	public static Camera camera;
+	public static Shooter shooter;
 
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	public void robotInit() {
+		RobotMap.init();
+		driveTrain = new DriveTrain();
+		scaler = new Scaler();
+		hood = new Hood();
+		obstacleMover = new ObstacleMover();
+		intake = new Intake();
+		camera = new Camera();
+		shooter = new Shooter();
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    public void robotInit() {
-    RobotMap.init();
-        driveTrain = new DriveTrain();
-        scaler = new Scaler();
-        hood = new Hood();
-        obstacleMover = new ObstacleMover();
-        intake = new Intake();
-        camera = new Camera();
-        shooter = new Shooter();
+		oi = new OI();
 
-        oi = new OI();
+		autonomousCommand = new AutonomousCrossRoughTerrain();
 
+	}
 
+	/**
+	 * This function is called when the disabled button is hit. You can use it
+	 * to reset subsystems before shutting down.
+	 */
+	public void disabledInit() {
 
-        autonomousCommand = new AutonomousCrossRoughTerrain();
+	}
 
-    }
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    /**
-     * This function is called when the disabled button is hit.
-     * You can use it to reset subsystems before shutting down.
-     */
-    public void disabledInit(){
+	public void autonomousInit() {
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null)
+			autonomousCommand.start();
+	}
 
-    }
+	/**
+	 * This function is called periodically during autonomous
+	 */
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    public void disabledPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (autonomousCommand != null)
+			autonomousCommand.cancel();
+	}
 
-    public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
-    }
+	/**
+	 * This function is called periodically during operator control
+	 */
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    /**
-     * This function is called periodically during autonomous
-     */
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
-
-    public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
-    }
-
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-    }
-
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() {
-        LiveWindow.run();
-    }
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 }
