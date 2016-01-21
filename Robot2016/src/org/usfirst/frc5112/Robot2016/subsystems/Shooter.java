@@ -37,5 +37,14 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    public void spinFlyWheel(double speed)	{
+    	flywheelMotor.set(speed);
+    }
+    public void moveBoulderToFlyWheel(double speed)	{
+    	
+    }
+    public void stopFlyWheel()	{
+    	flywheelMotor.set(0);
+    }
 }
 
