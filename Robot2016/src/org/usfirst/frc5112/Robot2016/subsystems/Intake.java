@@ -1,4 +1,4 @@
-// Chris D
+// SquidwardAndCo
 
 package org.usfirst.frc5112.Robot2016.subsystems;
 
@@ -36,6 +36,15 @@ public class Intake extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    }
+    public void setBarSpeed(double speed){
+    	intakeBarMotor.set(speed);
+    }
+    public void stopBar(){
+    	intakeBarMotor.set(0);
+    }
+    public boolean hasBoulder(){
+    	return true;
     }
 }
 
