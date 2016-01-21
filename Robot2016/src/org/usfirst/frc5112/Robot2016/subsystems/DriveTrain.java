@@ -51,19 +51,19 @@ public class DriveTrain extends Subsystem {
     }
     
     public void forward(double speed) {
-    	
+    	robotDrive.drive(-speed, 0);
     }
     
     public void reverse(double speed) {
-    	
+    	robotDrive.drive(speed, 0);
     }
     
     public void rotateCW(double rotationSpeed) {
-    	
+    	robotDrive.drive(1, rotationSpeed);
     }
     
     public void rotateCCW(double rotationSpeed) {
-    	
+    	robotDrive.drive(1, -rotationSpeed);
     }
 
 
