@@ -38,11 +38,11 @@ public class OperateDriveTrain extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.forward();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.driveTrain.operate(Robot.oi.driveStick.getMagnitude(), Robot.oi.driveStick.getZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()
