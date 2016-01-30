@@ -42,7 +42,7 @@ public class OperateDriveTrain extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.operate(Robot.oi.driveStick.getMagnitude(), Robot.oi.driveStick.getZ());
+    	Robot.driveTrain.operate(Robot.oi.driveStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

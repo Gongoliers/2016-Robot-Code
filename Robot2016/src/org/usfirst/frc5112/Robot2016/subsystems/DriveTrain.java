@@ -7,6 +7,7 @@ import org.usfirst.frc5112.Robot2016.DualCANTalon;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -42,8 +43,8 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void operate(double speed, double rotate) {
-    	robotDrive.drive(speed, rotate);
+    public void operate(Joystick stick) {
+    	robotDrive.arcadeDrive(stick);
     }
     
     public void stop(){
