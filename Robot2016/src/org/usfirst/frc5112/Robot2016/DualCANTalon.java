@@ -1,17 +1,18 @@
 package org.usfirst.frc5112.Robot2016;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.TalonSRX;
 
 public class DualCANTalon implements SpeedController {
 	
-	private TalonSRX talons[];
+	private CANTalon talons[];
 	
 	public DualCANTalon(int canID1, int canID2) {
-		this(new TalonSRX(canID1), new TalonSRX(canID2));
+		this(new CANTalon(canID1), new CANTalon(canID2));
 	}
 	
-	public DualCANTalon(TalonSRX talon1, TalonSRX talon2) {
+	public DualCANTalon(CANTalon talon1, CANTalon talon2) {
 		talons[0] = talon1;
 		talons[1] = talon2;
 	}

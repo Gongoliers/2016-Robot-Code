@@ -38,9 +38,9 @@ public class RobotMap {
 	public static PowerDistributionPanel pdp;
 
 	public static void init() {
-		driveTrainLeftDriveMotor = new DualCANTalon(0, 1);
+		driveTrainRightDriveMotor = new DualCANTalon(0, 1);
 
-		driveTrainRightDriveMotor = new DualCANTalon(2, 3);
+		driveTrainLeftDriveMotor = new DualCANTalon(2, 3);
 
 		driveTrainRobotDrive = new RobotDrive(driveTrainLeftDriveMotor, driveTrainRightDriveMotor);
 
