@@ -17,15 +17,24 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The camera subsystem of the robot which is responsible for targeting the goal
+ * and allowing the driver to see.
  */
 public class Camera extends Subsystem {
 
+	/**
+	 * A helper class to hold the analysis scores of the goal.
+	 *
+	 */
 	private class Scores {
 		double Area;
 		double Aspect;
 	};
 
+	/**
+	 * A helper class to hold the data from the particle report of the goal.
+	 *
+	 */
 	private class ParticleReport implements Comparator<ParticleReport>, Comparable<ParticleReport> {
 		double PercentAreaToImageArea;
 		double Area;
@@ -43,6 +52,10 @@ public class Camera extends Subsystem {
 		}
 	};
 
+	/**
+	 * A helper class which holds the information about a goal.
+	 *
+	 */
 	public class Goal {
 		public double centerX, centerY;
 		public boolean isGoal;
@@ -67,22 +80,44 @@ public class Camera extends Subsystem {
 				100.0, 0, 0);
 	}
 
+	/**
+	 * Contains the two camera modes that the camera can be in. TARGET: Used to
+	 * target the goal. NORMAL: Used to allow drivers to clearly see in front of
+	 * them.
+	 *
+	 */
 	public static enum CameraMode {
 		TARGET, NORMAL
 	}
 
+	/**
+	 * By default, display the image that the drivers would see.
+	 */
 	public void initDefaultCommand() {
 		setDefaultCommand(new DisplayNormalCameraImage());
 	}
 
+	/**
+	 * Display the current image to the SmartDashboard.
+	 */
 	public void displayImage() {
 		robotCamera.displayOnCameraServer();
 	}
 
+	/**
+	 * Get the current image from the camera.
+	 * 
+	 * @return The current Image from the camera, in the current camera mode.
+	 */
 	public Image getImage() {
 		return robotCamera.getCurrentFrame();
 	}
 
+	/**
+	 * Locates the high goal.
+	 * 
+	 * @return A Goal object representing the current, most prominent high goal.
+	 */
 	public Goal locateTarget() {
 		Goal goal = findGoal(filterRetroreflective());
 		double[] aimingPoints = robotCamera.convertPixelSystemToAimingSystem(
@@ -94,16 +129,28 @@ public class Camera extends Subsystem {
 		return goal;
 	}
 
+	/**
+	 * Activates target mode.
+	 */
 	private void enableTargetMode() {
 		robotCamera.setBrightness(0);
 		robotCamera.setExposureManual(0);
 	}
 
+	/**
+	 * Activates normal mode.
+	 */
 	private void enableNormalMode() {
 		robotCamera.setBrightness(50);
 		robotCamera.setExposureAuto();
 	}
 
+	/**
+	 * Sets the current mode of the camera.
+	 * 
+	 * @param mode
+	 *            The CameraMode that the camera should enter.
+	 */
 	public void setCameraMode(CameraMode mode) {
 		currentMode = mode;
 		if (mode.equals(CameraMode.NORMAL))
@@ -112,10 +159,20 @@ public class Camera extends Subsystem {
 			enableTargetMode();
 	}
 
+	/**
+	 * Gets the current camera mode.
+	 * 
+	 * @return The CameraMode that the camera is currently in.
+	 */
 	public CameraMode getCurrentMode() {
 		return currentMode;
 	}
 
+	/**
+	 * Filters the image to only display the retroreflective tape.
+	 * 
+	 * @return A binary image where the retroreflective tape is white.
+	 */
 	private Image filterRetroreflective() {
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
@@ -123,6 +180,13 @@ public class Camera extends Subsystem {
 		return binaryFrame;
 	}
 
+	/**
+	 * Finds the high goal in an image.
+	 * 
+	 * @param binaryFilteredImage
+	 *            The retroreflective filtered image as a binary frame.
+	 * @return A Goal object representing the current and most prominant goal.
+	 */
 	private Goal findGoal(Image binaryFilteredImage) {
 		NIVision.imaqParticleFilter4(binaryFilteredImage, binaryFilteredImage, criteria, filterOptions, null);
 		int numParticles = NIVision.imaqCountParticles(binaryFilteredImage, 1);
@@ -164,6 +228,13 @@ public class Camera extends Subsystem {
 
 	}
 
+	/**
+	 * Gets the area score of a goal.
+	 * 
+	 * @param report
+	 *            The particle report of the most prominent object of interest.
+	 * @return The area score of the 'goal' on a scale of 0 to 100.
+	 */
 	private double getAreaScore(ParticleReport report) {
 		double boundingArea = (report.BoundingRectBottom - report.BoundingRectTop)
 				* (report.BoundingRectRight - report.BoundingRectLeft);
@@ -172,10 +243,26 @@ public class Camera extends Subsystem {
 				/ boundingArea);
 	}
 
+	/**
+	 * Converts a raw ratio to a score from 0 to 100.
+	 * 
+	 * @param A
+	 *            ratio of the actual * theoretical^-1 values.
+	 * @return The ratio score of a method on a scale of 0 to 100.
+	 */
 	private double ratioToScore(double ratio) {
 		return (Math.max(0, Math.min(100 * (1 - Math.abs(1 - ratio)), 100)));
 	}
 
+	/**
+	 * Computes the distance to the goal.
+	 * 
+	 * @param image
+	 *            The current image from the camera.
+	 * @param report
+	 *            The ParticleReport of the most prominent 'goal'.
+	 * @return The distance to the goal in meters .
+	 */
 	private double computeDistance(Image image, ParticleReport report) {
 		double normalizedWidth;
 		NIVision.GetImageSizeResult size;
@@ -187,6 +274,13 @@ public class Camera extends Subsystem {
 				/ (normalizedWidth * 12 * Math.tan(robotCamera.getViewAngle() * Math.PI / (180 * 2)));
 	}
 
+	/**
+	 * Gets the aspect score of a goal.
+	 * 
+	 * @param report
+	 *            The particle report of the most prominent object of interest.
+	 * @return The score score of the 'goal' on a scale of 0 to 100.
+	 */
 	private double getAspectScore(ParticleReport report) {
 		return ratioToScore(HighGoalRetroreflective.HEIGHT / HighGoalRetroreflective.WIDTH
 				* (report.BoundingRectRight - report.BoundingRectLeft)

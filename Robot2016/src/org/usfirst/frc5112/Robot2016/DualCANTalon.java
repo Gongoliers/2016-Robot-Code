@@ -2,7 +2,6 @@ package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.TalonSRX;
 
 public class DualCANTalon implements SpeedController {
 	

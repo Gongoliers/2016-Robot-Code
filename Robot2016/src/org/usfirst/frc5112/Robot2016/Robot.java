@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Scaler scaler;
-	public static Hood hood;
 	public static ObstacleMover obstacleMover;
 	public static Intake intake;
 	public static Camera camera;
@@ -45,7 +44,6 @@ public class Robot extends IterativeRobot {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
 		scaler = new Scaler();
-		hood = new Hood();
 		obstacleMover = new ObstacleMover();
 		intake = new Intake();
 		camera = new Camera();

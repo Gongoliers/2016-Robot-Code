@@ -24,11 +24,11 @@ public class MicrosoftLifeCam {
 		X, Y
 	}
 
-	public double getViewAngle(){
+	public double getViewAngle() {
 		// TODO find view angle of camera
 		return 0.0;
 	}
-	
+
 	public void setBrightness(int brightness) {
 		camera.setBrightness(brightness);
 	}
@@ -92,6 +92,7 @@ public class MicrosoftLifeCam {
 
 	/**
 	 * Use this for calibration purposes only
+	 * 
 	 * @param targetFeet
 	 * @param targetPixels
 	 * @param fieldOfViewPixels
