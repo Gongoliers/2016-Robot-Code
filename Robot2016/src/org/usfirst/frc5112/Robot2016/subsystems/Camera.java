@@ -57,9 +57,34 @@ public class Camera extends Subsystem {
 	 *
 	 */
 	public class Goal {
-		public double centerX, centerY;
-		public boolean isGoal;
+		private double centerX, centerY;
+		private boolean isGoal;
 		public double distance;
+		private final double CENTER_X_THRESHOLD = 0.1;
+
+		public boolean isCenteredHorizontally() {
+			return Math.abs(centerX) >= CENTER_X_THRESHOLD;
+		}
+
+		public double getCenterX() {
+			return centerX;
+		}
+
+		public double getCenterY() {
+			return centerY;
+		}
+
+		public boolean isGoal() {
+			return isGoal;
+		}
+
+		private void setCenterY(double y) {
+			centerY = y;
+		}
+
+		private void setCenterX(double x) {
+			centerX = x;
+		}
 	}
 
 	private final MicrosoftLifeCam robotCamera = RobotMap.robotCamera;
@@ -70,11 +95,9 @@ public class Camera extends Subsystem {
 	private NIVision.ParticleFilterCriteria2 criteria[] = new NIVision.ParticleFilterCriteria2[1];
 	private NIVision.ParticleFilterOptions2 filterOptions = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
 	private Scores scores = new Scores();
-	private Image binaryFrame;
 
 	public Camera() {
-		currentMode = CameraMode.NORMAL;
-		binaryFrame = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
+		setCameraMode(CameraMode.NORMAL);
 		targetGoal = new Goal();
 		criteria[0] = new NIVision.ParticleFilterCriteria2(NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN,
 				100.0, 0, 0);
@@ -120,11 +143,6 @@ public class Camera extends Subsystem {
 	 */
 	public Goal locateTarget() {
 		Goal goal = findGoal(filterRetroreflective());
-		double[] aimingPoints = robotCamera.convertPixelSystemToAimingSystem(
-				new int[] { (int) goal.centerX, (int) goal.centerY },
-				robotCamera.getResolution(MicrosoftLifeCam.Axis.X), robotCamera.getResolution(MicrosoftLifeCam.Axis.Y));
-		goal.centerX = aimingPoints[0];
-		goal.centerY = aimingPoints[1];
 		targetGoal = goal;
 		return goal;
 	}
@@ -174,9 +192,11 @@ public class Camera extends Subsystem {
 	 * @return A binary image where the retroreflective tape is white.
 	 */
 	private Image filterRetroreflective() {
+		Image binaryFrame = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
 				HighGoalRetroreflective.VAL_RANGE);
+		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
 		return binaryFrame;
 	}
 
@@ -185,13 +205,39 @@ public class Camera extends Subsystem {
 	 * 
 	 * @param binaryFilteredImage
 	 *            The retroreflective filtered image as a binary frame.
-	 * @return A Goal object representing the current and most prominant goal.
+	 * @return A Goal object representing the current and most prominent goal or
+	 *         null if no goal is detected.
 	 */
 	private Goal findGoal(Image binaryFilteredImage) {
-		NIVision.imaqParticleFilter4(binaryFilteredImage, binaryFilteredImage, criteria, filterOptions, null);
+		ParticleReport goalParticleReport = generateParticleReport(binaryFilteredImage);
+		if (goalParticleReport == null)
+			return null;
+		scores.Aspect = getAspectScore(goalParticleReport);
+		scores.Area = getAreaScore(goalParticleReport);
+		Goal locatedGoal = new Goal();
+		locatedGoal.isGoal = scores.Aspect > SCORE_MIN && scores.Area > SCORE_MIN;
+		locatedGoal.distance = computeDistance(binaryFilteredImage, goalParticleReport);
+		double rawX = (goalParticleReport.BoundingRectLeft + goalParticleReport.BoundingRectRight) / 2;
+		double rawY = (goalParticleReport.BoundingRectBottom + goalParticleReport.BoundingRectTop) / 2;
+		double[] aimingPoints = robotCamera.convertPixelSystemToAimingSystem(new int[] { (int) rawX, (int) rawY },
+				robotCamera.getResolution(MicrosoftLifeCam.Axis.X), robotCamera.getResolution(MicrosoftLifeCam.Axis.Y));
+		locatedGoal.setCenterX(aimingPoints[0]);
+		locatedGoal.setCenterY(aimingPoints[1]);
+		return locatedGoal;
+
+	}
+
+	/**
+	 * Generates a particle report for the largest particle in the image.
+	 * 
+	 * @param binaryFilteredImage
+	 *            A binary filtered image.
+	 * @return The ParticleReport of the largest object or null if no particles
+	 *         are detected.
+	 */
+	private ParticleReport generateParticleReport(Image binaryFilteredImage) {
 		int numParticles = NIVision.imaqCountParticles(binaryFilteredImage, 1);
 		if (numParticles > 0) {
-			// Measure particles and sort by particle size
 			Vector<ParticleReport> particles = new Vector<ParticleReport>();
 			for (int particleIndex = 0; particleIndex < numParticles; particleIndex++) {
 				ParticleReport par = new ParticleReport();
@@ -210,22 +256,9 @@ public class Camera extends Subsystem {
 				particles.add(par);
 			}
 			particles.sort(null);
-
-			scores.Aspect = getAspectScore(particles.elementAt(0));
-			scores.Area = getAreaScore(particles.elementAt(0));
-			Goal locatedGoal = new Goal();
-			locatedGoal.isGoal = scores.Aspect > SCORE_MIN && scores.Area > SCORE_MIN;
-			locatedGoal.distance = computeDistance(binaryFilteredImage, particles.elementAt(0));
-			locatedGoal.centerX = (particles.elementAt(0).BoundingRectLeft + particles.elementAt(0).BoundingRectRight)
-					/ 2;
-			locatedGoal.centerY = (particles.elementAt(0).BoundingRectBottom + particles.elementAt(0).BoundingRectTop)
-					/ 2;
-			return locatedGoal;
-
-		} else {
-			return new Goal();
+			return particles.elementAt(0);
 		}
-
+		return null;
 	}
 
 	/**
@@ -285,7 +318,6 @@ public class Camera extends Subsystem {
 		return ratioToScore(HighGoalRetroreflective.HEIGHT / HighGoalRetroreflective.WIDTH
 				* (report.BoundingRectRight - report.BoundingRectLeft)
 				/ (report.BoundingRectBottom - report.BoundingRectTop));
-
 	}
 
 }

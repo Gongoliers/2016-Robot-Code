@@ -9,8 +9,6 @@ import org.usfirst.frc5112.Robot2016.Robot;
  */
 public class RotateToTarget extends Command {
 
-	private double TARGET_X_POSITION_THRESHOLD = 0.1;
-
 	public RotateToTarget() {
 		requires(Robot.driveTrain);
 	}
@@ -19,12 +17,11 @@ public class RotateToTarget extends Command {
 	}
 
 	protected void execute() {
-		Robot.driveTrain.rotateCW(Robot.camera.targetGoal.centerX);
+		Robot.driveTrain.rotateCW(Robot.camera.targetGoal.getCenterX());
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(Robot.camera.targetGoal.centerX) >= TARGET_X_POSITION_THRESHOLD
-				&& Robot.camera.targetGoal.isGoal;
+		return Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {

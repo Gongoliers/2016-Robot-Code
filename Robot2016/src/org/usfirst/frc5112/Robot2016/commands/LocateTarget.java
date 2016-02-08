@@ -9,8 +9,6 @@ import org.usfirst.frc5112.Robot2016.subsystems.Camera.CameraMode;
  */
 public class LocateTarget extends Command {
 
-	private double TARGET_X_POSITION_THRESHOLD = 0.1;
-
 	public LocateTarget() {
 		requires(Robot.camera);
 	}
@@ -24,8 +22,7 @@ public class LocateTarget extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(Robot.camera.targetGoal.centerX) >= TARGET_X_POSITION_THRESHOLD
-				&& Robot.camera.targetGoal.isGoal;
+		return Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {
