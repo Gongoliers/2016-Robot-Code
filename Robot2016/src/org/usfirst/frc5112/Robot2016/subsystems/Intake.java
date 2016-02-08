@@ -19,7 +19,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void setBarSpeed(double speed) {
-		intakeBarMotor.set(speed);
+		intakeBarMotor.set(-speed);
 	}
 
 	public void stopBar() {
