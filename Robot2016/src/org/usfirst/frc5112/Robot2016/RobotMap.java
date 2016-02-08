@@ -25,10 +25,10 @@ public class RobotMap {
 	public static PowerDistributionPanel pdp;
 
 	public static void init() {
-		driveTrainRightDriveMotor = new DualCANTalon(0, 1);
-
-		driveTrainLeftDriveMotor = new DualCANTalon(2, 3);
-
+		driveTrainLeftDriveMotor = new DualCANTalon(0, 1);
+		driveTrainLeftDriveMotor.setInverted(true);
+		driveTrainRightDriveMotor = new DualCANTalon(2, 3);
+		driveTrainRightDriveMotor.setInverted(true);
 		driveTrainRobotDrive = new RobotDrive(driveTrainLeftDriveMotor, driveTrainRightDriveMotor);
 
 		driveTrainRobotDrive.setSafetyEnabled(true);
@@ -36,7 +36,6 @@ public class RobotMap {
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
 
-		driveTrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		intakeIntakeBarMotor = new Victor(0);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
