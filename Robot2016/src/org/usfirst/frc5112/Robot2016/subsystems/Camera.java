@@ -143,7 +143,7 @@ public class Camera extends Subsystem {
 	 */
 	public Goal locateTarget() {
 		Goal goal = findGoal(filterRetroreflective());
-		targetGoal = goal;
+		targetGoal = goal != null ? goal : new Goal();
 		return goal;
 	}
 
