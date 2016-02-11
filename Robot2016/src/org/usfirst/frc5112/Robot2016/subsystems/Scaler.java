@@ -39,7 +39,7 @@ public class Scaler extends Subsystem {
 	 * @return true if the scaler is fully extended, false otherwise.
 	 */
 	public boolean isFullyExtended() {
-		return true;
+		return true; // limit switch
 	}
 
 	/**
@@ -48,6 +48,6 @@ public class Scaler extends Subsystem {
 	 * @return true if the scaler is fully retracted, false otherwise.
 	 */
 	public boolean isFullyRetracted() {
-		return true;
+		return true; // limit switch
 	}
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -20,9 +21,11 @@ public class RobotMap {
 	public static SpeedController intakeIntakeBarMotor;
 	public static SpeedController shooterFlywheelMotorLeft;
 	public static SpeedController shooterFlywheelMotorRight;
+	public static SpeedController elevatorMotor;
 	public static MicrosoftLifeCam robotCamera;
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
+	public static Encoder elevatorEncoder;
 
 	public static void init() {
 		driveTrainLeftDriveMotor = new DualCANTalon(0, 1);
@@ -37,6 +40,9 @@ public class RobotMap {
 		driveTrainRobotDrive.setMaxOutput(1.0);
 
 		intakeIntakeBarMotor = new Victor(0);
+
+		elevatorMotor = new Victor(1);
+		elevatorEncoder = new Encoder(0, 1);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
 		shooterFlywheelMotorRight = new CANTalon(5);

@@ -27,6 +27,6 @@ public class Intake extends Subsystem {
 	}
 
 	public boolean hasBoulder() {
-		return true;
+		return true; // need a limit switch here
 	}
 }

@@ -31,23 +31,6 @@ public class Shooter extends Subsystem {
 	}
 
 	/**
-	 * Moves the boulder from the intake to the flywheel.
-	 * 
-	 * @param speed
-	 *            The speed of the elevator system.
-	 */
-	public void moveBoulderToFlyWheel(double speed) {
-
-	}
-
-	/**
-	 * Stops the boulder elevator system.
-	 */
-	public void stopElevatorSystem() {
-
-	}
-
-	/**
 	 * Stops the flywheel.
 	 */
 	public void stopFlyWheel() {
