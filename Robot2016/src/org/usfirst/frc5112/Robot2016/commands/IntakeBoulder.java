@@ -6,9 +6,9 @@ import org.usfirst.frc5112.Robot2016.Robot;
 /**
  *
  */
-public class StoreBoulder extends Command {
+public class IntakeBoulder extends Command {
 
-	public StoreBoulder() {
+	public IntakeBoulder() {
 		requires(Robot.intake);
 	}
 
