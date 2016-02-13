@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Camera camera;
 	public static Shooter shooter;
-	public static Elevator elevator;
+	public static Kicker elevator;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		camera = new Camera();
 		shooter = new Shooter();
-		elevator = new Elevator();
+		elevator = new Kicker();
 
 		oi = new OI();
 

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Elevator extends Subsystem {
+public class Kicker extends Subsystem {
 
 	private final SpeedController elevatorMotor = RobotMap.elevatorMotor;
 	private final Encoder elevatorEncoder = RobotMap.elevatorEncoder;
