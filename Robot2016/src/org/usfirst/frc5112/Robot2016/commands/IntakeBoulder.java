@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc5112.Robot2016.Robot;
 
 /**
- *
+ * This controls Victor Hérnandez
  */
 public class IntakeBoulder extends Command {
 
@@ -13,18 +13,22 @@ public class IntakeBoulder extends Command {
 	}
 
 	protected void initialize() {
+		Robot.intake.setBarSpeed(1);
+		setTimeout(3);
 	}
 
 	protected void execute() {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	protected void end() {
+		Robot.intake.setBarSpeed(0);
 	}
 
 	protected void interrupted() {
+		end();
 	}
 }
