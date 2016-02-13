@@ -46,7 +46,6 @@ public class OI {
 		driveStick = new Joystick(0);
 
 		// SmartDashboard Buttons
-		SmartDashboard.putData("Shoot Boulder Into High Goal", new ShootBoulderIntoHighGoal());
 		SmartDashboard.putData("Extend Scaler", new ExtendScaler());
 		SmartDashboard.putData("Retract Scaler", new RetractScaler());
 		SmartDashboard.putData("Display Normal Camera Image", new DisplayNormalCameraImage());

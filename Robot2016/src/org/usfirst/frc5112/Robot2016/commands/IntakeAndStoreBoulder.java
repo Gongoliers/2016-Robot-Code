@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class IntakeAndStoreBoulder extends CommandGroup {
 	public IntakeAndStoreBoulder() {
-		addSequential(new LowerElevatorToRestPosition());
+		addSequential(new LowerKickerToRestPosition());
 		addSequential(new IntakeBoulder());
 	}
 }

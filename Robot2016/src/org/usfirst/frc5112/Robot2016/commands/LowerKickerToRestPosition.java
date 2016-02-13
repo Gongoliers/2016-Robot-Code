@@ -4,15 +4,16 @@ import org.usfirst.frc5112.Robot2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LowerElevatorToRestPosition extends Command {
+public class LowerKickerToRestPosition extends Command {
 
-	public LowerElevatorToRestPosition() {
-		requires(Robot.elevator);
+	public LowerKickerToRestPosition() {
+		requires(Robot.kicker);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.elevator.down();
+		Robot.kicker.down();
+		setTimeout(0.8);
 	}
 
 	@Override
@@ -22,12 +23,12 @@ public class LowerElevatorToRestPosition extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.elevator.isAtRestPosition();
+		return isTimedOut(); // Robot.kicker.isAtRestPosition();
 	}
 
 	@Override
 	protected void end() {
-		Robot.elevator.stop();
+		Robot.kicker.stop();
 	}
 
 	@Override

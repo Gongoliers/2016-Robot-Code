@@ -1,30 +1,12 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc5112.Robot2016.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
-public class ShootBoulderIntoHighGoal extends Command {
-
+public class ShootBoulderIntoHighGoal extends CommandGroup {
 	public ShootBoulderIntoHighGoal() {
-		requires(Robot.shooter);
-	}
-
-	protected void initialize() {
-	}
-
-	protected void execute() {
-	}
-
-	protected boolean isFinished() {
-		return false;
-	}
-
-	protected void end() {
-	}
-
-	protected void interrupted() {
+		addSequential(new SpinUpFlywheel());
+		addSequential(new ElevateBoulderToFlywheel());
+		addParallel(new LowerKickerToRestPosition());
+		addParallel(new StopFlywheel());
 	}
 }

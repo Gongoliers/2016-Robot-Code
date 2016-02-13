@@ -1,39 +1,37 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import org.usfirst.frc5112.Robot2016.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ElevateBoulderToFlywheel extends Command {
-
-	public ElevateBoulderToFlywheel() {
-		requires(Robot.kicker);
-	}
+public class StopFlywheel extends Command{
 
 	@Override
 	protected void initialize() {
-		Robot.kicker.up();
-		setTimeout(0.75);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void execute() {
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut(); // Robot.kicker.isAtElevatedPosition();
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		Robot.kicker.stop();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		// TODO Auto-generated method stub
+		
 	}
 
 }
