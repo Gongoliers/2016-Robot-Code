@@ -1,5 +1,7 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
+import org.usfirst.frc5112.Robot2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SpinUpFlywheel extends Command{
@@ -7,7 +9,8 @@ public class SpinUpFlywheel extends Command{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+		Robot.shooter.spinFlyWheel(1.0);
+		setTimeout(1);
 	}
 
 	@Override
@@ -19,7 +22,7 @@ public class SpinUpFlywheel extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return isTimedOut();
 	}
 
 	@Override
