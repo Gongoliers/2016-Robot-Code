@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class DualCANTalon implements SpeedController {
-	
+
 	private CANTalon talons[];
-	
+
 	public DualCANTalon(int canID1, int canID2) {
 		this(new CANTalon(canID1), new CANTalon(canID2));
 	}
-	
+
 	public DualCANTalon(CANTalon talon1, CANTalon talon2) {
 		talons[0] = talon1;
 		talons[1] = talon2;
@@ -54,5 +54,12 @@ public class DualCANTalon implements SpeedController {
 		talons[0].disable();
 		talons[1].disable();
 	}
-	
+
+	@Override
+	public void stopMotor() {
+		// TODO Auto-generated method stub
+		talons[0].stopMotor();
+		talons[1].stopMotor();
+	}
+
 }
