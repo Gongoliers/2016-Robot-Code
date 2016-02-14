@@ -55,9 +55,7 @@ public class DualCANTalon implements SpeedController {
 		talons[1].disable();
 	}
 
-	@Override
 	public void stopMotor() {
-		// TODO Auto-generated method stub
 		talons[0].stopMotor();
 		talons[1].stopMotor();
 	}
