@@ -28,7 +28,7 @@ public class RobotMap {
 	public static Encoder elevatorEncoder;
 
 	public static void init() {
-		driveTrainLeftDriveMotor = new DualCANTalon(0, 1);
+		driveTrainLeftDriveMotor = new DualCANTalon(0, 5);
 		driveTrainLeftDriveMotor.setInverted(true);
 		driveTrainRightDriveMotor = new DualCANTalon(2, 3);
 		driveTrainRightDriveMotor.setInverted(true);
@@ -45,7 +45,7 @@ public class RobotMap {
 		elevatorEncoder = new Encoder(0, 1);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
-		shooterFlywheelMotorRight = new CANTalon(5);
+		shooterFlywheelMotorRight = new CANTalon(1);
 
 		robotCamera = new MicrosoftLifeCam("cam0");
 
