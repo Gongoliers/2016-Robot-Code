@@ -14,7 +14,7 @@ public class ElevateBoulderToFlywheel extends Command {
 	@Override
 	protected void initialize() {
 		Robot.kicker.up();
-		setTimeout(0.05);
+		setTimeout(0.5);
 		System.out.println("Raise kicker Init");
 
 	}
@@ -22,6 +22,7 @@ public class ElevateBoulderToFlywheel extends Command {
 	@Override
 	protected void execute() {
 //		System.out.println("Flywheel: " + Robot.pdp.getCurrent(5));
+		System.out.println(Robot.kicker.get());
 	}
 
 	@Override
@@ -33,6 +34,8 @@ public class ElevateBoulderToFlywheel extends Command {
 	protected void end() {
 		Robot.kicker.stop();
 		System.out.println("Raise kicker end");
+		System.out.println(Robot.kicker.get());
+
 
 	}
 

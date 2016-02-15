@@ -13,7 +13,7 @@ public class LowerKickerToRestPosition extends Command {
 	@Override
 	protected void initialize() {
 		Robot.kicker.down();
-		setTimeout(0.4);
+		setTimeout(0.6);
 		System.out.println("Lower kicker Init");
 	}
 

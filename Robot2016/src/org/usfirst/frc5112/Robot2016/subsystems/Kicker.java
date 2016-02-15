@@ -28,11 +28,15 @@ public class Kicker extends Subsystem {
 	}
 
 	public void up() {
-		elevatorMotor.set(0.2);
+		elevatorMotor.set(-0.25);
 	}
 
 	public void down() {
-		elevatorMotor.set(-0.9);
+		elevatorMotor.set(0.25);
+	}
+	
+	public double get(){
+		return elevatorMotor.get();
 	}
 
 	public void stop() {

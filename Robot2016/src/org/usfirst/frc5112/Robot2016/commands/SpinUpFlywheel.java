@@ -4,7 +4,7 @@ import org.usfirst.frc5112.Robot2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SpinUpFlywheel extends Command{
+public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void initialize() {
@@ -15,7 +15,7 @@ public class SpinUpFlywheel extends Command{
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		Robot.shooter.spinFlyWheel(-0.9);
+		Robot.shooter.spinFlyWheel(-0.75);
 	}
 
 	@Override
