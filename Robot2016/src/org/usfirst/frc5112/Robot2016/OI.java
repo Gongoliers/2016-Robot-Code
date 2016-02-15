@@ -44,6 +44,7 @@ public class OI {
 	public JoystickButton lb;
 	public JoystickButton start;
 	public JoystickButton select;
+	public JoystickButton trigger;
 
 	public OI() {
 		shootStick = new Joystick(1);
@@ -54,11 +55,13 @@ public class OI {
 		lb = new JoystickButton(shootStick, 4);
 		start = new JoystickButton(shootStick, 8);
 		select = new JoystickButton(shootStick, 7);
+		trigger = new JoystickButton(driveStick, 4);
 
 		rb.whenPressed(new ShootBoulderIntoHighGoal());
 		lb.whenPressed(new IntakeBoulder());
 		start.whenPressed(new DisplayNormalCameraImage());
 		select.whenPressed(new AlignWithTarget());
+		trigger.whenPressed(new IntakeBoulder());
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Shoot boulder into high goal", new ShootBoulderIntoHighGoal());
