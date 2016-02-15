@@ -8,7 +8,7 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void initialize() {
-		setTimeout(4);
+		setTimeout(3);
 	}
 
 	@Override
