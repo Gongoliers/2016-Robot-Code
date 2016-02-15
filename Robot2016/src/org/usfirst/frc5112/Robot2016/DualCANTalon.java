@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class DualCANTalon implements SpeedController {
 
-	private CANTalon talons[];
+	private CANTalon talons[] = new CANTalon[2];
 
 	public DualCANTalon(int canID1, int canID2) {
 		this(new CANTalon(canID1), new CANTalon(canID2));

@@ -14,10 +14,10 @@ public class MicrosoftLifeCam {
 	private USBCamera camera;
 
 	public MicrosoftLifeCam(String cameraName) {
-		camera.openCamera();
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		cameraStarted = false;
 		camera = new USBCamera(cameraName);
+		camera.openCamera();
 	}
 
 	public static enum Axis {

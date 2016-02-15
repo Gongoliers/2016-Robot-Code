@@ -13,7 +13,7 @@ public class IntakeBoulder extends Command {
 	}
 
 	protected void initialize() {
-		Robot.intake.setBarSpeed(1);
+		Robot.intake.setBarSpeed(-1);
 		setTimeout(3);
 	}
 

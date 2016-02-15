@@ -39,9 +39,9 @@ public class RobotMap {
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
 
-		intakeIntakeBarMotor = new Victor(0);
+		intakeIntakeBarMotor = new Victor(1);
 
-		elevatorMotor = new Victor(1);
+		elevatorMotor = new Victor(0);
 		elevatorEncoder = new Encoder(0, 1);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
