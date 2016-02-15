@@ -19,7 +19,7 @@ public class ElevateBoulderToFlywheel extends Command {
 
 	@Override
 	protected void execute() {
-		System.out.println("Flywheel: " + RobotMap.pdp.getCurrent(5));
+//		System.out.println("Flywheel: " + Robot.pdp.getCurrent(5));
 	}
 
 	@Override

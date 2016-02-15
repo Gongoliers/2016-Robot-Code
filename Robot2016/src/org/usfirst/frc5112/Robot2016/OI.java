@@ -3,6 +3,7 @@ package org.usfirst.frc5112.Robot2016;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,11 +40,25 @@ public class OI {
 
 	public Joystick driveStick;
 	public Joystick shootStick;
+	public JoystickButton rb;
+	public JoystickButton lb;
+	public JoystickButton start;
+	public JoystickButton select;
 
 	public OI() {
 		shootStick = new Joystick(1);
 
 		driveStick = new Joystick(0);
+
+		rb = new JoystickButton(shootStick, 5);
+		lb = new JoystickButton(shootStick, 4);
+		start = new JoystickButton(shootStick, 8);
+		select = new JoystickButton(shootStick, 7);
+
+		rb.whenPressed(new ShootBoulderIntoHighGoal());
+		lb.whenPressed(new IntakeBoulder());
+		start.whenPressed(new DisplayNormalCameraImage());
+		select.whenPressed(new AlignWithTarget());
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Shoot boulder into high goal", new ShootBoulderIntoHighGoal());

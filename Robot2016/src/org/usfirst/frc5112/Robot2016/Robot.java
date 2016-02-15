@@ -11,6 +11,7 @@
 package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public static Camera camera;
 	public static Shooter shooter;
 	public static Kicker kicker;
+	public static PowerDistributionPanel pdp;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -50,6 +52,7 @@ public class Robot extends IterativeRobot {
 		camera = new Camera();
 		shooter = new Shooter();
 		kicker = new Kicker();
+		pdp = RobotMap.pdp;
 
 		oi = new OI();
 

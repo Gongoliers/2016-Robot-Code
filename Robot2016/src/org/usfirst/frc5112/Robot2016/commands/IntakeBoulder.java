@@ -19,7 +19,7 @@ public class IntakeBoulder extends Command {
 	}
 
 	protected void execute() {
-		System.out.println("Intake: " + RobotMap.pdp.getCurrent(3));
+//		System.out.println("Intake: " + Robot.pdp.getCurrent(3));
 	}
 
 	protected boolean isFinished() {
