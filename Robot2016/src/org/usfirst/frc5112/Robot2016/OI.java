@@ -51,16 +51,16 @@ public class OI {
 
 		driveStick = new Joystick(0);
 
-		rb = new JoystickButton(shootStick, 5);
-		lb = new JoystickButton(shootStick, 4);
+		rb = new JoystickButton(shootStick, 6);
+		lb = new JoystickButton(shootStick, 5);
 		start = new JoystickButton(shootStick, 8);
-		select = new JoystickButton(shootStick, 7);
-		trigger = new JoystickButton(driveStick, 4);
+		//select = new JoystickButton(shootStick, 6);
+		trigger = new JoystickButton(driveStick, 2);
 
 		rb.whenPressed(new ShootBoulderIntoHighGoal());
 		lb.whenPressed(new IntakeBoulder());
 		start.whenPressed(new DisplayNormalCameraImage());
-		select.whenPressed(new AlignWithTarget());
+		//select.whenPressed(new AlignWithTarget());
 		trigger.whenPressed(new IntakeBoulder());
 
 		// SmartDashboard Button

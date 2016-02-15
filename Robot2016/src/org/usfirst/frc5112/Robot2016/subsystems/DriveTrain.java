@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
 	 *            The Joystick that will be used to operate the drivetrain.
 	 */
 	public void operate(Joystick stick) {
-		robotDrive.arcadeDrive(stick.getY(), stick.getZ()/4.0);
+		robotDrive.arcadeDrive(stick.getY(), stick.getZ()/2.0);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
 	 *            The speed of rotation.
 	 */
 	public void rotateCW(double rotationSpeed) {
-		robotDrive.drive(1, rotationSpeed);
+		robotDrive.arcadeDrive(0, rotationSpeed);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class DriveTrain extends Subsystem {
 	 *            The speed of the rotation.
 	 */
 	public void rotateCCW(double rotationSpeed) {
-		robotDrive.drive(1, -rotationSpeed);
+		robotDrive.arcadeDrive(0, -rotationSpeed);
 	}
 
 }

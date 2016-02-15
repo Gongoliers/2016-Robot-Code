@@ -9,6 +9,8 @@ public class StopFlywheel extends Command{
 	@Override
 	protected void initialize() {
 		Robot.shooter.stopFlyWheel();
+		System.out.println("Stop flywheel init");
+
 	}
 
 	@Override
@@ -23,7 +25,8 @@ public class StopFlywheel extends Command{
 
 	@Override
 	protected void end() {
-		
+		System.out.println("Stop flywheel end");
+
 	}
 
 	@Override

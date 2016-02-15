@@ -9,14 +9,13 @@ public class SpinUpFlywheel extends Command{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		Robot.shooter.spinFlyWheel(-1.0);
 		setTimeout(4);
 	}
 
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		
+		Robot.shooter.spinFlyWheel(-0.9);
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class SpinUpFlywheel extends Command{
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

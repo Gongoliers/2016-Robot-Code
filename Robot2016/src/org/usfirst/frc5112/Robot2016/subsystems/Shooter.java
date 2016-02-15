@@ -26,6 +26,8 @@ public class Shooter extends Subsystem {
 	 *            The speed of the flywheel. Negative is out and positive is in.
 	 */
 	public void spinFlyWheel(double speed) {
+		speed = Math.max(-0.9, speed);
+		speed = Math.min(0.9, speed);
 		flywheelMotorLeft.set(speed);
 		flywheelMotorRight.set(-speed);
 	}
