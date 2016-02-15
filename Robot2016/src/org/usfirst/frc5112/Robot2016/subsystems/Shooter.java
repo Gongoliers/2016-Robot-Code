@@ -23,7 +23,7 @@ public class Shooter extends Subsystem {
 	 * Sets the fly wheel to a speed. Allow time for flywheel to spin up.
 	 * 
 	 * @param speed
-	 *            The speed of the flywheel.
+	 *            The speed of the flywheel. Negative is out and positive is in.
 	 */
 	public void spinFlyWheel(double speed) {
 		flywheelMotorLeft.set(speed);
