@@ -8,8 +8,7 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		setTimeout(4);
+		setTimeout(3);
 	}
 
 	@Override
@@ -20,18 +19,15 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return isTimedOut();
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 		Robot.shooter.stopFlyWheel();
 	}
 
