@@ -17,7 +17,7 @@ public class RotateToTarget extends Command {
 	}
 
 	protected void execute() {
-		Robot.driveTrain.rotateCW(Robot.camera.targetGoal.getCenterX());
+		Robot.driveTrain.rotateCW(Robot.camera.targetGoal.getCenterX() * 0.45);
 	}
 
 	protected boolean isFinished() {

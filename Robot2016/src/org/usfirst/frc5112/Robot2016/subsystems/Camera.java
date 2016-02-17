@@ -200,7 +200,7 @@ public class Camera extends Subsystem {
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
 				HighGoalRetroreflective.VAL_RANGE);
-		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
+//		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
 		return binaryFrame;
 	}
 

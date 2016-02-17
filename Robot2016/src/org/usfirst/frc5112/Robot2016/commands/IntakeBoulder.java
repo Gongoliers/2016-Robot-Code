@@ -17,7 +17,8 @@ public class IntakeBoulder extends Command {
 	}
 
 	protected void execute() {
-		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(3));
+		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(4));
+		System.out.println(Robot.pdp.getCurrent(4));
 	}
 
 	protected boolean isFinished() {

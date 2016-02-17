@@ -23,7 +23,6 @@ public class LocateTarget extends Command {
 	protected void execute() {
 		Robot.camera.locateTarget();
 		SmartDashboard.putNumber("Goal Center X", Robot.camera.targetGoal.getCenterX());
-//		Robot.camera.displayImage();
 		CameraServer.getInstance().setImage(Robot.camera.showRetrofeflective());
 	}
 
