@@ -7,8 +7,11 @@ import org.usfirst.frc5112.Robot2016.Robot;
 
 public class IntakeBoulder extends Command {
 
+	private boolean start;
+
 	public IntakeBoulder() {
 		requires(Robot.intake);
+		start = false;
 	}
 
 	protected void initialize() {
@@ -19,6 +22,12 @@ public class IntakeBoulder extends Command {
 	protected void execute() {
 		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(4));
 		System.out.println(Robot.pdp.getCurrent(4));
+		if (!start && Robot.pdp.getCurrent(4) > 5) {
+			start = true;
+		}
+		if (start && Robot.pdp.getCurrent(4) < 4) {
+			System.out.println("Done!");
+		}
 	}
 
 	protected boolean isFinished() {
