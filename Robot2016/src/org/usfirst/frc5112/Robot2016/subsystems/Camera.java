@@ -185,6 +185,10 @@ public class Camera extends Subsystem {
 	public CameraMode getCurrentMode() {
 		return currentMode;
 	}
+	
+	public Image showRetrofeflective(){
+		return filterRetroreflective();
+	}
 
 	/**
 	 * Filters the image to only display the retroreflective tape.

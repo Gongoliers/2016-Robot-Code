@@ -14,7 +14,7 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
+		// Best shooting power: -0.75
 		Robot.shooter.spinFlyWheel(-0.75);
 	}
 

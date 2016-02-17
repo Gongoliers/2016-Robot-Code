@@ -1,6 +1,8 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 
@@ -20,6 +22,7 @@ public class IntakeBoulder extends Command {
 
 	protected void execute() {
 //		System.out.println("Intake: " + Robot.pdp.getCurrent(3));
+		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(3));
 	}
 
 	protected boolean isFinished() {
