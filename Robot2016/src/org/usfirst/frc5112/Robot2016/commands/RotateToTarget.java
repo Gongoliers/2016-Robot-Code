@@ -11,9 +11,9 @@ public class RotateToTarget extends Command {
 
 	private double previousError;
 	private double sumError;
-	private double kp = 0.45;
-	private double ki = 0;
-	private double kd = 0;
+	private double kp = 0.58;
+	private double ki = 0.04;
+	private double kd = 0.3;
 
 	public RotateToTarget() {
 		requires(Robot.driveTrain);
