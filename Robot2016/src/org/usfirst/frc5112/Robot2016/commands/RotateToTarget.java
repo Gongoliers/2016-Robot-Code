@@ -9,15 +9,26 @@ import org.usfirst.frc5112.Robot2016.Robot;
  */
 public class RotateToTarget extends Command {
 
+	private double previousError;
+	private double sumError;
+	private double kp = 0.45;
+	private double ki = 0;
+	private double kd = 0;
+
 	public RotateToTarget() {
 		requires(Robot.driveTrain);
 	}
 
 	protected void initialize() {
+		previousError = Robot.camera.targetGoal.getCenterX();
+		sumError = 0;
 	}
 
 	protected void execute() {
-		Robot.driveTrain.rotateCW(Robot.camera.targetGoal.getCenterX() * 0.45);
+		double error = Robot.camera.targetGoal.getCenterX();
+		sumError += error;
+		Robot.driveTrain.rotateCW(error * kp + (error - previousError) * ki + sumError * kd);
+		previousError = error;
 	}
 
 	protected boolean isFinished() {
