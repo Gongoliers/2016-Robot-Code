@@ -27,7 +27,7 @@ public class RotateToTarget extends Command {
 	protected void execute() {
 		double error = Robot.camera.targetGoal.getCenterX();
 		sumError += error;
-		Robot.driveTrain.rotateCW(error * kp + (error - previousError) * ki + sumError * kd);
+		Robot.driveTrain.rotateCW(error * kp + (error - previousError) * kd + sumError * ki);
 		previousError = error;
 	}
 
