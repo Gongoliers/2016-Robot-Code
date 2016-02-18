@@ -2,6 +2,7 @@
 
 package org.usfirst.frc5112.Robot2016.subsystems;
 
+import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,7 +28,7 @@ public class DriveTrain extends Subsystem {
 	 *            The Joystick that will be used to operate the drivetrain.
 	 */
 	public void operate(Joystick stick) {
-		robotDrive.arcadeDrive(stick.getY(), stick.getZ()/2.0);
+		robotDrive.arcadeDrive(stick.getY(), stick.getZ() / 2.0);
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class DriveTrain extends Subsystem {
 	 *            The speed of the drivetrain.
 	 */
 	public void forward(double speed) {
-		robotDrive.drive(-speed, 0);
+		robotDrive.drive(-speed, -0.03 * Robot.gyro.getAngle());
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class DriveTrain extends Subsystem {
 	 *            The speed of the drivetrain.
 	 */
 	public void reverse(double speed) {
-		robotDrive.drive(speed, 0);
+		robotDrive.drive(speed, -0.03 * Robot.gyro.getAngle());
 	}
 
 	/**

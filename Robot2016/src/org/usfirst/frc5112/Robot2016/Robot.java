@@ -10,6 +10,7 @@
 
 package org.usfirst.frc5112.Robot2016;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Kicker kicker;
 	public static PowerDistributionPanel pdp;
+	public static AnalogGyro gyro;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -53,6 +55,8 @@ public class Robot extends IterativeRobot {
 		shooter = new Shooter();
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;
+		gyro = new AnalogGyro(0);
+		gyro.reset();
 
 		oi = new OI();
 

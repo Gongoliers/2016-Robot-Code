@@ -1,5 +1,6 @@
 package org.usfirst.frc5112.Robot2016;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -26,6 +27,7 @@ public class RobotMap {
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
 	public static Encoder elevatorEncoder;
+	public static AnalogGyro gyro;
 
 	public static void init() {
 		driveTrainLeftDriveMotor = new DualCANTalon(0, 5);
@@ -52,6 +54,8 @@ public class RobotMap {
 		accelerometer = new BuiltInAccelerometer();
 
 		pdp = new PowerDistributionPanel();
-
+		
+		gyro = new AnalogGyro(0);
+		gyro.initGyro();
 	}
 }
