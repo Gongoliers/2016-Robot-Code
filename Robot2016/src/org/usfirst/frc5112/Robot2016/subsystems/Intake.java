@@ -3,6 +3,8 @@
 package org.usfirst.frc5112.Robot2016.subsystems;
 
 import org.usfirst.frc5112.Robot2016.RobotMap;
+import org.usfirst.frc5112.Robot2016.commands.OperateIntake;
+
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,7 +17,7 @@ public class Intake extends Subsystem {
 	private final SpeedController intakeBarMotor = RobotMap.intakeIntakeBarMotor;
 
 	public void initDefaultCommand() {
-
+		setDefaultCommand(new OperateIntake());
 	}
 
 	/**
