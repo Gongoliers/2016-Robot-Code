@@ -15,6 +15,7 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The camera subsystem of the robot which is responsible for targeting the goal
@@ -185,8 +186,8 @@ public class Camera extends Subsystem {
 	public CameraMode getCurrentMode() {
 		return currentMode;
 	}
-	
-	public Image showRetrofeflective(){
+
+	public Image showRetrofeflective() {
 		return filterRetroreflective();
 	}
 
@@ -200,7 +201,8 @@ public class Camera extends Subsystem {
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
 				HighGoalRetroreflective.VAL_RANGE);
-//		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
+		// NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria,
+		// filterOptions, null);
 		return binaryFrame;
 	}
 
@@ -275,7 +277,7 @@ public class Camera extends Subsystem {
 	private double getAreaScore(ParticleReport report) {
 		double boundingArea = (report.BoundingRectBottom - report.BoundingRectTop)
 				* (report.BoundingRectRight - report.BoundingRectLeft);
-
+		SmartDashboard.putNumber("Goal height", (report.BoundingRectRight - report.BoundingRectLeft));
 		return ratioToScore(HighGoalRetroreflective.BOUNDING_RECTANGLE_AREA / HighGoalRetroreflective.AREA * report.Area
 				/ boundingArea);
 	}
