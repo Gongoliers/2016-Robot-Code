@@ -277,7 +277,7 @@ public class Camera extends Subsystem {
 	private double getAreaScore(ParticleReport report) {
 		double boundingArea = (report.BoundingRectBottom - report.BoundingRectTop)
 				* (report.BoundingRectRight - report.BoundingRectLeft);
-		SmartDashboard.putNumber("Goal height", (report.BoundingRectRight - report.BoundingRectLeft));
+		SmartDashboard.putNumber("Goal height", (report.BoundingRectBottom - report.BoundingRectTop));
 		return ratioToScore(HighGoalRetroreflective.BOUNDING_RECTANGLE_AREA / HighGoalRetroreflective.AREA * report.Area
 				/ boundingArea);
 	}
