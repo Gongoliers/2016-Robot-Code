@@ -25,7 +25,7 @@ public class Intake extends Subsystem {
 	 * @param speed The speed of the intake bars. Negative is in, positive is out.
 	 */
 	public void setBarSpeed(double speed) {
-		intakeBarMotor.set(-speed);
+		intakeBarMotor.set(speed);
 	}
 
 	public void stopBar() {
