@@ -6,10 +6,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class OperateFlywheel extends Command {
 
+	public OperateFlywheel() {
+		requires(Robot.shooter);
+	}
+
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

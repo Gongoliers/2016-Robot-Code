@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ActivateTargetMode extends Command {
 
+	public ActivateTargetMode() {
+		requires(Robot.camera);
+	}
+	
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub

@@ -5,6 +5,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForwardForFiveSeconds extends Command {
+	
+	public DriveForwardForFiveSeconds() {
+		requires(Robot.driveTrain);
+	}
 
 	@Override
 	protected void initialize() {
@@ -16,8 +20,8 @@ public class DriveForwardForFiveSeconds extends Command {
 		Robot.driveTrain.forward(1);
 	}
 
-	@Override
-	protected boolean isFinished() {
+	@Override                                  
+	protected boolean isFinished() {                         
 		return isTimedOut();
 	}
 

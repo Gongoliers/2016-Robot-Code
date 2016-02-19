@@ -5,6 +5,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StopFlywheel extends Command {
+	
+	public StopFlywheel() {
+		requires(Robot.shooter);
+	}
 
 	@Override
 	protected void initialize() {

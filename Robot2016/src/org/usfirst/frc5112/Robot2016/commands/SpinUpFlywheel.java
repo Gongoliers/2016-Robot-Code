@@ -5,6 +5,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SpinUpFlywheel extends Command {
+	
+	public SpinUpFlywheel() {
+		requires(Robot.shooter);
+	}
 
 	@Override
 	protected void initialize() {

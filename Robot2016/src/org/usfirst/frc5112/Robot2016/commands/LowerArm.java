@@ -1,8 +1,14 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
+import org.usfirst.frc5112.Robot2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class LowerArm extends Command{
+	
+	public LowerArm() {
+		requires(Robot.obstacleMover);
+	}
 
 	@Override
 	protected void initialize() {

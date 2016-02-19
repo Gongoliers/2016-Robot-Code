@@ -5,6 +5,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveBackwards extends Command{
+	
+	public DriveBackwards() {
+		requires(Robot.driveTrain);
+	}
 
 	@Override
 	protected void initialize() {
