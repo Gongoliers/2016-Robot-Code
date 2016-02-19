@@ -55,8 +55,8 @@ public class Robot extends IterativeRobot {
 		shooter = new Shooter();
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;
-		gyro = new AnalogGyro(0);
-		gyro.reset();
+		gyro = RobotMap.gyro;
+//		gyro.reset();
 
 		oi = new OI();
 

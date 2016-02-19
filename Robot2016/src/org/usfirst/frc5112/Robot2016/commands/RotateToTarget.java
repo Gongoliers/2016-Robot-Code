@@ -12,9 +12,9 @@ import org.usfirst.frc5112.Robot2016.Robot;
 public class RotateToTarget extends Command {
 
 	private double kp = 0.58;
-	private double ki = 0.04;
-	private double kd = 0.3;
-	private double threshold = 0.08;
+	private double ki = 0.02;
+	private double kd = 0.25;
+	private double threshold = 0.15;
 
 	private PID pidController;
 
@@ -27,14 +27,17 @@ public class RotateToTarget extends Command {
 	}
 
 	protected void execute() {
-		double pidOutput = pidController.getOutput(Robot.camera.targetGoal.getCenterX(), 0);
-		Robot.driveTrain.rotateCCW(pidOutput);
+		if (!isFinished()) {
+			double pidOutput = pidController.getOutput(Robot.camera.targetGoal.getCenterX(), 0);
+			Robot.driveTrain.rotateCCW(pidOutput);
+		} else {
+			Robot.driveTrain.stop();
+		}
 
 	}
 
 	protected boolean isFinished() {
-		return pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), 0)
-				&& Robot.camera.targetGoal.isGoal();
+		return Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {
