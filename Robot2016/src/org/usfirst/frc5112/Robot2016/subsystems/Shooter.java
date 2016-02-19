@@ -3,6 +3,8 @@
 package org.usfirst.frc5112.Robot2016.subsystems;
 
 import org.usfirst.frc5112.Robot2016.RobotMap;
+import org.usfirst.frc5112.Robot2016.commands.OperateFlywheel;
+
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,7 +18,7 @@ public class Shooter extends Subsystem {
 	private final SpeedController flywheelMotorRight = RobotMap.shooterFlywheelMotorRight;
 
 	public void initDefaultCommand() {
-
+		setDefaultCommand(new OperateFlywheel());
 	}
 
 	/**

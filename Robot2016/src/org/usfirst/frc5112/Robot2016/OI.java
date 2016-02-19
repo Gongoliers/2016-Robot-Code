@@ -15,6 +15,7 @@ public class OI {
 	public Joystick xbox;
 	public JoystickButton xboxRB;
 	public JoystickButton xboxLB;
+	public JoystickButton xboxA;
 	public JoystickButton xboxStart;
 	public JoystickButton driveStickTrigger;
 	public JoystickButton driveStickSideButton;
@@ -26,12 +27,14 @@ public class OI {
 
 		xboxRB = new JoystickButton(xbox, 6);
 		xboxLB = new JoystickButton(xbox, 5);
+		xboxA = new JoystickButton(xbox, 1);
 		xboxStart = new JoystickButton(xbox, 8);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
 		driveStickSideButton = new JoystickButton(driveStick, 2);
 
 		xboxRB.whenPressed(new ShootBoulderIntoHighGoal());
 		xboxLB.whenPressed(new IntakeBoulder());
+		xboxA.whenPressed(new RaiseThenLowerKicker());
 		xboxStart.whenPressed(new StopIntakeAndFlywheel());
 		
 		driveStickTrigger.whileHeld(new AlignWithTarget());
