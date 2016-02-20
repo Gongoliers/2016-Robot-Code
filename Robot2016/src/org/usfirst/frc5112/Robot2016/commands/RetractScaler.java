@@ -3,9 +3,6 @@ package org.usfirst.frc5112.Robot2016.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc5112.Robot2016.Robot;
 
-/**
- *
- */
 public class RetractScaler extends Command {
 
 	public RetractScaler() {
@@ -17,6 +14,7 @@ public class RetractScaler extends Command {
 	}
 
 	protected void execute() {
+		Robot.scaler.retract(0.5);
 	}
 
 	protected boolean isFinished() {
@@ -24,8 +22,10 @@ public class RetractScaler extends Command {
 	}
 
 	protected void end() {
+		Robot.scaler.stop();
 	}
 
 	protected void interrupted() {
+		end();
 	}
 }

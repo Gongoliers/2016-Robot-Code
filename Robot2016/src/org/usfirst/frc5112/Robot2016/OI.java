@@ -16,6 +16,8 @@ public class OI {
 	public JoystickButton xboxRB;
 	public JoystickButton xboxLB;
 	public JoystickButton xboxA;
+	public JoystickButton xboxY;
+	public JoystickButton xboxB;
 	public JoystickButton xboxStart;
 	public JoystickButton driveStickTrigger;
 	public JoystickButton driveStickSideButton;
@@ -27,6 +29,8 @@ public class OI {
 
 		xboxRB = new JoystickButton(xbox, 6);
 		xboxLB = new JoystickButton(xbox, 5);
+		xboxY = new JoystickButton(xbox, 99);
+		xboxB = new JoystickButton(xbox, 99);
 		xboxA = new JoystickButton(xbox, 1);
 		xboxStart = new JoystickButton(xbox, 8);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
@@ -36,9 +40,13 @@ public class OI {
 		xboxLB.whenPressed(new IntakeBoulder());
 		xboxA.whenPressed(new RaiseThenLowerKicker());
 		xboxStart.whenPressed(new StopIntakeAndFlywheel());
+		xboxB.whileHeld(new RaiseArm());
+		xboxY.whileHeld(new LowerArm());
+		
 		
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
+		
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Shoot boulder into high goal", new ShootBoulderIntoHighGoal());

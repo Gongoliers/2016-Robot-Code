@@ -19,6 +19,8 @@ public class RobotMap {
 	public static DualCANTalon driveTrainLeftDriveMotor;
 	public static DualCANTalon driveTrainRightDriveMotor;
 	public static RobotDrive driveTrainRobotDrive;
+	public static SpeedController scalerLeftMotor;
+	public static SpeedController scalerRightMotor;
 	public static SpeedController intakeIntakeBarMotor;
 	public static SpeedController obstacleMoverMotor;
 	public static SpeedController shooterFlywheelMotorLeft;
@@ -41,6 +43,9 @@ public class RobotMap {
 		driveTrainRobotDrive.setExpiration(0.1);
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
+		
+		scalerLeftMotor = new Victor(3);
+		scalerRightMotor = new Victor(4);
 		
 		obstacleMoverMotor = new Victor(2);
 
