@@ -43,10 +43,10 @@ public class RobotMap {
 		driveTrainRobotDrive.setExpiration(0.1);
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
-		
-		scalerLeftMotor = new Victor(3);
+
 		scalerRightMotor = new Victor(4);
-		
+		scalerLeftMotor = new Victor(3);
+
 		obstacleMoverMotor = new Victor(2);
 
 		intakeIntakeBarMotor = new Victor(1);
@@ -62,7 +62,7 @@ public class RobotMap {
 		accelerometer = new BuiltInAccelerometer();
 
 		pdp = new PowerDistributionPanel();
-		
+
 		gyro = new AnalogGyro(0);
 		gyro.initGyro();
 	}
