@@ -18,7 +18,7 @@ public class SpinUpFlywheel extends Command {
 	@Override
 	protected void execute() {
 		// Best shooting power: -0.75
-		Robot.shooter.spinFlyWheel(-0.62);
+		Robot.shooter.spinFlyWheel(-0.58);
 	}
 
 	@Override

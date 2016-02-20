@@ -10,6 +10,6 @@ public class AlignWithTarget extends CommandGroup {
 	public AlignWithTarget() {
 		addSequential(new ActivateTargetMode());
 		addParallel(new LocateTarget());
-		addParallel(new RotateToTarget());
+//		addParallel(new RotateToTarget());
 	}
 }

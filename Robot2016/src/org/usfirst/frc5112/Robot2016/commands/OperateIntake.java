@@ -3,6 +3,7 @@ package org.usfirst.frc5112.Robot2016.commands;
 import org.usfirst.frc5112.Robot2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,6 +22,8 @@ public class OperateIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.setBarSpeed(-Robot.oi.xbox.getRawAxis(1));
+		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(4));
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
