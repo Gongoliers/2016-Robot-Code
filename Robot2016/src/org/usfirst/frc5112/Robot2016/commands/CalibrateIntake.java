@@ -13,7 +13,7 @@ public class CalibrateIntake extends Command {
 
 	protected void initialize() {
 		Robot.intake.setBarSpeed(-1);
-		setTimeout(0.4);
+		setTimeout(0.6);
 	}
 
 	protected void execute() {

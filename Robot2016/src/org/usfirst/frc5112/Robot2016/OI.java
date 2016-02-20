@@ -21,20 +21,23 @@ public class OI {
 	public JoystickButton xboxStart;
 	public JoystickButton driveStickTrigger;
 	public JoystickButton driveStickSideButton;
-	
+	public JoystickButton driveStickButton3;
+	public JoystickButton driveStickButton4;
 
 	public OI() {
 		xbox = new Joystick(1);
-		xbox.getIsXbox();
 		driveStick = new Joystick(0);
 		xboxRB = new JoystickButton(xbox, 6);
 		xboxLB = new JoystickButton(xbox, 5);
-		xboxY = new JoystickButton(xbox, 99);
-		xboxB = new JoystickButton(xbox, 99);
+		xboxY = new JoystickButton(xbox, 4);
+		xboxB = new JoystickButton(xbox, 2);
 		xboxA = new JoystickButton(xbox, 1);
+
 		xboxStart = new JoystickButton(xbox, 8);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
 		driveStickSideButton = new JoystickButton(driveStick, 2);
+		driveStickButton3 = new JoystickButton(driveStick, 3);
+		driveStickButton4 = new JoystickButton(driveStick, 4);
 
 		xboxRB.whenPressed(new ShootBoulderIntoHighGoal());
 		xboxLB.whenPressed(new IntakeBoulder());
@@ -42,11 +45,10 @@ public class OI {
 		xboxStart.whenPressed(new StopIntakeAndFlywheel());
 		xboxB.whileHeld(new RaiseArm());
 		xboxY.whileHeld(new LowerArm());
-		
-		
+
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
-		
+		driveStickButton3.whenPressed(new CalibrateIntake());
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Shoot boulder into high goal", new ShootBoulderIntoHighGoal());
