@@ -1,6 +1,5 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,7 +22,7 @@ public class LocateTarget extends Command {
 	protected void execute() {
 		Robot.camera.locateTarget();
 		SmartDashboard.putNumber("Goal Center X", Robot.camera.targetGoal.getCenterX());
-		CameraServer.getInstance().setImage(Robot.camera.showRetrofeflective());
+		SmartDashboard.putNumber("Goal distance", Robot.camera.targetGoal.distance);
 	}
 
 	protected boolean isFinished() {

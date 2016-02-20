@@ -11,9 +11,13 @@ import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.DisplayNormalCameraImage;
 
 import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
+import com.ni.vision.NIVision.Rect;
+import com.ni.vision.NIVision.ShapeMode;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -187,10 +191,6 @@ public class Camera extends Subsystem {
 		return currentMode;
 	}
 
-	public Image showRetrofeflective() {
-		return filterRetroreflective();
-	}
-
 	/**
 	 * Filters the image to only display the retroreflective tape.
 	 * 
@@ -201,8 +201,7 @@ public class Camera extends Subsystem {
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
 				HighGoalRetroreflective.VAL_RANGE);
-		// NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria,
-		// filterOptions, null);
+		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
 		return binaryFrame;
 	}
 
@@ -216,6 +215,12 @@ public class Camera extends Subsystem {
 	 */
 	private Goal findGoal(Image binaryFilteredImage) {
 		ParticleReport goalParticleReport = generateParticleReport(binaryFilteredImage);
+		NIVision.imaqDrawShapeOnImage(binaryFilteredImage, binaryFilteredImage,
+				new Rect((int) goalParticleReport.BoundingRectTop, (int) goalParticleReport.BoundingRectLeft,
+						(int) (goalParticleReport.BoundingRectBottom - goalParticleReport.BoundingRectTop),
+						(int) (goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft)),
+				DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 255);
+		CameraServer.getInstance().setImage(binaryFilteredImage);
 		if (goalParticleReport == null)
 			return null;
 		scores.Aspect = getAspectScore(goalParticleReport);

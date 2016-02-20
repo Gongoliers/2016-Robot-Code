@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 
 		oi = new OI();
 
-		autonomousCommand = new AutonomousCrossRoughTerrain();
+		autonomousCommand = new AutoRoughTerrain();
 
 	}
 

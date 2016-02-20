@@ -25,8 +25,7 @@ public class MicrosoftLifeCam {
 	}
 
 	public double getViewAngle() {
-		// TODO find view angle of camera
-		return 0.0;
+		return 60;
 	}
 
 	public void setBrightness(int brightness) {
