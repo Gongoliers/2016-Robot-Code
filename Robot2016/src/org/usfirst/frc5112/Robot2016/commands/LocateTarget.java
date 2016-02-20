@@ -26,7 +26,7 @@ public class LocateTarget extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
+		return false; //Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {

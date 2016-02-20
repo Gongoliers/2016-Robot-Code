@@ -11,10 +11,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
  */
 public class RotateToTarget extends Command {
 
-	private double kp = 0.58;
-	private double ki = 0.02;
-	private double kd = 0.25;
-	private double threshold = 0.15;
+	private double kp = 0.72;
+	private double ki = 0.06;
+	private double kd = 0.26;
+	private double threshold = 0.01;
 
 	private PID pidController;
 
@@ -37,7 +37,7 @@ public class RotateToTarget extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Robot.camera.targetGoal.isCenteredHorizontally() && Robot.camera.targetGoal.isGoal();
+		return pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), 0) && Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {
