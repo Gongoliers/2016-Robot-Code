@@ -12,7 +12,6 @@ public class RaiseArm extends Command {
 
 	@Override
 	protected void initialize() {
-		setTimeout(2);
 	}
 
 	@Override
@@ -22,7 +21,7 @@ public class RaiseArm extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return Robot.obstacleMover.isBarUp();
 	}
 
 	@Override

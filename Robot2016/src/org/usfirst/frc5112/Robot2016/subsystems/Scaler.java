@@ -4,6 +4,7 @@ package org.usfirst.frc5112.Robot2016.subsystems;
 
 import org.usfirst.frc5112.Robot2016.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,7 +12,9 @@ public class Scaler extends Subsystem {
 
 	private final SpeedController scalerLeftMotor = RobotMap.scalerLeftMotor;
 	private final SpeedController scalerRightMotor = RobotMap.scalerRightMotor;
-
+	private final DigitalInput scalerUpLimitSwitch = RobotMap.scalerUpLimitSwitch;
+	private final DigitalInput scalerDownLimitSwitch = RobotMap.scalerDownLimitSwitch;
+		
 	public void initDefaultCommand() {
 
 	}
@@ -32,10 +35,10 @@ public class Scaler extends Subsystem {
 	}
 
 	public boolean isFullyExtended() {
-		return true; // limit switch
+		return scalerUpLimitSwitch.get(); // limit switch
 	}
 
 	public boolean isFullyRetracted() {
-		return true; // limit switch
+		return scalerDownLimitSwitch.get(); // limit switch
 	}
 }

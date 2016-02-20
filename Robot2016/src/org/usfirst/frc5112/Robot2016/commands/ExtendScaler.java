@@ -18,7 +18,7 @@ public class ExtendScaler extends Command {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return Robot.scaler.isFullyExtended();
 	}
 
 	protected void end() {

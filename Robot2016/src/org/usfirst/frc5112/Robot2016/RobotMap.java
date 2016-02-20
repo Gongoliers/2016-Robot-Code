@@ -3,6 +3,7 @@ package org.usfirst.frc5112.Robot2016;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -31,6 +32,9 @@ public class RobotMap {
 	public static PowerDistributionPanel pdp;
 	public static Encoder elevatorEncoder;
 	public static AnalogGyro gyro;
+	public static DigitalInput obstacleArmLimitSwitch;
+	public static DigitalInput scalerUpLimitSwitch;
+	public static DigitalInput scalerDownLimitSwitch;
 
 	public static void init() {
 		driveTrainLeftDriveMotor = new DualCANTalon(0, 5);
@@ -43,6 +47,10 @@ public class RobotMap {
 		driveTrainRobotDrive.setExpiration(0.1);
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
+		
+		obstacleArmLimitSwitch = new DigitalInput(0);
+		scalerUpLimitSwitch = new DigitalInput(1);
+		scalerDownLimitSwitch = new DigitalInput(2);
 
 		scalerRightMotor = new Victor(4);
 		scalerLeftMotor = new Victor(3);
