@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc5112.Robot2016.commands.*;
 import org.usfirst.frc5112.Robot2016.subsystems.*;
 
@@ -41,6 +44,8 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp;
 	public static AnalogGyro gyro;
 
+	private SendableChooser autoChooser;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -56,11 +61,21 @@ public class Robot extends IterativeRobot {
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;
 		gyro = RobotMap.gyro;
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Do nothing", new StopDriveTrain());
+		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
+		autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
+		autoChooser.addObject("Moat", new AutoMoat());
+		autoChooser.addObject("Ramparts", new AutoRamparts());
+		autoChooser.addObject("Rock Wall", new AutoRockWall());
+		autoChooser.addObject("Sally Port", new AutoSallyPort());
+		SmartDashboard.putData("Autonomous Chooser", autoChooser);
+		
+		
 //		gyro.reset();
 
 		oi = new OI();
 
-		autonomousCommand = new AutoRoughTerrain();
 
 	}
 
@@ -78,6 +93,7 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
+		autonomousCommand = (Command) autoChooser.getSelected();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

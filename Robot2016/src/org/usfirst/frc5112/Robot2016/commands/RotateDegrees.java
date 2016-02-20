@@ -21,7 +21,7 @@ public class RotateDegrees extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.gyro.reset();
-		pidController = new PID(0.6, 0, 0, 0.5);
+		pidController = new PID(0.3, 0, 0, 0.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
