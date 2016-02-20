@@ -27,21 +27,19 @@ public class RotateToTarget extends Command {
 	}
 
 	protected void execute() {
-		if (!isFinished()) {
-			double pidOutput = pidController.getOutput(Robot.camera.targetGoal.getCenterX(), 0);
-			Robot.driveTrain.rotateCCW(pidOutput);
-		} else {
-			Robot.driveTrain.stop();
-		}
+		double pidOutput = pidController.getOutput(Robot.camera.targetGoal.getCenterX(), 0);
+		Robot.driveTrain.rotateCCW(pidOutput);
 
 	}
 
 	protected boolean isFinished() {
-		return pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), 0) && Robot.camera.targetGoal.isGoal();
+		return pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), 0)
+				&& Robot.camera.targetGoal.isGoal();
 	}
 
 	protected void end() {
 		Robot.driveTrain.stop();
+		Robot.camera.getCurrentCommand().cancel();
 	}
 
 	protected void interrupted() {
