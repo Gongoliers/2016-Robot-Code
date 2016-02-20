@@ -1,9 +1,11 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
+import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5112.Robot2016.Robot;
+import org.usfirst.frc5112.Robot2016.RobotMap;
 
 public class IntakeBoulder extends Command {
 
@@ -19,14 +21,16 @@ public class IntakeBoulder extends Command {
 		start = false;
 		done = false;
 		setTimeout(0.4);
+		Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 0.75f);
+		Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 0.75f);
 	}
 
 	protected void execute() {
 		SmartDashboard.putNumber("Intake Current", Robot.pdp.getCurrent(4));
-		if (isTimedOut() && !start && Robot.pdp.getCurrent(4) > 8.5) {
+		if (isTimedOut() && !start && Robot.pdp.getCurrent(RobotMap.pdpIntakePort) > Robot.intake.getFreeCurrent() + 1) {
 			start = true;
 		}
-		if (start && Robot.pdp.getCurrent(4) < 7.6) {
+		if (start && Robot.pdp.getCurrent(RobotMap.pdpIntakePort) < Robot.intake.getFreeCurrent()) {
 			done = true;
 		}
 	}
@@ -37,6 +41,8 @@ public class IntakeBoulder extends Command {
 
 	protected void end() {
 		Robot.intake.setBarSpeed(0);
+		Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 0);
+		Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 0);
 	}
 
 	protected void interrupted() {

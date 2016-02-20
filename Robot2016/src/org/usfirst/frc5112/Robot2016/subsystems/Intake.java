@@ -14,6 +14,8 @@ public class Intake extends Subsystem {
 
 	private final SpeedController intakeBarMotor = RobotMap.intakeIntakeBarMotor;
 
+	private double freeCurrent = 7.6;
+	
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateIntake());
 	}
@@ -32,5 +34,13 @@ public class Intake extends Subsystem {
 
 	public boolean hasBoulder() {
 		return true; // need a limit switch here
+	}
+	
+	public void setFreeCurrent(double c){
+		freeCurrent = c;
+	}
+	
+	public double getFreeCurrent(){
+		return freeCurrent;
 	}
 }

@@ -35,6 +35,8 @@ public class RobotMap {
 	public static DigitalInput obstacleArmLimitSwitch;
 	public static DigitalInput scalerUpLimitSwitch;
 	public static DigitalInput scalerDownLimitSwitch;
+	
+	public static int pdpIntakePort = 4;
 
 	public static void init() {
 		driveTrainLeftDriveMotor = new DualCANTalon(0, 5);

@@ -21,12 +21,12 @@ public class OI {
 	public JoystickButton xboxStart;
 	public JoystickButton driveStickTrigger;
 	public JoystickButton driveStickSideButton;
+	
 
 	public OI() {
 		xbox = new Joystick(1);
-
+		xbox.getIsXbox();
 		driveStick = new Joystick(0);
-
 		xboxRB = new JoystickButton(xbox, 6);
 		xboxLB = new JoystickButton(xbox, 5);
 		xboxY = new JoystickButton(xbox, 99);
