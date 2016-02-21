@@ -20,8 +20,8 @@ public class Scaler extends Subsystem {
 	}
 
 	public void extend(double speed) {
-		scalerLeftMotor.set(speed);
-		scalerRightMotor.set(speed);
+		scalerLeftMotor.set(-speed);
+		scalerRightMotor.set(-speed);
 	}
 
 	public void retract(double speed) {
