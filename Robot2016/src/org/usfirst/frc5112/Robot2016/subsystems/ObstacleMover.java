@@ -2,6 +2,7 @@ package org.usfirst.frc5112.Robot2016.subsystems;
 
 import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
+import org.usfirst.frc5112.Robot2016.commands.RaiseArm;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -11,9 +12,9 @@ public class ObstacleMover extends Subsystem {
 
 	private final SpeedController obstacleMoverMotor = RobotMap.obstacleMoverMotor;
 	private final DigitalInput obstacleMoverLimitSwitch = RobotMap.obstacleArmLimitSwitch;
-	
-	public void initDefaultCommand() {
 
+	public void initDefaultCommand() {
+		setDefaultCommand(new RaiseArm());
 	}
 
 	public void lowerBar(double speed) {
@@ -27,7 +28,7 @@ public class ObstacleMover extends Subsystem {
 	public void stopBar() {
 		obstacleMoverMotor.set(0);
 	}
-	
+
 	public boolean isBarUp() {
 		return obstacleMoverLimitSwitch.get();
 	}
