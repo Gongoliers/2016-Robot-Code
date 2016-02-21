@@ -22,7 +22,7 @@ public class LocateTarget extends Command {
 	protected void execute() {
 		Robot.camera.locateTarget();
 		SmartDashboard.putNumber("Goal Center X", Robot.camera.targetGoal.getCenterX());
-		SmartDashboard.putNumber("Goal distance", Robot.camera.targetGoal.distance);
+		SmartDashboard.putNumber("Goal distance", Robot.camera.targetGoal.getDistance());
 	}
 
 	protected boolean isFinished() {

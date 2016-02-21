@@ -17,6 +17,22 @@ public class Shooter extends Subsystem {
 	private final SpeedController flywheelMotorLeft = RobotMap.shooterFlywheelMotorLeft;
 	private final SpeedController flywheelMotorRight = RobotMap.shooterFlywheelMotorRight;
 
+	private final double[] shooterSpeeds = new double[] { -1, -1, -1, -1, -1, -1, -1, -0.61, -0.59, -0.6, -0.58 };
+
+	/**
+	 * Gets the required shooting speed at a given distance.
+	 * 
+	 * @param distance
+	 *            The distance to the goal in feet.
+	 * @return The speed of the shooter.
+	 */
+	public double getShooterSpeedAtDistance(double distance) {
+		double distancePosition = Math.round(distance);
+		distancePosition = Math.max(0, distancePosition);
+		distancePosition = Math.min(distancePosition, shooterSpeeds.length);
+		return shooterSpeeds[(int) distancePosition];
+	}
+
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateFlywheel());
 	}

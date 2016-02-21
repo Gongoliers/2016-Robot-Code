@@ -64,7 +64,7 @@ public class Camera extends Subsystem {
 	public class Goal {
 		private double centerX, centerY;
 		private boolean isGoal;
-		public double distance;
+		private double distance;
 		private final double CENTER_X_THRESHOLD = 0.02;
 
 		public boolean isCenteredHorizontally() {
@@ -81,6 +81,10 @@ public class Camera extends Subsystem {
 
 		public boolean isGoal() {
 			return isGoal;
+		}
+		
+		public double getDistance(){
+			return distance;
 		}
 
 		private void setCenterY(double y) {

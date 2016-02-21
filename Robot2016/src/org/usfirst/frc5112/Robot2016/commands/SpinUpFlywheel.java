@@ -5,7 +5,7 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SpinUpFlywheel extends Command {
-	
+
 	public SpinUpFlywheel() {
 		requires(Robot.shooter);
 	}
@@ -17,7 +17,7 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void execute() {
-		// Best shooting power: -0.75
+		System.out.println(Robot.shooter.getShooterSpeedAtDistance(Robot.camera.targetGoal.getDistance()));
 		Robot.shooter.spinFlyWheel(-0.58);
 	}
 
