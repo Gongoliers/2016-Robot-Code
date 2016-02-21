@@ -28,7 +28,8 @@ public class DriveTrain extends Subsystem {
 	 *            The Joystick that will be used to operate the drivetrain.
 	 */
 	public void operate(Joystick stick) {
-		robotDrive.arcadeDrive(stick.getY() * (stick.getThrottle() + 1), 3.0 * stick.getZ() / 4.0);
+		//robotDrive.arcadeDrive(stick, 0, stick, 3, true);
+		robotDrive.arcadeDrive(Math.pow(stick.getY() * (stick.getThrottle() + 1), 2), Math.pow(3.0 * stick.getZ() / 4.0, 2));
 	}
 
 	/**
