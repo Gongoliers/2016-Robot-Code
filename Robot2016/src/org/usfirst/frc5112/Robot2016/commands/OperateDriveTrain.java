@@ -21,8 +21,9 @@ public class OperateDriveTrain extends Command {
 
 	protected void execute() {
 		Robot.driveTrain.operate(Robot.oi.getDriveStick());
-		SmartDashboard.putNumber("Accelerometer", Robot.accel.getTilt());
-		SmartDashboard.putNumber("Gyro", Robot.gyro.getAngle());
+		SmartDashboard.putNumber("Tilt", Robot.accel.getTilt());
+		SmartDashboard.putNumber("Heading", Robot.gyro.getAngle());
+		SmartDashboard.putNumber("Rate of Rotation", Robot.gyro.getRate());
 	}
 
 	protected boolean isFinished() {

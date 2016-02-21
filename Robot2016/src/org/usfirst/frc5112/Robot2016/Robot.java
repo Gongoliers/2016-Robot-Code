@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
 		gyro = RobotMap.gyro;
 		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Do nothing", new StopDriveTrain());
+		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
 		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
 		autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
 		autoChooser.addObject("Moat", new AutoMoat());
@@ -75,8 +75,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
 		
 		gyro.calibrate();
-		// gyro.reset();
-
 		oi = new OI();
 
 	}
