@@ -11,6 +11,7 @@
 package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 	public static Kicker kicker;
 	public static PowerDistributionPanel pdp;
 	public static AnalogGyro gyro;
+	public static Accelerometer accel;
 
 	private SendableChooser autoChooser;
 
@@ -61,6 +63,7 @@ public class Robot extends IterativeRobot {
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;
 		gyro = RobotMap.gyro;
+		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Do nothing", new StopDriveTrain());
 		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
@@ -70,7 +73,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Rock Wall", new AutoRockWall());
 		autoChooser.addObject("Sally Port", new AutoSallyPort());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
-
+		
 		gyro.calibrate();
 		// gyro.reset();
 
