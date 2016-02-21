@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 
 	private SendableChooser autoChooser;
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -70,12 +70,11 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Rock Wall", new AutoRockWall());
 		autoChooser.addObject("Sally Port", new AutoSallyPort());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
-		
-		
-//		gyro.reset();
+
+		gyro.calibrate();
+		// gyro.reset();
 
 		oi = new OI();
-
 
 	}
 
