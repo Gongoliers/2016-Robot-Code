@@ -18,7 +18,7 @@ public class RetractScaler extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Robot.scaler.isFullyRetracted();
+		return false;//Robot.scaler.isFullyRetracted();
 	}
 
 	protected void end() {

@@ -18,7 +18,7 @@ public class ExtendScaler extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Robot.scaler.isFullyExtended() || !(Robot.oi.xbox.RB.get() && Robot.oi.xbox.LB.get());
+		return false;//Robot.scaler.isFullyExtended() || !(Robot.oi.xbox.RB.get() && Robot.oi.xbox.LB.get());
 	}
 
 	protected void end() {

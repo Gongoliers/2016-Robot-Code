@@ -17,6 +17,7 @@ public class OperateDriveTrain extends Command {
 	}
 
 	protected void initialize() {
+		Robot.gyro.reset();
 	}
 
 	protected void execute() {

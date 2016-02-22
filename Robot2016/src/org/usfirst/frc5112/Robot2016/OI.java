@@ -28,6 +28,8 @@ public class OI {
 		driveStickButton3 = new JoystickButton(driveStick, 3);
 		driveStickButton4 = new JoystickButton(driveStick, 4);
 
+		
+		xbox.BACK.whenPressed(new RotateDegrees(90));
 		xbox.RT.whenActive(new ShootBoulderIntoHighGoal());
 		xbox.LT.whenActive(new IntakeBoulder());
 		xbox.A.whenPressed(new RaiseThenLowerKicker());
@@ -38,7 +40,7 @@ public class OI {
 		xbox.DPAD_UP.whenInactive(new StopScaler());
 		xbox.DPAD_DOWN.whenActive(new RetractScaler());
 		xbox.DPAD_DOWN.whenInactive(new StopScaler());
-		xbox.Y.whenPressed(new LimitSpeedForRockwall());
+		xbox.Y.whileHeld(new LimitSpeedForRockwall());
 
 
 		driveStickTrigger.whileHeld(new AlignWithTarget());

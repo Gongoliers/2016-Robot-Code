@@ -11,11 +11,11 @@ import org.usfirst.frc5112.Robot2016.Robot;
  */
 public class RotateToTarget extends Command {
 
-	private double kp = 0.75;
-	private double ki = 0.07;
-	private double kd = 0.26;
-	private double threshold = 0.01;
-	private double targetPosition = -0.15;
+	private double kp = 0.86;
+	private double ki = 0.2;
+	private double kd = 0.25;
+	private double threshold = 0.005;
+	private double targetPosition = -0.12;
 
 	private PID pidController;
 
