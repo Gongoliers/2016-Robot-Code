@@ -31,6 +31,7 @@ public class RobotMap {
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
 	public static Encoder elevatorEncoder;
+	public static Encoder obstacleMoverEncoder;
 	public static AnalogGyro gyro;
 	public static DigitalInput obstacleArmLimitSwitch;
 	public static DigitalInput scalerUpLimitSwitch;
@@ -58,6 +59,7 @@ public class RobotMap {
 		scalerLeftMotor = new Victor(3);
 
 		obstacleMoverMotor = new Victor(2);
+		obstacleMoverEncoder = new Encoder(2, 3);
 
 		intakeIntakeBarMotor = new Victor(1);
 

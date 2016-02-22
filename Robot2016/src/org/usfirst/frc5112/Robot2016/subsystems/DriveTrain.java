@@ -17,6 +17,8 @@ public class DriveTrain extends Subsystem {
 
 	private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
+	private double maxSpeed = 1.0;
+
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateDriveTrain());
 	}
@@ -28,10 +30,15 @@ public class DriveTrain extends Subsystem {
 	 *            The Joystick that will be used to operate the drivetrain.
 	 */
 	public void operate(Joystick stick) {
+		double y = stick.getY();
+		y = Math.max(-maxSpeed, y);
+		y = Math.min(maxSpeed, y);
 
-		// robotDrive.arcadeDrive(stick, 0, stick, 3, true);
-		robotDrive.arcadeDrive(Math.pow(stick.getY() * (stick.getThrottle() + 1), 2),
-				Math.pow(3.0 * stick.getZ() / 4.0, 2));
+		robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2), Math.pow(3.0 * stick.getZ() / 4.0, 2));
+	}
+
+	public void setMaxSpeed(double maxSpeed) {
+		this.maxSpeed = maxSpeed;
 	}
 
 	/**

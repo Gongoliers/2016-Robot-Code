@@ -38,6 +38,7 @@ public class OI {
 		xbox.DPAD_UP.whenInactive(new StopScaler());
 		xbox.DPAD_DOWN.whenActive(new RetractScaler());
 		xbox.DPAD_DOWN.whenInactive(new StopScaler());
+		xbox.Y.whenPressed(new LimitSpeedForRockwall());
 
 		Trigger joystickMoved = new Trigger() {
 

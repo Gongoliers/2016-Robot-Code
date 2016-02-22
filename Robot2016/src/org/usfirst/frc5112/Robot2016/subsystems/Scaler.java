@@ -14,7 +14,7 @@ public class Scaler extends Subsystem {
 	private final SpeedController scalerRightMotor = RobotMap.scalerRightMotor;
 	private final DigitalInput scalerUpLimitSwitch = RobotMap.scalerUpLimitSwitch;
 	private final DigitalInput scalerDownLimitSwitch = RobotMap.scalerDownLimitSwitch;
-		
+
 	public void initDefaultCommand() {
 
 	}
