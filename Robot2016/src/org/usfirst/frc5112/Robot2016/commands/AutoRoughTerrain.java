@@ -1,12 +1,16 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import org.usfirst.frc5112.Robot2016.Robot;
-
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class AutoRoughTerrain extends CommandGroup{
-	public AutoRoughTerrain(){
+public class AutoRoughTerrain extends CommandGroup {
+	public AutoRoughTerrain() {
+		Command limitSpeed = new LimitSpeedForRockwall();
+		addParallel(limitSpeed);
 		addSequential(new DriveForwardForFiveSeconds());
 		addSequential(new AlignWithTarget());
-		addSequential(new ShootBoulderIntoHighGoal());	}
+		addSequential(new ShootBoulderIntoHighGoal());
+		addSequential(new CancelCommand(limitSpeed));
+	}
+
 }
