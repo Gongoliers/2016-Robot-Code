@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
 		y = Math.max(-maxSpeed, y);
 		y = Math.min(maxSpeed, y);
 
-		robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2), Math.pow(3.0 * stick.getZ() / 4.0, 2));
+		robotDrive.arcadeDrive(y / 2.0, 3.0 * stick.getZ() / 4.0);
 	}
 
 	public void setMaxSpeed(double maxSpeed) {

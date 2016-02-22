@@ -17,8 +17,8 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void execute() {
-		System.out.println(Robot.shooter.getShooterSpeedAtDistance(Robot.camera.targetGoal.getDistance()));
-		Robot.shooter.spinFlyWheel(-0.58);
+		double speed = (Robot.shooter.getShooterSpeedAtDistance(Robot.camera.targetGoal.getDistance() - 1));
+		Robot.shooter.spinFlyWheel(speed);
 	}
 
 	@Override

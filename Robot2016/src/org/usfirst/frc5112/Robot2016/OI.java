@@ -40,15 +40,6 @@ public class OI {
 		xbox.DPAD_DOWN.whenInactive(new StopScaler());
 		xbox.Y.whenPressed(new LimitSpeedForRockwall());
 
-		Trigger joystickMoved = new Trigger() {
-
-			@Override
-			public boolean get() {
-				return Math.abs(driveStick.getY()) >= 0.1 || Math.abs(driveStick.getZ()) >= 0.1;
-			}
-		};
-
-		joystickMoved.whenActive(new OperateDriveTrain());
 
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
