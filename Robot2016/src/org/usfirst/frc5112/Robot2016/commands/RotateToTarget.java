@@ -14,7 +14,7 @@ public class RotateToTarget extends Command {
 	private double kp = 0.86;
 	private double ki = 0.2;
 	private double kd = 0.25;
-	private double threshold = 0.005;
+	private double threshold =  0.02; //0.005; 
 	private double targetPosition = -0.12;
 
 	private PID pidController;
@@ -25,6 +25,7 @@ public class RotateToTarget extends Command {
 
 	protected void initialize() {
 		pidController = new PID(kp, ki, kd, threshold);
+		LocateTarget.locatingTarget = true;
 	}
 
 	protected void execute() {
@@ -40,7 +41,7 @@ public class RotateToTarget extends Command {
 
 	protected void end() {
 		Robot.driveTrain.stop();
-//		Robot.camera.getCurrentCommand().cancel();
+		LocateTarget.locatingTarget = false;
 	}
 
 	protected void interrupted() {
