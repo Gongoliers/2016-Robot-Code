@@ -33,8 +33,7 @@ public class DriveTrain extends Subsystem {
 		double y = stick.getY();
 		y = Math.max(-maxSpeed, y);
 		y = Math.min(maxSpeed, y);
-
-		robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0, 
+		robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
 				3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
 	}
 
