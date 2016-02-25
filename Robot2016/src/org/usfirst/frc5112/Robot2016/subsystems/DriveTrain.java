@@ -6,6 +6,7 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PIDOutput{
 
 	private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
@@ -86,6 +87,11 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void rotateCCW(double rotationSpeed) {
 		robotDrive.arcadeDrive(0, -rotationSpeed);
+	}
+
+	@Override
+	public void pidWrite(double output) {
+		rotateCCW(output);
 	}
 
 }
