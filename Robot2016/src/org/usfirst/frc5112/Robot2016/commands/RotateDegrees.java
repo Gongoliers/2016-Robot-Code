@@ -4,6 +4,7 @@ import org.usfirst.frc5112.Robot2016.PID;
 import org.usfirst.frc5112.Robot2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -20,13 +21,14 @@ public class RotateDegrees extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.gyro.reset();
-		pidController = new PID(0.3, 0, 0, 0.5);
+		targetAngle += Robot.gyro.getAngle();
+		pidController = new PID(0.025, 0, 0.06, 2.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.driveTrain.rotateCCW(pidController.getOutput(Robot.gyro.getAngle(), targetAngle));
+		SmartDashboard.putNumber("Heading", Robot.gyro.getAngle());
+		Robot.driveTrain.rotateCW(pidController.getOutput(Robot.gyro.getAngle(), targetAngle));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

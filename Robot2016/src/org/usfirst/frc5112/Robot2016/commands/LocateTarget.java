@@ -10,6 +10,8 @@ import org.usfirst.frc5112.Robot2016.subsystems.Camera.CameraMode;
  * Used to detect the high goal target.
  */
 public class LocateTarget extends Command {
+	
+	public static boolean locatingTarget = false;
 
 	public LocateTarget() {
 		requires(Robot.camera);
@@ -17,16 +19,21 @@ public class LocateTarget extends Command {
 
 	protected void initialize() {
 		Robot.camera.setCameraMode(CameraMode.TARGET);
+		locatingTarget = true;
 	}
 
 	protected void execute() {
-		Robot.camera.locateTarget();
+		try {
+			Robot.camera.locateTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		SmartDashboard.putNumber("Goal Center X", Robot.camera.targetGoal.getCenterX());
 		SmartDashboard.putNumber("Goal distance", Robot.camera.targetGoal.getDistance());
 	}
 
 	protected boolean isFinished() {
-		return false; 
+		return !locatingTarget;
 	}
 
 	protected void end() {

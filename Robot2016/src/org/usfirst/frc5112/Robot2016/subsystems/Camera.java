@@ -18,6 +18,8 @@ import com.ni.vision.NIVision.Rect;
 import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The camera subsystem of the robot which is responsible for targeting the goal
  * and allowing the driver to see.
  */
-public class Camera extends Subsystem {
+public class Camera extends Subsystem implements PIDSource{
 
 	/**
 	 * A helper class to hold the analysis scores of the goal.
@@ -333,6 +335,27 @@ public class Camera extends Subsystem {
 		return ratioToScore(HighGoalRetroreflective.HEIGHT / HighGoalRetroreflective.WIDTH
 				* (report.BoundingRectRight - report.BoundingRectLeft)
 				/ (report.BoundingRectBottom - report.BoundingRectTop));
+	}
+
+	@Override
+	public void setPIDSourceType(PIDSourceType pidSource) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PIDSourceType getPIDSourceType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double pidGet() {
+		if(getCurrentMode() == CameraMode.NORMAL){
+			setCameraMode(CameraMode.TARGET);
+		}
+		Goal g = locateTarget();
+		return g.getCenterX();
 	}
 
 }

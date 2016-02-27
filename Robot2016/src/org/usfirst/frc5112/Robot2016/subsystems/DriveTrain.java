@@ -6,6 +6,7 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PIDOutput {
 
 	private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
@@ -37,12 +38,14 @@ public class DriveTrain extends Subsystem {
 		y = Math.min(maxSpeed, y);
 		double rotation = stick.getZ();
 		if (Math.abs(rotation) >= 0.1) {
-			robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2), Math.pow(3.0 * rotation / 4.0, 2));
+			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
+					3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
 			initialGyro = Robot.gyro.getAngle();
 		} else {
-			robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2),
+			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
 					-0.03 * (Robot.gyro.getAngle() - initialGyro));
 		}
+
 	}
 
 	public void setMaxSpeed(double maxSpeed) {
@@ -94,6 +97,11 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void rotateCCW(double rotationSpeed) {
 		robotDrive.arcadeDrive(0, -rotationSpeed);
+	}
+
+	@Override
+	public void pidWrite(double output) {
+		rotateCCW(output);
 	}
 
 }

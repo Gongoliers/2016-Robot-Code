@@ -4,7 +4,6 @@ import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -28,6 +27,7 @@ public class OI {
 		driveStickButton3 = new JoystickButton(driveStick, 3);
 		driveStickButton4 = new JoystickButton(driveStick, 4);
 
+		xbox.BACK.whenPressed(new RotateDegrees(90));
 		xbox.RT.whenActive(new ShootBoulderIntoHighGoal());
 		xbox.LT.whenActive(new IntakeBoulder());
 		xbox.A.whenPressed(new RaiseThenLowerKicker());
@@ -38,17 +38,7 @@ public class OI {
 		xbox.DPAD_UP.whenInactive(new StopScaler());
 		xbox.DPAD_DOWN.whenActive(new RetractScaler());
 		xbox.DPAD_DOWN.whenInactive(new StopScaler());
-		xbox.Y.whenPressed(new LimitSpeedForRockwall());
-
-		Trigger joystickMoved = new Trigger() {
-
-			@Override
-			public boolean get() {
-				return Math.abs(driveStick.getY()) >= 0.1 || Math.abs(driveStick.getZ()) >= 0.1;
-			}
-		};
-
-		joystickMoved.whenActive(new OperateDriveTrain());
+		xbox.Y.whileHeld(new LimitSpeedForRockwall());
 
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());

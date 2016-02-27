@@ -6,23 +6,33 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class LowerArm extends Command {
 
+	private long startTime = 0;
+
 	public LowerArm() {
 		requires(Robot.obstacleMover);
 	}
 
 	@Override
 	protected void initialize() {
-		setTimeout(2);
+		setTimeout(2.8);
+		startTime = System.currentTimeMillis();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.obstacleMover.lowerBar(0.2);
+		if (!isTimedOut()) {
+			if (System.currentTimeMillis() - startTime <= 350)
+				Robot.obstacleMover.lowerBar(0.35);
+			else
+				Robot.obstacleMover.raiseBar(0.08);
+		} else {
+			Robot.obstacleMover.stopBar();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	@Override

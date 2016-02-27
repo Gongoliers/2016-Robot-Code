@@ -59,12 +59,12 @@ public class RobotMap {
 		scalerLeftMotor = new Victor(3);
 
 		obstacleMoverMotor = new Victor(2);
-		obstacleMoverEncoder = new Encoder(2, 3);
+		obstacleMoverEncoder = new Encoder(3, 4);
 
 		intakeIntakeBarMotor = new Victor(1);
 
 		elevatorMotor = new Victor(0);
-		elevatorEncoder = new Encoder(0, 1);
+		elevatorEncoder = new Encoder(5, 6);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
 		shooterFlywheelMotorRight = new CANTalon(1);
