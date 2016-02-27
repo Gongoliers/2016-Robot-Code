@@ -19,6 +19,8 @@ public class DriveTrain extends Subsystem {
 
 	private double maxSpeed = 1.0;
 
+	private double initialGyro = 0;
+
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateDriveTrain());
 	}
@@ -33,8 +35,14 @@ public class DriveTrain extends Subsystem {
 		double y = stick.getY();
 		y = Math.max(-maxSpeed, y);
 		y = Math.min(maxSpeed, y);
-
-		robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2), Math.pow(3.0 * stick.getZ() / 4.0, 2));
+		double rotation = stick.getZ();
+		if (Math.abs(rotation) >= 0.1) {
+			robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2), Math.pow(3.0 * rotation / 4.0, 2));
+			initialGyro = Robot.gyro.getAngle();
+		} else {
+			robotDrive.arcadeDrive(Math.pow(y * (stick.getThrottle() + 1) / 2.0, 2),
+					-0.03 * (Robot.gyro.getAngle() - initialGyro));
+		}
 	}
 
 	public void setMaxSpeed(double maxSpeed) {
