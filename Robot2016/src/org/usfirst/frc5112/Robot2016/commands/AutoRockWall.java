@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoRockWall extends CommandGroup{
 	public AutoRockWall(){
-		addSequential(new DriveForwardForFiveSeconds());
+		addSequential(new DriveForward(5));
 		addSequential(new AlignWithTarget());
 		addSequential(new ShootBoulderIntoHighGoal());
+		addSequential(new CalibrateIntake());
 	}
 }

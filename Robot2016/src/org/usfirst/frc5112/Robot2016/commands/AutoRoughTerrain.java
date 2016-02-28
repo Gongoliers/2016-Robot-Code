@@ -7,10 +7,11 @@ public class AutoRoughTerrain extends CommandGroup {
 	public AutoRoughTerrain() {
 		Command limitSpeed = new LimitSpeedForRockwall();
 		addParallel(limitSpeed);
-		addSequential(new DriveForwardForFiveSeconds());
+		addSequential(new DriveForward(5));
 		addSequential(new AlignWithTarget());
 		addSequential(new ShootBoulderIntoHighGoal());
 		addSequential(new CancelCommand(limitSpeed));
+		addSequential(new CalibrateIntake());
 	}
 
 }

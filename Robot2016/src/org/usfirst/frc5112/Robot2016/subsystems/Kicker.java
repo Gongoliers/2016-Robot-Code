@@ -11,20 +11,19 @@ public class Kicker extends Subsystem {
 	private final SpeedController elevatorMotor = RobotMap.elevatorMotor;
 	private final Encoder elevatorEncoder = RobotMap.elevatorEncoder;
 
-	private static final int REST_POSITION_ENCODER_COUNT = 0;
-	private static final int ELEVATED_POSITION_ENCODER_COUNT = 100;
+	public static final int REST_POSITION = 0;
+	public static final int ELEVATED_POSITION = 100;
 
 	@Override
 	protected void initDefaultCommand() {
-
 	}
 
 	public boolean isAtElevatedPosition() {
-		return elevatorEncoder.get() >= ELEVATED_POSITION_ENCODER_COUNT;
+		return elevatorEncoder.get() >= ELEVATED_POSITION;
 	}
 
 	public boolean isAtRestPosition() {
-		return elevatorEncoder.get() <= REST_POSITION_ENCODER_COUNT;
+		return elevatorEncoder.get() <= REST_POSITION;
 	}
 
 	public void up() {

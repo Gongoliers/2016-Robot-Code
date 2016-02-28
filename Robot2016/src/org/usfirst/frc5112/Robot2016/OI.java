@@ -4,6 +4,9 @@ import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.hal.PDPJNI;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,6 +46,15 @@ public class OI {
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
 		driveStickButton3.whenPressed(new CalibrateIntake());
+		
+		Trigger intakeCurrentTrigger = new Trigger() {
+			@Override
+			public boolean get() {
+				return Robot.pdp.getCurrent(RobotMap.pdpIntakePort) > 50;
+			}
+		};
+		
+//		intakeCurrentTrigger.whenActive();
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Display Normal Camera Image", new DisplayNormalCameraImage());

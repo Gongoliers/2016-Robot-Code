@@ -25,6 +25,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateDriveTrain());
 	}
+	
+	public void setInitialGyro(double angle){
+		initialGyro = angle;
+	}
 
 	/**
 	 * Allows the drivetrain to be operated using a Joystick.
@@ -40,7 +44,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		if (Math.abs(rotation) >= 0.1) {
 			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
 					3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
-			initialGyro = Robot.gyro.getAngle();
+			setInitialGyro(Robot.gyro.getAngle());
 		} else {
 			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
 					-0.03 * (Robot.gyro.getAngle() - initialGyro));

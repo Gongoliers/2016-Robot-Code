@@ -18,13 +18,13 @@ public class OperateDriveTrain extends Command {
 
 	protected void initialize() {
 		Robot.gyro.reset();
+		Robot.driveTrain.setInitialGyro(Robot.gyro.getAngle());
 	}
 
 	protected void execute() {
 		Robot.driveTrain.operate(Robot.oi.getDriveStick());
 		SmartDashboard.putNumber("Tilt", Robot.accel.getTilt());
 		SmartDashboard.putNumber("Heading", Robot.gyro.getAngle());
-		SmartDashboard.putNumber("Rate of Rotation", Robot.gyro.getRate());
 	}
 
 	protected boolean isFinished() {

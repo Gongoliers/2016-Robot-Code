@@ -6,13 +6,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveBackwards extends Command{
 	
-	public DriveBackwards() {
+	public DriveBackwards(double time) {
+		super(time);
 		requires(Robot.driveTrain);
 	}
 
 	@Override
 	protected void initialize() {
-		setTimeout(0.5);
 	}
 
 	@Override
