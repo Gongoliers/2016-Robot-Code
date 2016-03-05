@@ -21,6 +21,7 @@ public class RotateToTarget extends Command {
 
 	public RotateToTarget() {
 		requires(Robot.driveTrain);
+		setTimeout(4);
 	}
 
 	protected void initialize() {
@@ -35,8 +36,8 @@ public class RotateToTarget extends Command {
 	}
 
 	protected boolean isFinished() {
-		return pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), targetPosition)
-				&& Robot.camera.targetGoal.isGoal();
+		return (pidController.isAtTargetPosition(Robot.camera.targetGoal.getCenterX(), targetPosition)
+				&& Robot.camera.targetGoal.isGoal()) || isTimedOut();
 	}
 
 	protected void end() {

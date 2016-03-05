@@ -36,7 +36,7 @@ public class IntakeBoulder extends Command {
 	}
 
 	protected boolean isFinished() {
-		return done;
+		return done || Robot.pdp.getCurrent(RobotMap.pdpIntakePort) > 60;
 	}
 
 	protected void end() {

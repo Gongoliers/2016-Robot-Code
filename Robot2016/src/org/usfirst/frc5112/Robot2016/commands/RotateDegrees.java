@@ -17,6 +17,7 @@ public class RotateDegrees extends Command {
 	public RotateDegrees(double targetAngle) {
 		requires(Robot.driveTrain);
 		this.targetAngle = targetAngle;
+		setTimeout(4);
 	}
 
 	// Called just before this Command runs the first time
@@ -33,7 +34,7 @@ public class RotateDegrees extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return pidController.isAtTargetPosition(Robot.gyro.getAngle(), targetAngle);
+		return pidController.isAtTargetPosition(Robot.gyro.getAngle(), targetAngle) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
