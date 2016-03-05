@@ -8,9 +8,9 @@ public class AutoRoughTerrain extends CommandGroup {
 		Command limitSpeed = new LimitSpeedForRockwall();
 		addParallel(limitSpeed);
 		addSequential(new DriveForward(5));
-		limitSpeed.cancel();
 		addSequential(new AlignWithTarget());
 		addSequential(new ShootBoulderIntoHighGoal());
+		addParallel(new CancelCommand(limitSpeed));
 		addSequential(new CalibrateIntake());
 	}
 
