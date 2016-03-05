@@ -47,14 +47,15 @@ public class OI {
 		driveStickSideButton.whenPressed(new StopDriveTrain());
 		driveStickButton3.whenPressed(new CalibrateIntake());
 		
-		Trigger intakeCurrentTrigger = new Trigger() {
+		Trigger joystickMoved = new Trigger() {
+			
 			@Override
 			public boolean get() {
-				return Robot.pdp.getCurrent(RobotMap.pdpIntakePort) > 50;
+				return Math.abs(driveStick.getY()) > 0.3;
 			}
 		};
 		
-//		intakeCurrentTrigger.whenActive();
+		joystickMoved.whenActive(new OperateDriveTrain());
 
 		// SmartDashboard Button
 		SmartDashboard.putData("Display Normal Camera Image", new DisplayNormalCameraImage());
