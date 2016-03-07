@@ -12,8 +12,10 @@ import org.usfirst.frc5112.Robot2016.commands.DisplayNormalCameraImage;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.DrawMode;
+import com.ni.vision.NIVision.GetImageSizeResult;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
+import com.ni.vision.NIVision.Point;
 import com.ni.vision.NIVision.Rect;
 import com.ni.vision.NIVision.ShapeMode;
 
@@ -27,7 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * The camera subsystem of the robot which is responsible for targeting the goal
  * and allowing the driver to see.
  */
-public class Camera extends Subsystem implements PIDSource{
+public class Camera extends Subsystem implements PIDSource {
 
 	/**
 	 * A helper class to hold the analysis scores of the goal.
@@ -84,8 +86,8 @@ public class Camera extends Subsystem implements PIDSource{
 		public boolean isGoal() {
 			return isGoal;
 		}
-		
-		public double getDistance(){
+
+		public double getDistance() {
 			return distance;
 		}
 
@@ -207,7 +209,8 @@ public class Camera extends Subsystem implements PIDSource{
 		NIVision.imaqColorThreshold(binaryFrame, getImage(), 255, NIVision.ColorMode.HSV,
 				HighGoalRetroreflective.HUE_RANGE, HighGoalRetroreflective.SAT_RANGE,
 				HighGoalRetroreflective.VAL_RANGE);
-//		NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
+		// NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria,
+		// filterOptions, null);
 		return binaryFrame;
 	}
 
@@ -221,27 +224,42 @@ public class Camera extends Subsystem implements PIDSource{
 	 */
 	private Goal findGoal(Image binaryFilteredImage) {
 		ParticleReport goalParticleReport = generateParticleReport(binaryFilteredImage);
-		NIVision.imaqDrawShapeOnImage(binaryFilteredImage, binaryFilteredImage,
-				new Rect((int) goalParticleReport.BoundingRectTop, (int) goalParticleReport.BoundingRectLeft,
-						(int) (goalParticleReport.BoundingRectBottom - goalParticleReport.BoundingRectTop),
-						(int) (goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft)),
-				DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 255);
-		CameraServer.getInstance().setImage(binaryFilteredImage);
 		if (goalParticleReport == null)
 			return null;
+		double rawX = (goalParticleReport.BoundingRectLeft + goalParticleReport.BoundingRectRight) / 2;
+		double rawY = (goalParticleReport.BoundingRectBottom + goalParticleReport.BoundingRectTop) / 2;
+		drawTargetBox(binaryFilteredImage, goalParticleReport);
+		drawTargetReticle(binaryFilteredImage, (int) rawY, targetGoal.isGoal() && targetGoal.isCenteredHorizontally());
+		CameraServer.getInstance().setImage(binaryFilteredImage);
 		scores.Aspect = getAspectScore(goalParticleReport);
 		scores.Area = getAreaScore(goalParticleReport);
 		Goal locatedGoal = new Goal();
 		locatedGoal.isGoal = scores.Aspect > SCORE_MIN && scores.Area > SCORE_MIN;
 		locatedGoal.distance = computeDistance(binaryFilteredImage, goalParticleReport);
-		double rawX = (goalParticleReport.BoundingRectLeft + goalParticleReport.BoundingRectRight) / 2;
-		double rawY = (goalParticleReport.BoundingRectBottom + goalParticleReport.BoundingRectTop) / 2;
 		double[] aimingPoints = robotCamera.convertPixelSystemToAimingSystem(new int[] { (int) rawX, (int) rawY },
 				robotCamera.getResolution(MicrosoftLifeCam.Axis.X), robotCamera.getResolution(MicrosoftLifeCam.Axis.Y));
 		locatedGoal.setCenterX(aimingPoints[0]);
 		locatedGoal.setCenterY(aimingPoints[1]);
 		return locatedGoal;
 
+	}
+
+	private void drawTargetReticle(Image image, int targetY, boolean aligned) {
+		int color = aligned ? 255 : 127;
+		GetImageSizeResult size = NIVision.imaqGetImageSize(image);
+		NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE,
+				new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), 0),
+				new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), size.height), color);
+		NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE, new Point(0, targetY),
+				new Point(size.width, targetY), color);
+	}
+
+	private void drawTargetBox(Image image, ParticleReport particleReport) {
+		NIVision.imaqDrawShapeOnImage(image, image,
+				new Rect((int) particleReport.BoundingRectTop, (int) particleReport.BoundingRectLeft,
+						(int) (particleReport.BoundingRectBottom - particleReport.BoundingRectTop),
+						(int) (particleReport.BoundingRectRight - particleReport.BoundingRectLeft)),
+				DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 255);
 	}
 
 	/**
@@ -340,7 +358,7 @@ public class Camera extends Subsystem implements PIDSource{
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -351,7 +369,7 @@ public class Camera extends Subsystem implements PIDSource{
 
 	@Override
 	public double pidGet() {
-		if(getCurrentMode() == CameraMode.NORMAL){
+		if (getCurrentMode() == CameraMode.NORMAL) {
 			setCameraMode(CameraMode.TARGET);
 		}
 		Goal g = locateTarget();
