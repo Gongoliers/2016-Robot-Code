@@ -37,10 +37,6 @@ public class OI {
 		xbox.START.whenPressed(new StopIntakeAndFlywheel());
 		xbox.LB.whileHeld(new RaiseArm());
 		xbox.RB.whileHeld(new LowerArm());
-		xbox.DPAD_UP.whenActive(new ExtendScaler());
-		xbox.DPAD_UP.whenInactive(new StopScaler());
-		xbox.DPAD_DOWN.whenActive(new RetractScaler());
-		xbox.DPAD_DOWN.whenInactive(new StopScaler());
 		xbox.Y.whileHeld(new LimitSpeedForRockwall());
 
 		driveStickTrigger.whileHeld(new AlignWithTarget());

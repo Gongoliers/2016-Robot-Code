@@ -20,8 +20,6 @@ public class RobotMap {
 	public static DualCANTalon driveTrainLeftDriveMotor;
 	public static DualCANTalon driveTrainRightDriveMotor;
 	public static RobotDrive driveTrainRobotDrive;
-	public static SpeedController scalerLeftMotor;
-	public static SpeedController scalerRightMotor;
 	public static SpeedController intakeIntakeBarMotor;
 	public static SpeedController obstacleMoverMotor;
 	public static SpeedController shooterFlywheelMotorLeft;
@@ -34,8 +32,6 @@ public class RobotMap {
 	public static Encoder obstacleMoverEncoder;
 	public static AnalogGyro gyro;
 	public static DigitalInput obstacleArmLimitSwitch;
-	public static DigitalInput scalerUpLimitSwitch;
-	public static DigitalInput scalerDownLimitSwitch;
 	
 	public static int pdpIntakePort = 4;
 
@@ -52,11 +48,6 @@ public class RobotMap {
 		driveTrainRobotDrive.setMaxOutput(1.0);
 		
 		obstacleArmLimitSwitch = new DigitalInput(0);
-		scalerUpLimitSwitch = new DigitalInput(1);
-		scalerDownLimitSwitch = new DigitalInput(2);
-
-		scalerRightMotor = new Victor(4);
-		scalerLeftMotor = new Victor(3);
 
 		obstacleMoverMotor = new Victor(2);
 		obstacleMoverEncoder = new Encoder(3, 4);
