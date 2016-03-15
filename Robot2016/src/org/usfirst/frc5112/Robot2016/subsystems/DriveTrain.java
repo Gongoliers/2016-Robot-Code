@@ -47,7 +47,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 			setInitialGyro(Robot.gyro.getAngle());
 		} else {
 			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
-					-0.03 * (Robot.gyro.getAngle() - initialGyro));
+					-0.02 * (Robot.gyro.getAngle() - initialGyro));
 		}
 
 	}
