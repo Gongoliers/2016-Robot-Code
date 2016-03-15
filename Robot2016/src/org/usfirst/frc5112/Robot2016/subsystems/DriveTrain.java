@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -42,13 +43,16 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		y = Math.min(maxSpeed, y);
 		double rotation = stick.getZ();
 		if (Math.abs(rotation) >= 0.1) {
-			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
+			robotDrive.arcadeDrive(3 * y / 4.0,
 					3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
 			setInitialGyro(Robot.gyro.getAngle());
+			SmartDashboard.putNumber("Speed", 3 * y / 4.0);
 		} else {
-			robotDrive.arcadeDrive(3 * Math.copySign(1, y) * Math.pow(y, 2) / 4.0,
-					-0.02 * (Robot.gyro.getAngle() - initialGyro));
+			robotDrive.arcadeDrive(3 * y / 4.0,
+					-0.01 * (Robot.gyro.getAngle() - initialGyro));
+			SmartDashboard.putNumber("Speed", 3 *  y / 4.0);
 		}
+		// Math.copySign(1, y) * Math.pow(y, 2)
 
 	}
 
