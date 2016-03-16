@@ -245,13 +245,14 @@ public class Camera extends Subsystem implements PIDSource {
 	}
 
 	private void drawTargetReticle(Image image, int targetY, boolean aligned) {
-		int color = aligned ? 255 : 127;
-		GetImageSizeResult size = NIVision.imaqGetImageSize(image);
-		NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE,
-				new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), 0),
-				new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), size.height), color);
-		NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE, new Point(0, targetY),
-				new Point(size.width, targetY), color);
+		if (aligned) {
+			GetImageSizeResult size = NIVision.imaqGetImageSize(image);
+			NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE,
+					new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), 0),
+					new Point((int) (-1.2 * (size.width / 2.0) + size.width / 2.0), size.height), 255);
+			NIVision.imaqDrawLineOnImage(image, image, DrawMode.DRAW_VALUE, new Point(0, targetY),
+					new Point(size.width, targetY), 255);
+		}
 	}
 
 	private void drawTargetBox(Image image, ParticleReport particleReport) {
