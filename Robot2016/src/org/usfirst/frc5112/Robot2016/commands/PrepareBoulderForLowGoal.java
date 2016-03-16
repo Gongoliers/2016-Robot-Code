@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PrepareBoulderForLowGoal extends Command {
 
 	public PrepareBoulderForLowGoal() {
-		super(0.25);
+		super(0.35);
 		requires(Robot.intake);
 	}
 

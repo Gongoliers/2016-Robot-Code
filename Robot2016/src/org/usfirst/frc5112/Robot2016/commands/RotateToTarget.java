@@ -31,7 +31,7 @@ public class RotateToTarget extends Command {
 
 	protected void execute() {
 		double pidOutput = pidController.getOutput(Robot.camera.targetGoal.getCenterX(), targetPosition);
-		Robot.driveTrain.rotateCCW(pidOutput);
+			Robot.driveTrain.rotateCCW(pidOutput);
 		if(isFinished()){
 			Robot.oi.xbox.rumble(0.3f);
 		}

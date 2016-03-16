@@ -36,13 +36,13 @@ public class OI {
 		xbox.START.whenPressed(new StopIntakeAndFlywheel());
 		xbox.LB.whileHeld(new RaiseArm());
 		xbox.RB.whileHeld(new LowerArm());
-		xbox.Y.whenPressed(new ShootBoulderIntoLowGoal());
+		xbox.Y.whenPressed(new PrepareBoulderForLowGoal());
 		
 		Trigger xboxRightStickMoved = new Trigger() {
 			
 			@Override
 			public boolean get() {
-				return Math.abs(Robot.oi.xbox.getRightY()) > 0.1;
+				return Math.abs(xbox.getRightY()) > 0.1;
 			}
 		};
 		

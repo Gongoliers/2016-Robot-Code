@@ -5,6 +5,10 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class OperateObstacleArm extends Command {
+	
+	public OperateObstacleArm() {
+		requires(Robot.obstacleMover);
+	}
 
 	@Override
 	protected void initialize() {
@@ -13,11 +17,9 @@ public class OperateObstacleArm extends Command {
 
 	@Override
 	protected void execute() {
-		double y = Robot.oi.xbox.getRightY();
-		if (y >= 0)
-			Robot.obstacleMover.lowerBar(y);
-		else
-			Robot.obstacleMover.raiseBar(y);
+		double y = -Robot.oi.xbox.getRightY();
+		Robot.obstacleMover.raiseBar(Math.copySign(1, y) * Math.pow(y, 2) * 0.75);
+		
 
 	}
 

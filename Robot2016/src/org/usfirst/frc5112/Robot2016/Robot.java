@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Rock Wall", new AutoRockWall());
 		autoChooser.addObject("Sally Port", new AutoSallyPort());
 		autoChooser.addObject("Reach Defense", new ReachDefense());
+		autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
 		
 		gyro.calibrate();

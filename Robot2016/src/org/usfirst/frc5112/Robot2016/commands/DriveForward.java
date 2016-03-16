@@ -22,6 +22,7 @@ public class DriveForward extends Command {
 
 	@Override
 	protected void initialize() {
+		Robot.gyro.reset();
 	}
 
 	@Override
