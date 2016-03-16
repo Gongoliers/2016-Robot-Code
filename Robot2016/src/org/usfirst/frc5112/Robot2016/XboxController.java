@@ -88,6 +88,11 @@ public class XboxController extends Joystick {
 	public double getRightTrigger() {
 		return getRawAxis(3);
 	}
+	
+	public void rumble(float value){
+		setRumble(RumbleType.kLeftRumble, value);
+		setRumble(RumbleType.kRightRumble, value);
+	}
 
 	public static final int DPAD_NORTH = 0;
 	public static final int DPAD_NORTHEAST = 45;
