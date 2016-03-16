@@ -38,6 +38,17 @@ public class OI {
 		xbox.RB.whileHeld(new LowerArm());
 		xbox.Y.whenPressed(new ShootBoulderIntoLowGoal());
 		
+		Trigger xboxRightStickMoved = new Trigger() {
+			
+			@Override
+			public boolean get() {
+				return Math.abs(Robot.oi.xbox.getRightY()) > 0.1;
+			}
+		};
+		
+		
+		xboxRightStickMoved.whenActive(new OperateObstacleArm());
+		xboxRightStickMoved.whenInactive(new RaiseArm());
 
 		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
