@@ -47,6 +47,7 @@ public class Robot extends IterativeRobot {
 
 	private SendableChooser autoChooser;
 	private static SendableChooser fieldPosition;
+	private static SendableChooser fireChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -65,6 +66,7 @@ public class Robot extends IterativeRobot {
 		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
 		fieldPosition = new SendableChooser();
+		fireChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
 		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
 		autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
@@ -79,7 +81,9 @@ public class Robot extends IterativeRobot {
 		fieldPosition.addObject("Right", new Integer(1));
 		fieldPosition.addObject("Left", new Integer(2));
 		SmartDashboard.putData("Field Position", fieldPosition);
-		
+		fireChooser.addDefault("Fire", new Boolean(true));
+		fireChooser.addObject("Don't Fire", new Boolean(false));
+		SmartDashboard.putData("Fire at end of auto", fireChooser);
 		gyro.calibrate();
 		oi = new OI();
 
@@ -87,6 +91,10 @@ public class Robot extends IterativeRobot {
 
 	public static int getFieldPosition(){
 		return (Integer) fieldPosition.getSelected();
+	}
+	
+	public static boolean shouldFire(){
+		return (Boolean) fireChooser.getSelected();
 	}
 	
 	/**
