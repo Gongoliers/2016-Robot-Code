@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot {
 	public static Accelerometer accel;
 
 	private SendableChooser autoChooser;
+	private static SendableChooser fieldPosition;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 		gyro = RobotMap.gyro;
 		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
+		fieldPosition = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
 		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
 		autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
@@ -73,12 +75,20 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Reach Defense", new ReachDefense());
 		autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
+		fieldPosition.addDefault("Middle", new Integer(0));
+		fieldPosition.addObject("Right", new Integer(1));
+		fieldPosition.addObject("Left", new Integer(2));
+		SmartDashboard.putData("Field Position", fieldPosition);
 		
 		gyro.calibrate();
 		oi = new OI();
 
 	}
 
+	public static int getFieldPosition(){
+		return (Integer) fieldPosition.getSelected();
+	}
+	
 	/**
 	 * This function is called when the disabled button is hit. You can use it
 	 * to reset subsystems before shutting down.
@@ -94,6 +104,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autoChooser.getSelected();
+		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
