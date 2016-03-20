@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoRockWall extends CommandGroup {
 	public AutoRockWall() {
-		addSequential(new DriveForward(2.5, 0.7));
+		addSequential(new DriveForward(2.2, 0.75));
+		addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
+		addSequential(new AlignWithTarget());
 		if (Robot.shouldFire()) {
-			addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
-			addSequential(new AlignWithTarget());
 			addSequential(new ShootBoulderIntoHighGoal());
 			addSequential(new CalibrateIntake());
 		}

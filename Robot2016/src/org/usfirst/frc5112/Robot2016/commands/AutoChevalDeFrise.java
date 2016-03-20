@@ -9,9 +9,9 @@ public class AutoChevalDeFrise extends CommandGroup {
 		addSequential(new LowerArm());
 		addSequential(new DriveForward(2.5, 0.7));
 		addSequential(new RaiseArm());
+		addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
+		addSequential(new AlignWithTarget());
 		if (Robot.shouldFire()) {
-			addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
-			addSequential(new AlignWithTarget());
 			addSequential(new ShootBoulderIntoHighGoal());
 			addSequential(new CalibrateIntake());
 		}

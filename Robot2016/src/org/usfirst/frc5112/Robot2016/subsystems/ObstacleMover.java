@@ -18,7 +18,7 @@ public class ObstacleMover extends Subsystem {
 	public static final int DOWN_POSITION = 100;
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new RaiseArm());
+//		setDefaultCommand(new RaiseArm());
 	}
 
 	public void lowerBar(double speed) {
@@ -34,7 +34,8 @@ public class ObstacleMover extends Subsystem {
 	}
 
 	public boolean isBarUp() {
-		return obstacleMoverLimitSwitch.get(); // || obstacleMoverEncoder.get()
+		return true;
+//		return obstacleMoverLimitSwitch.get(); // || obstacleMoverEncoder.get()
 												// <= UP_POSITION;
 	}
 

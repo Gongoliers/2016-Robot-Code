@@ -26,8 +26,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateDriveTrain());
 	}
-	
-	public void setInitialGyro(double angle){
+
+	public void setInitialGyro(double angle) {
 		initialGyro = angle;
 	}
 
@@ -43,14 +43,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		y = Math.min(maxSpeed, y);
 		double rotation = stick.getZ();
 		if (Math.abs(rotation) >= 0.1) {
-			robotDrive.arcadeDrive(3 * y / 4.0,
-					3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
+			robotDrive.arcadeDrive(y * 0.85, 3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
 			setInitialGyro(Robot.gyro.getAngle());
-			SmartDashboard.putNumber("Speed", 3 * y / 4.0);
 		} else {
-			robotDrive.arcadeDrive(3 * y / 4.0,
-					-0.01 * (Robot.gyro.getAngle() - initialGyro));
-			SmartDashboard.putNumber("Speed", 3 *  y / 4.0);
+			robotDrive.arcadeDrive(y * 0.85, -0.01 * (Robot.gyro.getAngle() - initialGyro));
 		}
 		// Math.copySign(1, y) * Math.pow(y, 2)
 

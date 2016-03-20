@@ -22,9 +22,9 @@ public class LowerArm extends Command {
 	protected void execute() {
 		if (!isTimedOut()) {
 			if (System.currentTimeMillis() - startTime <= 350)
-				Robot.obstacleMover.lowerBar(0.35);
+				Robot.obstacleMover.lowerBar(0.5);
 			else
-				Robot.obstacleMover.raiseBar(0.08);
+				Robot.obstacleMover.lowerBar(0.08);
 		} else {
 			Robot.obstacleMover.stopBar();
 		}

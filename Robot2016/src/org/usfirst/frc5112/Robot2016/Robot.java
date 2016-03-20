@@ -46,13 +46,36 @@ public class Robot extends IterativeRobot {
 	public static Accelerometer accel;
 
 	private SendableChooser autoChooser;
-	private static SendableChooser fieldPosition;
-	private static SendableChooser fireChooser;
+	// private static SendableChooser fieldPosition = new SendableChooser();
+	// private static SendableChooser fireChooser = new SendableChooser();
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+
+	// public Robot() {
+	// autoChooser = new SendableChooser();
+	// fieldPosition = new SendableChooser();
+	// fireChooser = new SendableChooser();
+	// autoChooser.addDefault("Do Nothing", new StopDriveTrain());
+	// autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
+	// autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
+	// autoChooser.addObject("Moat", new AutoMoat());
+	// autoChooser.addObject("Ramparts", new AutoRamparts());
+	// autoChooser.addObject("Rock Wall", new AutoRockWall());
+	// autoChooser.addObject("Sally Port", new AutoSallyPort());
+	// autoChooser.addObject("Reach Defense", new ReachDefense());
+	// autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
+	// SmartDashboard.putData("Autonomous Chooser", autoChooser);
+	// fieldPosition.addDefault("Middle", new Integer(0));
+	// fieldPosition.addObject("Right", new Integer(1));
+	// fieldPosition.addObject("Left", new Integer(2));
+	// SmartDashboard.putData("Field Position", fieldPosition);
+	// fireChooser.addDefault("Fire", new Boolean(true));
+	// fireChooser.addObject("Don't Fire", new Boolean(false));
+	// SmartDashboard.putData("Fire at end of auto", fireChooser);
+	// }
 	public void robotInit() {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
@@ -65,38 +88,38 @@ public class Robot extends IterativeRobot {
 		gyro = RobotMap.gyro;
 		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
-		fieldPosition = new SendableChooser();
-		fireChooser = new SendableChooser();
+		// fieldPosition = new SendableChooser();
+		// fireChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
-		autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
-		autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
 		autoChooser.addObject("Moat", new AutoMoat());
 		autoChooser.addObject("Ramparts", new AutoRamparts());
 		autoChooser.addObject("Rock Wall", new AutoRockWall());
-		autoChooser.addObject("Sally Port", new AutoSallyPort());
+		autoChooser.addObject("Rough Terrain", new AutoRoughTerrain());
 		autoChooser.addObject("Reach Defense", new ReachDefense());
 		autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
-		fieldPosition.addDefault("Middle", new Integer(0));
-		fieldPosition.addObject("Right", new Integer(1));
-		fieldPosition.addObject("Left", new Integer(2));
-		SmartDashboard.putData("Field Position", fieldPosition);
-		fireChooser.addDefault("Fire", new Boolean(true));
-		fireChooser.addObject("Don't Fire", new Boolean(false));
-		SmartDashboard.putData("Fire at end of auto", fireChooser);
+		// fieldPosition.addDefault("Middle", new Integer(0));
+		// fieldPosition.addObject("Right", new Integer(1));
+		// fieldPosition.addObject("Left", new Integer(2));
+		// SmartDashboard.putData("Field Position", fieldPosition);
+		// fireChooser.addDefault("Fire", new Boolean(true));
+		// fireChooser.addObject("Don't Fire", new Boolean(false));
+		// SmartDashboard.putData("Fire at end of auto", fireChooser);
 		gyro.calibrate();
 		oi = new OI();
 
 	}
 
-	public static int getFieldPosition(){
-		return (Integer) fieldPosition.getSelected();
+	public static int getFieldPosition() {
+		// return (Integer) fieldPosition.getSelected();
+		return 0;
 	}
-	
-	public static boolean shouldFire(){
-		return (Boolean) fireChooser.getSelected();
+
+	public static boolean shouldFire() {
+		// return (Boolean) fireChooser.getSelected();
+		return RobotMap.obstacleArmLimitSwitch.get();
 	}
-	
+
 	/**
 	 * This function is called when the disabled button is hit. You can use it
 	 * to reset subsystems before shutting down.
@@ -112,7 +135,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autoChooser.getSelected();
-		
+
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

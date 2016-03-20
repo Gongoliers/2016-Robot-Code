@@ -11,7 +11,7 @@ import org.usfirst.frc5112.Robot2016.Robot;
  */
 public class RotateToTarget extends Command {
 
-	private double kp = 0.86;
+	private double kp = 0.75;
 	private double ki = 0.2;
 	private double kd = 0.25;
 	private double threshold =  0.02; //0.005; 

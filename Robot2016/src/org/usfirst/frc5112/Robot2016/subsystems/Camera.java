@@ -98,13 +98,17 @@ public class Camera extends Subsystem implements PIDSource {
 		private void setCenterX(double x) {
 			centerX = x;
 		}
+		public double getAngle(){
+			return (getCenterX()) * robotCamera.getViewAngle()/2 + 0.12*30;
+		}
+
 	}
 
 	private final MicrosoftLifeCam robotCamera = RobotMap.robotCamera;
 	public Goal targetGoal;
 	private CameraMode currentMode;
 	private final double AREA_MIN = 0.5;
-	private final double SCORE_MIN = 75.0;
+	private final double SCORE_MIN = 80.0;
 	private NIVision.ParticleFilterCriteria2 criteria[] = new NIVision.ParticleFilterCriteria2[1];
 	private NIVision.ParticleFilterOptions2 filterOptions = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
 	private Scores scores = new Scores();

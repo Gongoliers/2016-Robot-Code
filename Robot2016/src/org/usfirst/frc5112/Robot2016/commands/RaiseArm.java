@@ -16,7 +16,7 @@ public class RaiseArm extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.obstacleMover.raiseBar(0.4);
+		Robot.obstacleMover.raiseBar(0.48);
 	}
 
 	@Override

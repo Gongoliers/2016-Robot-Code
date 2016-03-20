@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoMoat extends CommandGroup {
 	public AutoMoat() {
-		addSequential(new DriveForward(2.5, 0.7));
-		if (Robot.shouldFire()) {
-			addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
-			addSequential(new AlignWithTarget());
+		addSequential(new DriveForward(2.25, 0.85));
+		addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
+		addSequential(new AlignWithTarget());
+		if (Robot.shouldFire()) {			
 			addSequential(new ShootBoulderIntoHighGoal());
 			addSequential(new CalibrateIntake());
 		}

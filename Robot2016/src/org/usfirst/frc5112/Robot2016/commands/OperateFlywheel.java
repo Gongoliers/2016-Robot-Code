@@ -20,7 +20,7 @@ public class OperateFlywheel extends Command {
 		// TODO Auto-generated method stub
 		double throttle = -Robot.oi.driveStick.getThrottle();
 		throttle = Math.max(0, throttle);
-		Robot.shooter.spinFlyWheel(throttle);
+		Robot.shooter.spinFlyWheel(-throttle);
 	}
 
 	@Override

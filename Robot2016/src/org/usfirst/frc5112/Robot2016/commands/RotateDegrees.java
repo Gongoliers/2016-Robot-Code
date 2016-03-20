@@ -13,6 +13,8 @@ public class RotateDegrees extends Command {
 
 	private PID pidController;
 	private double targetAngle;
+	private boolean goal = false;
+
 
 	public RotateDegrees(double targetAngle) {
 		requires(Robot.driveTrain);
@@ -20,10 +22,21 @@ public class RotateDegrees extends Command {
 		setTimeout(4);
 	}
 
+	public RotateDegrees(){
+		requires(Robot.driveTrain);
+		goal = true;
+		setTimeout(4);
+	}
+
+	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		if(goal){
+			targetAngle = Robot.camera.targetGoal.getAngle();
+		}
+
 		targetAngle += Robot.gyro.getAngle();
-		pidController = new PID(0.025, 0, 0.06, 2.5);
+		pidController = new PID(0.085, 0, 0.06, 2.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
