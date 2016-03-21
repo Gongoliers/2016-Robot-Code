@@ -9,6 +9,7 @@ public class ShootBoulderIntoHighGoal extends CommandGroup {
 		addParallel(new SpinIntake());
 		addSequential(new ElevateBoulderToFlywheel());
 		addSequential(new LowerKickerToRestPosition());
-		addSequential(new StopFlywheel());
+		addParallel(new StopFlywheel());
+		addSequential(new StopIntake());
 	}
 }

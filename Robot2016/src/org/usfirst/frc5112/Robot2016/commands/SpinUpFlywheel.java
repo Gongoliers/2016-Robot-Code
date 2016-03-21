@@ -12,7 +12,7 @@ public class SpinUpFlywheel extends Command {
 
 	@Override
 	protected void initialize() {
-		setTimeout(3);
+		setTimeout(1.8);
 	}
 
 	@Override
