@@ -36,7 +36,7 @@ public class RotateDegrees extends Command {
 		}
 
 		targetAngle += Robot.gyro.getAngle();
-		pidController = new PID(0.085, 0, 0.06, 2.5);
+		pidController = new PID(0.086, 0, 0.06, 30*0.02);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
