@@ -99,7 +99,7 @@ public class Camera extends Subsystem implements PIDSource {
 			centerX = x;
 		}
 		public double getAngle(){
-			return (getCenterX()) * robotCamera.getViewAngle()/2 + 0.12*30;
+			return getCenterX() * robotCamera.getViewAngle()/2 + 0.12*robotCamera.getViewAngle()/2;
 		}
 
 	}

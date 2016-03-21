@@ -2,6 +2,7 @@ package org.usfirst.frc5112.Robot2016.commands;
 
 import org.usfirst.frc5112.Robot2016.PID;
 import org.usfirst.frc5112.Robot2016.Robot;
+import org.usfirst.frc5112.Robot2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +37,7 @@ public class RotateDegrees extends Command {
 		}
 
 		targetAngle += Robot.gyro.getAngle();
-		pidController = new PID(0.086, 0, 0.06, 30*0.02);
+		pidController = new PID(0.086, 0, 0.06, RobotMap.robotCamera.getViewAngle()/2*0.02);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
