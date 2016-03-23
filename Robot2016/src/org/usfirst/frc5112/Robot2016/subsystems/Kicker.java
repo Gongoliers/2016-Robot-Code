@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Kicker extends Subsystem {
 
 	private final SpeedController elevatorMotor = RobotMap.elevatorMotor;
-	private final Encoder elevatorEncoder = RobotMap.elevatorEncoder;
 
 	public static final int REST_POSITION = 0;
 	public static final int ELEVATED_POSITION = 100;
@@ -17,15 +16,7 @@ public class Kicker extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 	}
-
-	public boolean isAtElevatedPosition() {
-		return elevatorEncoder.get() >= ELEVATED_POSITION;
-	}
-
-	public boolean isAtRestPosition() {
-		return elevatorEncoder.get() <= REST_POSITION;
-	}
-
+	
 	public void up() {
 		elevatorMotor.set(-0.4);
 	}

@@ -1,5 +1,7 @@
 package org.usfirst.frc5112.Robot2016;
 
+import org.usfirst.frc5112.Robot2016.subsystems.ObstacleMover;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -28,7 +30,6 @@ public class RobotMap {
 	public static MicrosoftLifeCam robotCamera;
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
-	public static Encoder elevatorEncoder;
 	public static Encoder obstacleMoverEncoder;
 	public static AnalogGyro gyro;
 	public static DigitalInput obstacleArmLimitSwitch;
@@ -50,12 +51,12 @@ public class RobotMap {
 		obstacleArmLimitSwitch = new DigitalInput(0);
 
 		obstacleMoverMotor = new Victor(2);
-		obstacleMoverEncoder = new Encoder(3, 4);
+		obstacleMoverEncoder = new Encoder(1, 2);
+		obstacleMoverEncoder.setDistancePerPulse(ObstacleMover.DEGREES_PER_PULSE);
 
 		intakeIntakeBarMotor = new Victor(1);
 
 		elevatorMotor = new Victor(0);
-		elevatorEncoder = new Encoder(5, 6);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
 		shooterFlywheelMotorRight = new CANTalon(1);

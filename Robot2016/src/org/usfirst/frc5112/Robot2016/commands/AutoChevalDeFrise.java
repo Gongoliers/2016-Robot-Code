@@ -6,8 +6,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoChevalDeFrise extends CommandGroup {
 	public AutoChevalDeFrise() {
+		addSequential(new DriveBackwards(1.2, 0.5));
 		addSequential(new LowerArm());
-		addSequential(new DriveForward(2.5, 0.7));
+		addSequential(new DriveForward(0.5, 0.3));
+		addSequential(new DriveBackwards(2.5, 0.7));
 		addSequential(new RaiseArm());
 		addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
 		addSequential(new AlignWithTarget());
