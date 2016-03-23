@@ -17,23 +17,24 @@ public class MoveArmToPosition extends Command {
 
 	@Override
 	protected void initialize() {
-		pidController = new PID(0.12, 0, 0.06, 5);
+		Robot.obstacleMover.enable();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.obstacleMover.set(pidController.getOutput(Robot.obstacleMover.getAngle(), targetAngle));
-		
+//		Robot.obstacleMover.set(pidController.getOutput(Robot.obstacleMover.getAngle(), targetAngle));
+		Robot.obstacleMover.setSetpoint(targetAngle);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return pidController.isAtTargetPosition(Robot.obstacleMover.getAngle(), targetAngle);
+		return Robot.obstacleMover.onTarget();
 	}
 
 	@Override
 	protected void end() {
 		Robot.obstacleMover.stopBar();
+		Robot.obstacleMover.disable();
 	}
 
 	@Override

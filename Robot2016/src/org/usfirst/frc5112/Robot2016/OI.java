@@ -36,8 +36,8 @@ public class OI {
 		xbox.LT.whenActive(new IntakeBoulder());
 		xbox.A.whenPressed(new RaiseThenLowerKicker());
 		xbox.START.whenPressed(new StopIntakeAndFlywheel());
-		xbox.LB.whenPressed(new MoveArmToPosition(ObstacleMover.UP_POSITION));
-		xbox.RB.whenPressed(new MoveArmToPosition(ObstacleMover.DOWN_POSITION));
+		xbox.LB.whileHeld(new MoveArmToPosition(ObstacleMover.UP_POSITION));
+		xbox.RB.whileHeld(new MoveArmToPosition(ObstacleMover.DOWN_POSITION));
 		xbox.Y.whenPressed(new PrepareBoulderForLowGoal());
 		
 		Trigger xboxRightStickMoved = new Trigger() {
@@ -50,7 +50,7 @@ public class OI {
 		
 		
 		xboxRightStickMoved.whenActive(new OperateObstacleArm());
-		xboxRightStickMoved.whenInactive(new RaiseArm());
+//		xboxRightStickMoved.whenInactive(new RaiseArm());
 
 //		driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickTrigger.whenPressed(new AlignWithTarget());

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ObstacleMover extends PIDSubsystem {
 
@@ -15,11 +16,12 @@ public class ObstacleMover extends PIDSubsystem {
 	private final Encoder obstacleMoverEncoder = RobotMap.obstacleMoverEncoder;
 
 	public static final int UP_POSITION = 0;
-	public static final int DOWN_POSITION = 60;
 	public static final double DEGREES_PER_PULSE = 360 / 497.0;
+	public static final int DOWN_POSITION = 225;
+
 	
 	public ObstacleMover() {
-		super("Arm", 0.12, 0, 0.06);
+		super("Arm", 0.02, 0, 0.01);
 		setAbsoluteTolerance(2);
 		getPIDController().setContinuous(false);
 	}
@@ -29,15 +31,17 @@ public class ObstacleMover extends PIDSubsystem {
 	}
 
 	public void lowerBar(double speed) {
-		obstacleMoverMotor.set(-speed);
+		set(-speed);
+	
 	}
 
 	public void raiseBar(double speed) {
-		obstacleMoverMotor.set(speed);
+		set(speed);
 	}
 	
 	public void set(double speed){
 		obstacleMoverMotor.set(speed);
+		SmartDashboard.putNumber("Arm Angle", getAngle());
 	}
 
 	public void stopBar() {
@@ -64,6 +68,6 @@ public class ObstacleMover extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		obstacleMoverMotor.pidWrite(output);
+		set(output);
 	}
 }
