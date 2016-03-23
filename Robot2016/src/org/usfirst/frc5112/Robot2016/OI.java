@@ -51,7 +51,7 @@ public class OI {
 		xboxRightStickMoved.whenInactive(new RaiseArm());
 
 //		driveStickTrigger.whileHeld(new AlignWithTarget());
-		driveStickTrigger.whileHeld(new AlignWithTarget());
+		driveStickTrigger.whenPressed(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
 		driveStickButton3.whenPressed(new CalibrateIntake());
 		
