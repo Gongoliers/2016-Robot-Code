@@ -12,15 +12,14 @@ public class OperateObstacleArm extends Command {
 
 	@Override
 	protected void initialize() {
-
+		Robot.obstacleMover.enable();
 	}
 
 	@Override
 	protected void execute() {
-		double y = -Robot.oi.xbox.getRightY();
-		Robot.obstacleMover.raiseBar(Math.copySign(1, y) * Math.pow(y, 2) * 0.75);
-		
-
+		double y = Robot.oi.xbox.getRightY() * 60;
+//		Robot.obstacleMover.raiseBar(Math.copySign(1, y) * Math.pow(y, 2) * 0.75);
+		Robot.obstacleMover.setSetpoint(y);
 	}
 
 	@Override

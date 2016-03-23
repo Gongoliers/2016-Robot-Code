@@ -6,9 +6,10 @@ import org.usfirst.frc5112.Robot2016.commands.MoveArmToPosition;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ObstacleMover extends Subsystem {
+public class ObstacleMover extends PIDSubsystem {
 
 	private final SpeedController obstacleMoverMotor = RobotMap.obstacleMoverMotor;
 	private final Encoder obstacleMoverEncoder = RobotMap.obstacleMoverEncoder;
@@ -16,6 +17,12 @@ public class ObstacleMover extends Subsystem {
 	public static final int UP_POSITION = 0;
 	public static final int DOWN_POSITION = 60;
 	public static final double DEGREES_PER_PULSE = 360 / 497.0;
+	
+	public ObstacleMover() {
+		super("Arm", 0.12, 0, 0.06);
+		setAbsoluteTolerance(2);
+		getPIDController().setContinuous(false);
+	}
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new MoveArmToPosition(UP_POSITION));
@@ -48,5 +55,15 @@ public class ObstacleMover extends Subsystem {
 
 	public boolean isDown() {
 		return getAngle() >= DOWN_POSITION;
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		return getAngle();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		obstacleMoverMotor.pidWrite(output);
 	}
 }
