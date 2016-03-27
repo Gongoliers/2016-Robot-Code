@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import org.usfirst.frc5112.Robot2016.HighGoalRetroreflective;
 import org.usfirst.frc5112.Robot2016.MicrosoftLifeCam;
+import org.usfirst.frc5112.Robot2016.MicrosoftLifeCam.Axis;
 import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.DisplayNormalCameraImage;
@@ -31,6 +32,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * and allowing the driver to see.
  */
 public class Camera extends Subsystem implements PIDSource {
+
+	public static final double X_OFFSET = 14;
 
 	/**
 	 * A helper class to hold the analysis scores of the goal.
@@ -86,7 +89,7 @@ public class Camera extends Subsystem implements PIDSource {
 		}
 
 		public boolean isGoal() {
-			return true;//areaPercent >= 0.3;//isGoal;
+			return true;// areaPercent >= 0.3;//isGoal;
 		}
 
 		public double getDistance() {
@@ -100,13 +103,16 @@ public class Camera extends Subsystem implements PIDSource {
 		private void setCenterX(double x) {
 			centerX = x;
 		}
-		
-		public double getAngle2(){
-			return getCenterX() * robotCamera.getViewAngle()/2 + Math.toDegrees(Math.atan((14/12.0)/getDistance()));
+
+		public double getAngle2() {
+			return getCenterX() * robotCamera.getViewAngle() / 2
+					+ Math.toDegrees(Math.atan((14 / 12.0) / getDistance()));
 		}
-		
-		public double getAngle(){
-			return getCenterX() * robotCamera.getViewAngle()/2 + (Robot.auto ? 6.5 : 6.3);//Math.toDegrees(Math.asin((11/12.0)/getDistance())); //8; //0.12*robotCamera.getViewAngle()/2;
+
+		public double getAngle() {
+			return getCenterX() * robotCamera.getViewAngle() / 2 + (Robot.auto ? 6.5 : 6.3);// Math.toDegrees(Math.asin((11/12.0)/getDistance()));
+																							// //8;
+																							// //0.12*robotCamera.getViewAngle()/2;
 		}
 
 	}
@@ -242,6 +248,8 @@ public class Camera extends Subsystem implements PIDSource {
 		drawTargetBox(binaryFilteredImage, goalParticleReport);
 		drawTargetReticle(binaryFilteredImage, (int) rawY, targetGoal.isGoal() && targetGoal.isCenteredHorizontally());
 		CameraServer.getInstance().setImage(binaryFilteredImage);
+		SmartDashboard.putNumber("TestCameraAngle",
+				getHorizontalAngle(goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft, rawX));
 		scores.Aspect = getAspectScore(goalParticleReport);
 		scores.Area = getAreaScore(goalParticleReport);
 		Goal locatedGoal = new Goal();
@@ -366,6 +374,39 @@ public class Camera extends Subsystem implements PIDSource {
 		return ratioToScore(HighGoalRetroreflective.HEIGHT / HighGoalRetroreflective.WIDTH
 				* (report.BoundingRectRight - report.BoundingRectLeft)
 				/ (report.BoundingRectBottom - report.BoundingRectTop));
+	}
+
+	public static double getHorizontalAngle(double pixelWidth, double centerX) {
+		double measuredDistance = getCameraDistance(pixelWidth);
+		SmartDashboard.putNumber("camMeasuredDistance", measuredDistance);
+		double distance = getRobotDistance(measuredDistance, getHorizontalCameraAngle(centerX));
+		SmartDashboard.putNumber("robotPredictedDistance", distance);
+		return Math.toDegrees(Math.acos((Math.pow(X_OFFSET, 2) - Math.pow(measuredDistance, 2) + Math.pow(distance, 2))
+				/ (2 * distance * Math.abs(X_OFFSET)))) - 90.0;
+	}
+
+	public static boolean isTargetSeen(double x) {
+		return Math.abs(getHorizontalCameraAngle(x)) != getHorizontalCameraAngle(0);
+	}
+
+	public static double getHorizontalCameraAngle(double x) {
+		double slope = RobotMap.robotCamera.getViewAngle() / RobotMap.robotCamera.getResolution(Axis.X);
+		double intercept = -RobotMap.robotCamera.getViewAngle() / 2.0;
+		return x * slope + intercept;
+	}
+
+	public static double getCameraDistance(double targetPixelWidth) {
+		double targetAngleWidth = targetPixelWidth * RobotMap.robotCamera.getViewAngle()
+				/ RobotMap.robotCamera.getResolution(Axis.X);
+		return (HighGoalRetroreflective.WIDTH / 2.0) / Math.tan(Math.toRadians(targetAngleWidth) / 2.0);
+	}
+
+	public static double getRobotDistance(double cameraDistance, double cameraXAngle) {
+		double angle = 90 + ((X_OFFSET > 0) ? cameraXAngle : -cameraXAngle);
+		if (X_OFFSET == 0.0)
+			return cameraDistance;
+		return Math.sqrt(Math.pow(X_OFFSET, 2) + Math.pow(cameraDistance, 2)
+				- (2 * Math.abs(X_OFFSET) * cameraDistance * Math.cos(Math.toRadians(angle))));
 	}
 
 	@Override
