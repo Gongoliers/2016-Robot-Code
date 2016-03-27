@@ -100,6 +100,11 @@ public class Camera extends Subsystem implements PIDSource {
 		private void setCenterX(double x) {
 			centerX = x;
 		}
+		
+		public double getAngle2(){
+			return getCenterX() * robotCamera.getViewAngle()/2 + Math.toDegrees(Math.atan((14/12.0)/getDistance()));
+		}
+		
 		public double getAngle(){
 			return getCenterX() * robotCamera.getViewAngle()/2 + (Robot.auto ? 6.5 : 6.3);//Math.toDegrees(Math.asin((11/12.0)/getDistance())); //8; //0.12*robotCamera.getViewAngle()/2;
 		}
