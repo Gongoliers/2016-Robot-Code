@@ -1,7 +1,7 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
 import org.usfirst.frc5112.Robot2016.Robot;
-import org.usfirst.frc5112.Robot2016.subsystems.ObstacleMover;
+import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -18,7 +18,7 @@ public class OperateObstacleArm extends Command {
 
 	@Override
 	protected void execute() {
-		double y = -Robot.oi.xbox.getRightY() * ObstacleMover.DOWN_POSITION;
+		double y = -Robot.oi.xbox.getRightY() * Arm.DOWN_POSITION;
 		y = Math.max(0, y);
 //		Robot.obstacleMover.raiseBar(Math.copySign(1, y) * Math.pow(y, 2) * 0.75);
 		Robot.obstacleMover.setSetpoint(y);
@@ -31,7 +31,7 @@ public class OperateObstacleArm extends Command {
 
 	@Override
 	protected void end() {
-		Robot.obstacleMover.stopBar();
+		Robot.obstacleMover.stop();
 //		Robot.obstacleMover.disable();
 	}
 

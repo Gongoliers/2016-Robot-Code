@@ -1,6 +1,6 @@
 package org.usfirst.frc5112.Robot2016;
 
-import org.usfirst.frc5112.Robot2016.subsystems.ObstacleMover;
+import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -24,14 +24,14 @@ public class RobotMap {
 	public static DualCANTalon driveTrainRightDriveMotor;
 	public static RobotDrive driveTrainRobotDrive;
 	public static SpeedController intakeIntakeBarMotor;
-	public static SpeedController obstacleMoverMotor;
+	public static SpeedController armMotor;
 	public static SpeedController shooterFlywheelMotorLeft;
 	public static SpeedController shooterFlywheelMotorRight;
-	public static SpeedController elevatorMotor;
+	public static SpeedController kickerMotor;
 	public static MicrosoftLifeCam robotCamera;
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
-	public static Encoder obstacleMoverEncoder;
+	public static Encoder armEncoder;
 	public static AnalogGyro gyro;
 	public static DigitalInput autonomousFireLimitSwitch;
 
@@ -51,13 +51,13 @@ public class RobotMap {
 
 		autonomousFireLimitSwitch = new DigitalInput(0);
 
-		obstacleMoverMotor = new Victor(2);
-		obstacleMoverEncoder = new Encoder(1, 2);
-		obstacleMoverEncoder.setDistancePerPulse(ObstacleMover.DEGREES_PER_PULSE);
+		armMotor = new Victor(2);
+		armEncoder = new Encoder(1, 2);
+		armEncoder.setDistancePerPulse(Arm.DEGREES_PER_PULSE);
 
 		intakeIntakeBarMotor = new Victor(1);
 
-		elevatorMotor = new Victor(0);
+		kickerMotor = new Victor(0);
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
 		shooterFlywheelMotorRight = new CANTalon(1);

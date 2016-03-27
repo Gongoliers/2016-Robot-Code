@@ -1,7 +1,7 @@
 package org.usfirst.frc5112.Robot2016;
 
 import org.usfirst.frc5112.Robot2016.commands.*;
-import org.usfirst.frc5112.Robot2016.subsystems.ObstacleMover;
+import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -34,8 +34,8 @@ public class OI {
 		xbox.LT.whenActive(new IntakeBoulder());
 		xbox.A.whenPressed(new RaiseThenLowerKicker());
 		xbox.START.whenPressed(new StopIntakeAndFlywheel());
-		xbox.LB.whileHeld(new MoveArmToPosition(ObstacleMover.UP_POSITION));
-		xbox.RB.whileHeld(new MoveArmToPosition(ObstacleMover.DOWN_POSITION));
+		xbox.LB.whileHeld(new MoveArmToPosition(Arm.UP_POSITION));
+		xbox.RB.whileHeld(new MoveArmToPosition(Arm.DOWN_POSITION));
 		xbox.Y.whenPressed(new PrepareBoulderForLowGoal());
 
 		Trigger xboxRightStickMoved = new Trigger() {

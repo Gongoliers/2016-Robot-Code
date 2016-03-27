@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
-	public static ObstacleMover obstacleMover;
+	public static Arm obstacleMover;
 	public static Intake intake;
 	public static Camera camera;
 	public static Shooter shooter;
@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
-		obstacleMover = new ObstacleMover();
+		obstacleMover = new Arm();
 		intake = new Intake();
 		camera = new Camera();
 		shooter = new Shooter();

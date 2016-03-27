@@ -72,6 +72,7 @@ public class Camera extends Subsystem implements PIDSource {
 	public class Goal {
 		private double centerX, centerY;
 		private boolean isGoal;
+		private double angle;
 		private double distance;
 		private final double CENTER_X_THRESHOLD = 0.02;
 		public double areaPercent;
@@ -102,6 +103,10 @@ public class Camera extends Subsystem implements PIDSource {
 
 		private void setCenterX(double x) {
 			centerX = x;
+		}
+		
+		public double getHorizontalAngle(){
+			return angle;
 		}
 
 		public double getAngle2() {
@@ -248,11 +253,12 @@ public class Camera extends Subsystem implements PIDSource {
 		drawTargetBox(binaryFilteredImage, goalParticleReport);
 		drawTargetReticle(binaryFilteredImage, (int) rawY, targetGoal.isGoal() && targetGoal.isCenteredHorizontally());
 		CameraServer.getInstance().setImage(binaryFilteredImage);
-		SmartDashboard.putNumber("TestCameraAngle",
-				getHorizontalAngle(goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft, rawX));
+		double angle = getHorizontalAngle(goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft, rawX);
+		SmartDashboard.putNumber("TestCameraAngle", angle);
 		scores.Aspect = getAspectScore(goalParticleReport);
 		scores.Area = getAreaScore(goalParticleReport);
 		Goal locatedGoal = new Goal();
+		locatedGoal.angle = angle;
 		locatedGoal.isGoal = scores.Aspect > SCORE_MIN && scores.Area > SCORE_MIN;
 		locatedGoal.distance = computeDistance(binaryFilteredImage, goalParticleReport);
 		double[] aimingPoints = robotCamera.convertPixelSystemToAimingSystem(new int[] { (int) rawX, (int) rawY },
@@ -411,14 +417,11 @@ public class Camera extends Subsystem implements PIDSource {
 
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public PIDSourceType getPIDSourceType() {
-		// TODO Auto-generated method stub
-		return null;
+		return PIDSourceType.kDisplacement;
 	}
 
 	@Override
@@ -427,7 +430,7 @@ public class Camera extends Subsystem implements PIDSource {
 			setCameraMode(CameraMode.TARGET);
 		}
 		Goal g = locateTarget();
-		return g.getCenterX();
+		return g.getHorizontalAngle();
 	}
 
 }

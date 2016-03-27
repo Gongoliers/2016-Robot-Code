@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ObstacleMover extends PIDSubsystem {
+public class Arm extends PIDSubsystem {
 
-	private final SpeedController obstacleMoverMotor = RobotMap.obstacleMoverMotor;
-	private final Encoder obstacleMoverEncoder = RobotMap.obstacleMoverEncoder;
+	private final SpeedController armMotor = RobotMap.armMotor;
+	private final Encoder armEncoder = RobotMap.armEncoder;
 
 	public static final int UP_POSITION = 0;
 	public static final double DEGREES_PER_PULSE = 360 / 497.0;
 	public static final int DOWN_POSITION = 500;
 
-	public ObstacleMover() {
+	public Arm() {
 		super("Arm", 0.02, 0, 0.01);
 		setAbsoluteTolerance(5);
 		getPIDController().setContinuous(false);
@@ -27,40 +27,35 @@ public class ObstacleMover extends PIDSubsystem {
 		setDefaultCommand(new MoveArmToPosition(UP_POSITION));
 	}
 
-	public void lowerBar(double speed) {
+	public void lower(double speed) {
 		set(-speed);
 
 	}
 
-	public void raiseBar(double speed) {
+	public void raise(double speed) {
 		set(speed);
 	}
 
 	public void set(double speed) {
-		obstacleMoverMotor.set(speed);
-		SmartDashboard.putNumber("Arm Angle", getAngle());
+		armMotor.set(speed);
+		SmartDashboard.putNumber("Arm Angle", returnPIDInput());
 	}
 
-	public void stopBar() {
-		obstacleMoverMotor.set(0);
+	public void stop() {
+		armMotor.set(0);
 	}
 
-	public double getAngle() {
-		return obstacleMoverEncoder.getDistance();
-	}
-
-	public boolean isBarUp() {
-		// return true;
-		return getAngle() <= UP_POSITION;
+	public boolean isUp() {
+		return returnPIDInput() <= UP_POSITION;
 	}
 
 	public boolean isDown() {
-		return getAngle() >= DOWN_POSITION;
+		return returnPIDInput() >= DOWN_POSITION;
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		return getAngle();
+		return armEncoder.getDistance();
 	}
 
 	@Override

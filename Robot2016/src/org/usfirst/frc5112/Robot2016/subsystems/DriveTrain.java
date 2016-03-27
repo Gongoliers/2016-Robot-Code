@@ -16,14 +16,13 @@ public class DriveTrain extends PIDSubsystem {
 
 	private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
-	private double maxSpeed = 1.0;
-
 	private double initialGyro = 0;
 
 	public DriveTrain() {
 		super(0.12, 0, 0.06);
 		setAbsoluteTolerance(0.06);
 		getPIDController().setContinuous(false);
+		setOutputRange(-1, 1);
 	}
 	
 	public void initDefaultCommand() {
@@ -42,8 +41,6 @@ public class DriveTrain extends PIDSubsystem {
 	 */
 	public void operate(Joystick stick) {
 		double y = stick.getY();
-		y = Math.max(-maxSpeed, y);
-		y = Math.min(maxSpeed, y);
 		double rotation = stick.getZ();
 		if (Math.abs(rotation) >= 0.1) {
 			robotDrive.arcadeDrive(y * 0.85, 3.0 * Math.copySign(1, stick.getZ()) * Math.pow(stick.getZ(), 2) / 4.0);
@@ -51,12 +48,6 @@ public class DriveTrain extends PIDSubsystem {
 		} else {
 			robotDrive.arcadeDrive(y * 0.85, -0.01 * (Robot.gyro.getAngle() - initialGyro));
 		}
-		// Math.copySign(1, y) * Math.pow(y, 2)
-
-	}
-
-	public void setMaxSpeed(double maxSpeed) {
-		this.maxSpeed = maxSpeed;
 	}
 
 	/**

@@ -31,7 +31,7 @@ public class MoveArmToPosition extends Command {
 	@Override
 	protected void end() {
 		Robot.obstacleMover.disable();
-		Robot.obstacleMover.stopBar();
+		Robot.obstacleMover.stop();
 	}
 
 	@Override
