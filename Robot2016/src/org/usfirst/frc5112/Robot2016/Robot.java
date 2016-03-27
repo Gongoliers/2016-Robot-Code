@@ -21,6 +21,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5112.Robot2016.commands.*;
+import org.usfirst.frc5112.Robot2016.commands.auto.AutoMoat;
+import org.usfirst.frc5112.Robot2016.commands.auto.AutoRamparts;
+import org.usfirst.frc5112.Robot2016.commands.auto.AutoRockWall;
+import org.usfirst.frc5112.Robot2016.commands.auto.AutoRoughTerrain;
+import org.usfirst.frc5112.Robot2016.commands.auto.SpyBotAuto;
 import org.usfirst.frc5112.Robot2016.subsystems.*;
 
 /**
@@ -47,36 +52,11 @@ public class Robot extends IterativeRobot {
 	public static boolean auto = false;
 
 	private SendableChooser autoChooser;
-	// private static SendableChooser fieldPosition = new SendableChooser();
-	// private static SendableChooser fireChooser = new SendableChooser();
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-
-	// public Robot() {
-	// autoChooser = new SendableChooser();
-	// fieldPosition = new SendableChooser();
-	// fireChooser = new SendableChooser();
-	// autoChooser.addDefault("Do Nothing", new StopDriveTrain());
-	// autoChooser.addObject("Cheval De Frise", new AutoChevalDeFrise());
-	// autoChooser.addObject("Draw Bridge", new AutoDrawBridge());
-	// autoChooser.addObject("Moat", new AutoMoat());
-	// autoChooser.addObject("Ramparts", new AutoRamparts());
-	// autoChooser.addObject("Rock Wall", new AutoRockWall());
-	// autoChooser.addObject("Sally Port", new AutoSallyPort());
-	// autoChooser.addObject("Reach Defense", new ReachDefense());
-	// autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
-	// SmartDashboard.putData("Autonomous Chooser", autoChooser);
-	// fieldPosition.addDefault("Middle", new Integer(0));
-	// fieldPosition.addObject("Right", new Integer(1));
-	// fieldPosition.addObject("Left", new Integer(2));
-	// SmartDashboard.putData("Field Position", fieldPosition);
-	// fireChooser.addDefault("Fire", new Boolean(true));
-	// fireChooser.addObject("Don't Fire", new Boolean(false));
-	// SmartDashboard.putData("Fire at end of auto", fireChooser);
-	// }
 	public void robotInit() {
 		RobotMap.init();
 		driveTrain = new DriveTrain();
@@ -89,8 +69,6 @@ public class Robot extends IterativeRobot {
 		gyro = RobotMap.gyro;
 		accel = new Accelerometer();
 		autoChooser = new SendableChooser();
-		// fieldPosition = new SendableChooser();
-		// fireChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
 		autoChooser.addObject("Moat", new AutoMoat());
 		autoChooser.addObject("Ramparts", new AutoRamparts());
@@ -99,13 +77,6 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Reach Defense", new ReachDefense());
 		autoChooser.addObject("Spy Bot High Goal", new SpyBotAuto());
 		SmartDashboard.putData("Autonomous Chooser", autoChooser);
-		// fieldPosition.addDefault("Middle", new Integer(0));
-		// fieldPosition.addObject("Right", new Integer(1));
-		// fieldPosition.addObject("Left", new Integer(2));
-		// SmartDashboard.putData("Field Position", fieldPosition);
-		// fireChooser.addDefault("Fire", new Boolean(true));
-		// fireChooser.addObject("Don't Fire", new Boolean(false));
-		// SmartDashboard.putData("Fire at end of auto", fireChooser);
 		gyro.calibrate();
 		oi = new OI();
 
@@ -117,8 +88,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public static boolean shouldFire() {
-		// return (Boolean) fireChooser.getSelected();
-		return RobotMap.obstacleArmLimitSwitch.get();
+		return RobotMap.autonomousFireLimitSwitch.get();
 	}
 
 	/**
@@ -152,10 +122,6 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		auto = false;
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}

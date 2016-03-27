@@ -1,6 +1,5 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import org.usfirst.frc5112.Robot2016.PID;
 import org.usfirst.frc5112.Robot2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -31,8 +30,8 @@ public class MoveArmToPosition extends Command {
 
 	@Override
 	protected void end() {
-		Robot.obstacleMover.stopBar();
 		Robot.obstacleMover.disable();
+		Robot.obstacleMover.stopBar();
 	}
 
 	@Override

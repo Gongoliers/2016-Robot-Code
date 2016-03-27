@@ -6,11 +6,8 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *

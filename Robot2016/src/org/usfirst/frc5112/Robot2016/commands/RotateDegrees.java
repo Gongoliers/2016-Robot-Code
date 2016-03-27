@@ -20,7 +20,7 @@ public class RotateDegrees extends Command {
 	public RotateDegrees(double targetAngle) {
 		requires(Robot.driveTrain);
 		this.targetAngle = targetAngle;
-		setTimeout(4);
+		setTimeout(3);
 	}
 
 	public RotateDegrees(){

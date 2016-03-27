@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -32,8 +33,8 @@ public class RobotMap {
 	public static PowerDistributionPanel pdp;
 	public static Encoder obstacleMoverEncoder;
 	public static AnalogGyro gyro;
-	public static DigitalInput obstacleArmLimitSwitch;
-	
+	public static DigitalInput autonomousFireLimitSwitch;
+
 	public static int pdpIntakePort = 4;
 
 	public static void init() {
@@ -47,8 +48,8 @@ public class RobotMap {
 		driveTrainRobotDrive.setExpiration(0.1);
 		driveTrainRobotDrive.setSensitivity(0.5);
 		driveTrainRobotDrive.setMaxOutput(1.0);
-		
-		obstacleArmLimitSwitch = new DigitalInput(0);
+
+		autonomousFireLimitSwitch = new DigitalInput(0);
 
 		obstacleMoverMotor = new Victor(2);
 		obstacleMoverEncoder = new Encoder(1, 2);

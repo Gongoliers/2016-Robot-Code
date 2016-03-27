@@ -48,7 +48,7 @@ public class XboxController extends Joystick {
 			return getPOV() == 180;
 		}
 	};
-	
+
 	public final Trigger DPAD_RIGHT = new Trigger() {
 
 		@Override
@@ -64,7 +64,7 @@ public class XboxController extends Joystick {
 			return getPOV() == 270;
 		}
 	};
-	
+
 	public double getLeftY() {
 		return getRawAxis(1);
 	}
@@ -88,8 +88,8 @@ public class XboxController extends Joystick {
 	public double getRightTrigger() {
 		return getRawAxis(3);
 	}
-	
-	public void rumble(float value){
+
+	public void rumble(float value) {
 		setRumble(RumbleType.kLeftRumble, value);
 		setRumble(RumbleType.kRightRumble, value);
 	}

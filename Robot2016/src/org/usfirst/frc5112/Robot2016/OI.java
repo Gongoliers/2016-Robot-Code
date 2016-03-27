@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.hal.PDPJNI;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,32 +37,31 @@ public class OI {
 		xbox.LB.whileHeld(new MoveArmToPosition(ObstacleMover.UP_POSITION));
 		xbox.RB.whileHeld(new MoveArmToPosition(ObstacleMover.DOWN_POSITION));
 		xbox.Y.whenPressed(new PrepareBoulderForLowGoal());
-		
+
 		Trigger xboxRightStickMoved = new Trigger() {
-			
+
 			@Override
 			public boolean get() {
 				return Math.abs(xbox.getRightY()) > 0.1;
 			}
 		};
-		
-		
-		xboxRightStickMoved.whenActive(new OperateObstacleArm());
-//		xboxRightStickMoved.whenInactive(new RaiseArm());
 
-//		driveStickTrigger.whileHeld(new AlignWithTarget());
+		xboxRightStickMoved.whenActive(new OperateObstacleArm());
+		// xboxRightStickMoved.whenInactive(new RaiseArm());
+
+		// driveStickTrigger.whileHeld(new AlignWithTarget());
 		driveStickTrigger.whenPressed(new AlignWithTarget());
 		driveStickSideButton.whenPressed(new StopDriveTrain());
 		driveStickButton3.whenPressed(new CalibrateIntake());
-		
+
 		Trigger joystickMoved = new Trigger() {
-			
+
 			@Override
 			public boolean get() {
 				return Math.abs(driveStick.getY()) > 0.3;
 			}
 		};
-		
+
 		joystickMoved.whenActive(new OperateDriveTrain());
 
 		// SmartDashboard Button
