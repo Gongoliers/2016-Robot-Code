@@ -6,7 +6,6 @@ import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveArmToPosition extends Command {
-	private PID pidController;
 	private double targetAngle;
 	
 	
@@ -22,7 +21,6 @@ public class MoveArmToPosition extends Command {
 
 	@Override
 	protected void execute() {
-//		Robot.obstacleMover.set(pidController.getOutput(Robot.obstacleMover.getAngle(), targetAngle));
 		Robot.obstacleMover.setSetpoint(targetAngle);
 	}
 

@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import org.usfirst.frc5112.Robot2016.HighGoalRetroreflective;
 import org.usfirst.frc5112.Robot2016.MicrosoftLifeCam;
+import org.usfirst.frc5112.Robot2016.Robot;
 import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.DisplayNormalCameraImage;
 
@@ -70,6 +71,7 @@ public class Camera extends Subsystem implements PIDSource {
 		private boolean isGoal;
 		private double distance;
 		private final double CENTER_X_THRESHOLD = 0.02;
+		public double areaPercent;
 
 		public boolean isCenteredHorizontally() {
 			return Math.abs(centerX) >= CENTER_X_THRESHOLD;
@@ -84,7 +86,7 @@ public class Camera extends Subsystem implements PIDSource {
 		}
 
 		public boolean isGoal() {
-			return isGoal;
+			return true;//areaPercent >= 0.3;//isGoal;
 		}
 
 		public double getDistance() {
@@ -99,7 +101,7 @@ public class Camera extends Subsystem implements PIDSource {
 			centerX = x;
 		}
 		public double getAngle(){
-			return getCenterX() * robotCamera.getViewAngle()/2 + 0.12*robotCamera.getViewAngle()/2;
+			return getCenterX() * robotCamera.getViewAngle()/2 + (Robot.auto ? 6.5 : 6.3);//Math.toDegrees(Math.asin((11/12.0)/getDistance())); //8; //0.12*robotCamera.getViewAngle()/2;
 		}
 
 	}
@@ -283,6 +285,7 @@ public class Camera extends Subsystem implements PIDSource {
 				ParticleReport par = new ParticleReport();
 				par.PercentAreaToImageArea = NIVision.imaqMeasureParticle(binaryFilteredImage, particleIndex, 0,
 						NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA);
+				targetGoal.areaPercent = par.PercentAreaToImageArea;
 				par.Area = NIVision.imaqMeasureParticle(binaryFilteredImage, particleIndex, 0,
 						NIVision.MeasurementType.MT_AREA);
 				par.BoundingRectTop = NIVision.imaqMeasureParticle(binaryFilteredImage, particleIndex, 0,

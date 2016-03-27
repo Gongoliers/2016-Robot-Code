@@ -17,12 +17,13 @@ public class ObstacleMover extends PIDSubsystem {
 
 	public static final int UP_POSITION = 0;
 	public static final double DEGREES_PER_PULSE = 360 / 497.0;
-	public static final int DOWN_POSITION = 225;
+	private static final int DOWN_DEGREES = 50;
+	public static final int DOWN_POSITION =  500;//DOWN_DEGREES * 60 / 16; //225;
 
 	
 	public ObstacleMover() {
 		super("Arm", 0.02, 0, 0.01);
-		setAbsoluteTolerance(2);
+		setAbsoluteTolerance(5);
 		getPIDController().setContinuous(false);
 	}
 

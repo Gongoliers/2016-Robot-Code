@@ -8,14 +8,14 @@ import org.usfirst.frc5112.Robot2016.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
-
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveTrain extends Subsystem implements PIDOutput {
+public class DriveTrain extends PIDSubsystem {
 
 	private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
@@ -23,6 +23,12 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	private double initialGyro = 0;
 
+	public DriveTrain() {
+		super(0.12, 0, 0.06);
+		setAbsoluteTolerance(0.06);
+		getPIDController().setContinuous(false);
+	}
+	
 	public void initDefaultCommand() {
 		setDefaultCommand(new OperateDriveTrain());
 	}
@@ -103,9 +109,15 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		robotDrive.arcadeDrive(0, -rotationSpeed);
 	}
 
+	
 	@Override
-	public void pidWrite(double output) {
-		rotateCCW(output);
+	protected double returnPIDInput() {
+		return Robot.gyro.getAngle();
+	}
+	
+	@Override
+	protected void usePIDOutput(double output) {
+		rotateCCW(output);		
 	}
 
 }

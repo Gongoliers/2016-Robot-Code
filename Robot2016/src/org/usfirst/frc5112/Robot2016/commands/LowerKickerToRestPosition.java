@@ -12,7 +12,12 @@ public class LowerKickerToRestPosition extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.kicker.down();
+//		if (Robot.auto) {
+//			if (Robot.camera.targetGoal.isGoal())
+//				Robot.kicker.down();
+//		} else {
+			Robot.kicker.down();
+//		}
 		setTimeout(0.6);
 	}
 

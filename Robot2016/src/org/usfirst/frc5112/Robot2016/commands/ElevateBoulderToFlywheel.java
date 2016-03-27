@@ -2,6 +2,7 @@ package org.usfirst.frc5112.Robot2016.commands;
 
 import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class ElevateBoulderToFlywheel extends Command {
 
@@ -11,7 +12,12 @@ public class ElevateBoulderToFlywheel extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.kicker.up();
+//		if (Robot.auto) {
+//			if (Robot.camera.targetGoal.isGoal())
+//				Robot.kicker.up();
+//		} else {
+			Robot.kicker.up();
+//		}
 		setTimeout(0.5);
 
 	}

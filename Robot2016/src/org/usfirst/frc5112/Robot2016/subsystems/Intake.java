@@ -33,7 +33,7 @@ public class Intake extends Subsystem {
 	}
 
 	public boolean hasBoulder() {
-		return true; // need a limit switch here
+		return true; // need a limit switch here or other sensing device
 	}
 	
 	public void setFreeCurrent(double c){

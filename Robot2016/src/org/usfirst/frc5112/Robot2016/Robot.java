@@ -44,6 +44,7 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp;
 	public static AnalogGyro gyro;
 	public static Accelerometer accel;
+	public static boolean auto = false;
 
 	private SendableChooser autoChooser;
 	// private static SendableChooser fieldPosition = new SendableChooser();
@@ -134,6 +135,7 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
+		auto = true;
 		autonomousCommand = (Command) autoChooser.getSelected();
 
 		if (autonomousCommand != null)
@@ -144,10 +146,12 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		auto = true;
 		Scheduler.getInstance().run();
 	}
 
 	public void teleopInit() {
+		auto = false;
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -160,6 +164,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		auto = false;
 		Scheduler.getInstance().run();
 	}
 
