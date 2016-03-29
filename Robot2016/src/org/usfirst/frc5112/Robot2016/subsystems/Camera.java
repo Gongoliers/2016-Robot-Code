@@ -90,7 +90,7 @@ public class Camera extends Subsystem implements PIDSource {
 		}
 
 		public boolean isGoal() {
-			return true;// areaPercent >= 0.3;//isGoal;
+			return isGoal;
 		}
 
 		public double getDistance() {
