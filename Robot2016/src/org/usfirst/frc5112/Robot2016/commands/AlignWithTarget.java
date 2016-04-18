@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AlignWithTarget extends CommandGroup{
 
 	public AlignWithTarget() {
-		addSequential(new LocateTarget(), 1.5);
-		addSequential(new RotateDegrees());
+		addParallel(new LocateTarget());
+		addSequential(new RotateToTarget());
 	}
 	
 }
