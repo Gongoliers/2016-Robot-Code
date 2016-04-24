@@ -25,6 +25,10 @@ public class SynchronizedSpeedControllers implements SpeedController {
 	public void remove(SpeedController speedController) {
 		mSpeedControllers.remove(speedController);
 	}
+	
+	public void remove(int speedControllerIndex){
+		mSpeedControllers.remove(speedControllerIndex);
+	}
 
 	public SpeedController getSpeedController(int speedControllerIndex) {
 		return mSpeedControllers.get(speedControllerIndex);
