@@ -75,7 +75,7 @@ public class SynchronizedSpeedControllers implements SpeedController {
 	public void setInverted(boolean isInverted) {
 		mIsInverted = isInverted;
 		for (SpeedController speedController : mSpeedControllers) {
-			speedController.setInverted(isInverted);
+			speedController.setInverted(!speedController.getInverted());
 		}
 	}
 
