@@ -104,14 +104,15 @@ public class Camera extends Subsystem implements PIDSource {
 		private void setCenterX(double x) {
 			centerX = x;
 		}
-		
-		public double getHorizontalAngle(){
+
+		public double getHorizontalAngle() {
 			return angle;
 		}
 
-		public double getAngle2() {
-			return getCenterX() * robotCamera.getViewAngle() / 2
-					+ Math.toDegrees(Math.atan((14 / 12.0) / getDistance()));
+		public double getAngle2(){
+			double offset = 90 - Math.toDegrees(Math.acos(Camera.X_OFFSET/12.0/getDistance()));
+			double cameraAngle = getCenterX() * robotCamera.getViewAngle() / 2.0;
+			return cameraAngle + offset * cameraAngle < 0 ? 1: -1;
 		}
 
 		public double getAngle() {
@@ -253,7 +254,8 @@ public class Camera extends Subsystem implements PIDSource {
 		drawTargetBox(binaryFilteredImage, goalParticleReport);
 		drawTargetReticle(binaryFilteredImage, (int) rawY, targetGoal.isGoal() && targetGoal.isCenteredHorizontally());
 		CameraServer.getInstance().setImage(binaryFilteredImage);
-		double angle = getHorizontalAngle(goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft, rawX);
+		double angle = getHorizontalAngle(goalParticleReport.BoundingRectRight - goalParticleReport.BoundingRectLeft,
+				rawX);
 		SmartDashboard.putNumber("TestCameraAngle", angle);
 		scores.Aspect = getAspectScore(goalParticleReport);
 		scores.Area = getAreaScore(goalParticleReport);
