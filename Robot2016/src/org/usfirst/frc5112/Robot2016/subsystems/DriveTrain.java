@@ -40,6 +40,7 @@ public class DriveTrain extends PIDSubsystem {
 	 *            The Joystick that will be used to operate the drivetrain.
 	 */
 	public void operate(Joystick stick) {
+//		robotDrive.arcadeDrive(stick.getY() * 0.4, stick.getZ() * 0.6);
 		double y = stick.getY();
 		double rotation = stick.getZ();
 		if (Math.abs(rotation) >= 0.1) {

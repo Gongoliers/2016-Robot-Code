@@ -13,7 +13,7 @@ public class RotateToGoal extends Command {
 	@Override
 	protected void initialize() {
 		Robot.driveTrain.enable();
-		Robot.driveTrain.setSetpointRelative(Robot.camera.targetGoal.getHorizontalAngle());
+		Robot.driveTrain.setSetpointRelative(LocateTarget.target.getAngle());
 	}
 
 	@Override

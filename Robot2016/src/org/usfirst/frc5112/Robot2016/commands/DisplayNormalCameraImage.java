@@ -2,7 +2,6 @@ package org.usfirst.frc5112.Robot2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc5112.Robot2016.Robot;
-import org.usfirst.frc5112.Robot2016.subsystems.Camera.CameraMode;
 
 /**
  * Displays the camera image on the SmartDashboard to allow drivers to see the
@@ -15,11 +14,11 @@ public class DisplayNormalCameraImage extends Command {
 	}
 
 	protected void initialize() {
-		Robot.camera.setCameraMode(CameraMode.NORMAL);
+		Robot.camera.disableTargetMode();
 	}
 
 	protected void execute() {
-		Robot.camera.displayImage();
+		Robot.camera.display();
 	}
 
 	protected boolean isFinished() {

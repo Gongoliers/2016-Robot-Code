@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Arm obstacleMover;
 	public static Intake intake;
-	public static Camera camera;
+	public static CameraSubsystem camera;
 	public static Shooter shooter;
 	public static Kicker kicker;
 	public static PowerDistributionPanel pdp;
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		obstacleMover = new Arm();
 		intake = new Intake();
-		camera = new Camera();
+		camera = new CameraSubsystem();
 		shooter = new Shooter();
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;

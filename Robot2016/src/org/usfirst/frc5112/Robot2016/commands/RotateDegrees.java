@@ -33,7 +33,7 @@ public class RotateDegrees extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		if(goal){
-			targetAngle = Robot.camera.targetGoal.getAngle();
+			targetAngle = LocateTarget.target.getAngle();
 		}
 
 		targetAngle += Robot.gyro.getAngle();

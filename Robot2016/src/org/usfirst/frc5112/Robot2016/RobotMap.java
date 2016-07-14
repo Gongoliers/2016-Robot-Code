@@ -28,7 +28,6 @@ public class RobotMap {
 	public static SpeedController shooterFlywheelMotorLeft;
 	public static SpeedController shooterFlywheelMotorRight;
 	public static SpeedController kickerMotor;
-	public static MicrosoftLifeCam robotCamera;
 	public static BuiltInAccelerometer accelerometer;
 	public static PowerDistributionPanel pdp;
 	public static Encoder armEncoder;
@@ -61,8 +60,6 @@ public class RobotMap {
 
 		shooterFlywheelMotorLeft = new CANTalon(4);
 		shooterFlywheelMotorRight = new CANTalon(1);
-
-		robotCamera = new MicrosoftLifeCam("cam0");
 
 		accelerometer = new BuiltInAccelerometer();
 
