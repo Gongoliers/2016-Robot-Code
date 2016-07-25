@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

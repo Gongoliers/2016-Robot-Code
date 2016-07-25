@@ -3,8 +3,9 @@ package org.usfirst.frc5112.Robot2016.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc5112.Robot2016.Camera.Target;
 import org.usfirst.frc5112.Robot2016.Robot;
+
+import com.thegongoliers.util.Camera.Target;
 
 /**
  * Used to detect the high goal target.

@@ -11,7 +11,6 @@
 package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -27,6 +26,8 @@ import org.usfirst.frc5112.Robot2016.commands.auto.AutoRockWall;
 import org.usfirst.frc5112.Robot2016.commands.auto.AutoRoughTerrain;
 import org.usfirst.frc5112.Robot2016.commands.auto.SpyBotAuto;
 import org.usfirst.frc5112.Robot2016.subsystems.*;
+
+import com.thegongoliers.util.RoboRIOAccelerometer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -48,7 +49,7 @@ public class Robot extends IterativeRobot {
 	public static Kicker kicker;
 	public static PowerDistributionPanel pdp;
 	public static AnalogGyro gyro;
-	public static Accelerometer accel;
+	public static RoboRIOAccelerometer accel;
 	public static boolean auto = false;
 
 	private SendableChooser autoChooser;
@@ -67,7 +68,7 @@ public class Robot extends IterativeRobot {
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;
 		gyro = RobotMap.gyro;
-		accel = new Accelerometer();
+		accel = new RoboRIOAccelerometer();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Do Nothing", new StopDriveTrain());
 		autoChooser.addObject("Moat", new AutoMoat());

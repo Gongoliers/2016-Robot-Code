@@ -2,7 +2,6 @@ package org.usfirst.frc5112.Robot2016.commands;
 
 import org.usfirst.frc5112.Robot2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class ElevateBoulderToFlywheel extends Command {
 

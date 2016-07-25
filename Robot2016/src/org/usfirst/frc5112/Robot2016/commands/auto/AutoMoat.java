@@ -7,7 +7,6 @@ import org.usfirst.frc5112.Robot2016.commands.DriveForward;
 import org.usfirst.frc5112.Robot2016.commands.RotateTowardTarget;
 import org.usfirst.frc5112.Robot2016.commands.ShootBoulderIntoHighGoal;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoMoat extends CommandGroup {
@@ -15,7 +14,7 @@ public class AutoMoat extends CommandGroup {
 		addSequential(new DriveForward(2.25, 0.85));
 		addSequential(new RotateTowardTarget(Robot.getFieldPosition()));
 		addSequential(new AlignWithTarget());
-		if (Robot.shouldFire()) {			
+		if (Robot.shouldFire()) {
 			addSequential(new ShootBoulderIntoHighGoal());
 			addSequential(new CalibrateIntake());
 		}

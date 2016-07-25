@@ -1,11 +1,13 @@
 package org.usfirst.frc5112.Robot2016.subsystems;
 
-import org.usfirst.frc5112.Robot2016.Camera;
-import org.usfirst.frc5112.Robot2016.Camera.LEDColor;
-import org.usfirst.frc5112.Robot2016.Camera.Target;
+
 import org.usfirst.frc5112.Robot2016.HighGoalRetroreflective;
-import org.usfirst.frc5112.Robot2016.MicrosoftLifeCam;
 import org.usfirst.frc5112.Robot2016.commands.DisplayNormalCameraImage;
+
+import com.thegongoliers.util.Camera;
+import com.thegongoliers.util.Camera.LEDColor;
+import com.thegongoliers.util.Camera.Target;
+import com.thegongoliers.util.MicrosoftLifeCam;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

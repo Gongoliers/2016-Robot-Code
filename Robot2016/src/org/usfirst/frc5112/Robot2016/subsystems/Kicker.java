@@ -2,7 +2,6 @@ package org.usfirst.frc5112.Robot2016.subsystems;
 
 import org.usfirst.frc5112.Robot2016.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
