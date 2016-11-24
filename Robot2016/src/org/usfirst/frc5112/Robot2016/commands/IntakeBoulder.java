@@ -1,6 +1,6 @@
 package org.usfirst.frc5112.Robot2016.commands;
 
-import edu.wpi.first.wpilibj.Joystick.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

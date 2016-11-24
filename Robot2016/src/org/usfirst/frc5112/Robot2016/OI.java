@@ -3,7 +3,7 @@ package org.usfirst.frc5112.Robot2016;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
-import com.thegongoliers.util.XboxController;
+import com.thegongoliers.input.XboxController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;

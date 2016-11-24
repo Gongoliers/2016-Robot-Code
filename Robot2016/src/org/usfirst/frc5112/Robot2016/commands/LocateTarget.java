@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5112.Robot2016.Robot;
 
-import com.thegongoliers.util.Camera.Target;
+import com.thegongoliers.input.camera.Camera.Target;
+
 
 /**
  * Used to detect the high goal target.

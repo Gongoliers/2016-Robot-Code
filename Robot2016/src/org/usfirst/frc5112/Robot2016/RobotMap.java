@@ -2,9 +2,10 @@ package org.usfirst.frc5112.Robot2016;
 
 import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;

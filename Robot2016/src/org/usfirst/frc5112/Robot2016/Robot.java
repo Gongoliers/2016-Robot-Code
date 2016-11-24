@@ -27,7 +27,8 @@ import org.usfirst.frc5112.Robot2016.commands.auto.AutoRoughTerrain;
 import org.usfirst.frc5112.Robot2016.commands.auto.SpyBotAuto;
 import org.usfirst.frc5112.Robot2016.subsystems.*;
 
-import com.thegongoliers.util.RoboRIOAccelerometer;
+import com.thegongoliers.input.RoboRIOAccelerometer;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the

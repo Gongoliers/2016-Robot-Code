@@ -1,8 +1,8 @@
 package org.usfirst.frc5112.Robot2016;
 
-import com.thegongoliers.util.SynchronizedSpeedControllers;
+import com.ctre.CANTalon;
+import com.thegongoliers.output.SynchronizedSpeedControllers;
 
-import edu.wpi.first.wpilibj.CANTalon;
 
 public class DualCANTalon extends SynchronizedSpeedControllers {
 
