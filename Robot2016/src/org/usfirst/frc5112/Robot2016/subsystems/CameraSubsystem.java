@@ -8,6 +8,7 @@ import com.thegongoliers.input.camera.Camera;
 import com.thegongoliers.input.camera.Camera.LEDColor;
 import com.thegongoliers.input.camera.Camera.Target;
 import com.thegongoliers.input.camera.MicrosoftLifeCam;
+import com.thegongoliers.input.camera.TargetNotFoundException;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -38,7 +39,7 @@ public class CameraSubsystem extends Subsystem {
 		camera.display();
 	}
 
-	public Target findHighGoal() {
+	public Target findHighGoal() throws TargetNotFoundException {
 		return camera.findTarget(HighGoalRetroreflective.WIDTH, HighGoalRetroreflective.HEIGHT);
 	}
 }

@@ -7,7 +7,6 @@ import org.usfirst.frc5112.Robot2016.Robot;
 
 import com.thegongoliers.input.camera.Camera.Target;
 
-
 /**
  * Used to detect the high goal target.
  */
@@ -31,6 +30,7 @@ public class LocateTarget extends Command {
 		try {
 			target = Robot.camera.findHighGoal();
 		} catch (Exception e) {
+			System.out.println("Target not found");
 			e.printStackTrace();
 			return;
 		}
