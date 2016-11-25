@@ -3,10 +3,11 @@ package org.usfirst.frc5112.Robot2016;
 import org.usfirst.frc5112.Robot2016.commands.*;
 import org.usfirst.frc5112.Robot2016.subsystems.Arm;
 
-import com.thegongoliers.input.XboxController;
+import com.thegongoliers.input.EnhancedXboxController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
@@ -17,14 +18,14 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 public class OI {
 
 	public Joystick driveStick;
-	public XboxController xbox;
+	public EnhancedXboxController xbox;
 	public JoystickButton driveStickTrigger;
 	public JoystickButton driveStickSideButton;
 	public JoystickButton driveStickButton3;
 	public JoystickButton driveStickButton4;
 
 	public OI() {
-		xbox = new XboxController(1);
+		xbox = new EnhancedXboxController(1);
 		driveStick = new Joystick(0);
 
 		driveStickTrigger = new JoystickButton(driveStick, 1);
@@ -75,7 +76,7 @@ public class OI {
 		return driveStick;
 	}
 
-	public Joystick getXbox() {
+	public XboxController getXbox() {
 		return xbox;
 	}
 
