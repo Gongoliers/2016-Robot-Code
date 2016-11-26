@@ -7,7 +7,7 @@ import org.usfirst.frc5112.Robot2016.RobotMap;
 import org.usfirst.frc5112.Robot2016.commands.*;
 
 import com.thegongoliers.input.JoystickTransformer;
-import com.thegongoliers.util.Position;
+import com.thegongoliers.math.Position;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
