@@ -20,7 +20,10 @@ public class CameraSubsystem extends Subsystem {
 	private Camera camera;
 
 	public CameraSubsystem() {
-		camera = new Camera.CameraBuilder().setCamera(new MicrosoftLifeCam(0)).setLEDColor(LEDColor.GREEN).build();
+		camera = new Camera.CameraBuilder()
+				.setCamera(new MicrosoftLifeCam(0))
+				.setLEDColor(LEDColor.GREEN)
+				.build();
 	}
 
 	public void initDefaultCommand() {

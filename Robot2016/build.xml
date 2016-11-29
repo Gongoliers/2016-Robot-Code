@@ -27,4 +27,6 @@
 
   <import file="${wpilib.ant.dir}/build.xml"/>
 
+	<property name="classpath" value="${userLibs.dir}/gongoliers.jar"/>
+	
 </project>
