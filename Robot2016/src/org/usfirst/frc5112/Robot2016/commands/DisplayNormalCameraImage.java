@@ -15,10 +15,11 @@ public class DisplayNormalCameraImage extends Command {
 
 	protected void initialize() {
 		Robot.camera.disableTargetMode();
+		Robot.camera.display();
 	}
 
 	protected void execute() {
-		Robot.camera.display();
+		// Robot.camera.display();
 	}
 
 	protected boolean isFinished() {

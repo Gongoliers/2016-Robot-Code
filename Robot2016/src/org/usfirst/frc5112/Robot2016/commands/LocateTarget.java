@@ -12,7 +12,8 @@ import com.thegongoliers.input.camera.Camera.Target;
  */
 public class LocateTarget extends Command {
 
-	public static boolean locatingTarget = false;
+	public static volatile boolean locatingTarget = false;
+	private Thread visionThread;
 
 	public static Target target;
 
@@ -23,20 +24,25 @@ public class LocateTarget extends Command {
 
 	protected void initialize() {
 		Robot.camera.enableTargetMode();
-		locatingTarget = true;
+		visionThread = new Thread(() -> {
+			locatingTarget = true;
+			try {
+				target = Robot.camera.findHighGoal();
+			} catch (Exception e) {
+				System.out.println("Target not found");
+				e.printStackTrace();
+				return;
+			} finally {
+				locatingTarget = false;
+			}
+			SmartDashboard.putNumber("Goal Center X", target.getCenterX());
+			SmartDashboard.putNumber("Goal distance", target.getDistance());
+			SmartDashboard.putNumber("Goal Angle", target.getAngle());
+		});
+		visionThread.start();
 	}
 
 	protected void execute() {
-		try {
-			target = Robot.camera.findHighGoal();
-		} catch (Exception e) {
-			System.out.println("Target not found");
-			e.printStackTrace();
-			return;
-		}
-		SmartDashboard.putNumber("Goal Center X", target.getCenterX());
-		SmartDashboard.putNumber("Goal distance", target.getDistance());
-		SmartDashboard.putNumber("Goal Angle", target.getAngle());
 	}
 
 	protected boolean isFinished() {
