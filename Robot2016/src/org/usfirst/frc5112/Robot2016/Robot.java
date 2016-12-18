@@ -11,6 +11,7 @@
 package org.usfirst.frc5112.Robot2016;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -65,6 +66,8 @@ public class Robot extends IterativeRobot {
 		obstacleMover = new Arm();
 		intake = new Intake();
 		camera = new CameraSubsystem();
+		camera.display();
+		CameraServer.getInstance().startAutomaticCapture();
 		shooter = new Shooter();
 		kicker = new Kicker();
 		pdp = RobotMap.pdp;

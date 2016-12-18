@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
-	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
+	<classpathentry exported="true" kind="var" path="wpilib" sourcepath="wpilib.sources"/>
+	<classpathentry exported="true" kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Kyle/wpilib/user/java/lib/TalonSRXLibJava.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Kylec/OneDrive/Documents/GitHub/2016-Robot-Code/Robot2016/libs/gongoliers.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Kyle/workspace/2015 Robot/libs/gongoliers.jar"/>
-	<classpathentry kind="var" path="cscore"/>
-	<classpathentry kind="var" path="opencv"/>
-	<classpathentry kind="lib" path="C:/Users/Kylec/wpilib/user/java/lib/TalonSRXLibJava.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/The Gongoliers/wpilib/java/lib/TalonSRXLibJava.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/The Gongoliers/Documents/GitHub/2016-Robot-Code/Robot2016/libs/gongoliers.jar"/>
+	<classpathentry kind="lib" path="C:/Users/The Gongoliers/wpilib/java/current/lib/cscore.jar"/>
+	<classpathentry kind="lib" path="C:/Users/The Gongoliers/wpilib/java/current/lib/opencv.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

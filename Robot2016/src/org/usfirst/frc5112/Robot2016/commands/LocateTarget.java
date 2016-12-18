@@ -24,10 +24,12 @@ public class LocateTarget extends Command {
 
 	protected void initialize() {
 		Robot.camera.enableTargetMode();
-		visionThread = new Thread(() -> {
+//		visionThread = new Thread(() -> {
 			locatingTarget = true;
 			try {
 				target = Robot.camera.findHighGoal();
+				System.out.println(target);
+				System.out.println(target.getCenterX());
 			} catch (Exception e) {
 				System.out.println("Target not found");
 				e.printStackTrace();
@@ -38,8 +40,8 @@ public class LocateTarget extends Command {
 			SmartDashboard.putNumber("Goal Center X", target.getCenterX());
 			SmartDashboard.putNumber("Goal distance", target.getDistance());
 			SmartDashboard.putNumber("Goal Angle", target.getAngle());
-		});
-		visionThread.start();
+//		});
+//		visionThread.start();
 	}
 
 	protected void execute() {

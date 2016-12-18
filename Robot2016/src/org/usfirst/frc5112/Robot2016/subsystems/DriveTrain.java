@@ -51,7 +51,7 @@ public class DriveTrain extends PIDSubsystem {
 		double newRotation = transformer
 				.sensitivity(transformer.power(transformer.scaledRadialDeadzone(rotation, 0.1), 2), 0.75).getFirst();
 
-		if (newRotation == 0) {
+		if (newRotation != 0) {
 			robotDrive.arcadeDrive(newY, newRotation);
 			setInitialGyro(Robot.gyro.getAngle());
 		} else {

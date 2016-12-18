@@ -14,8 +14,8 @@ public class DisplayNormalCameraImage extends Command {
 	}
 
 	protected void initialize() {
-		Robot.camera.disableTargetMode();
-		Robot.camera.display();
+//		Robot.camera.disableTargetMode();
+//		Robot.camera.display();
 	}
 
 	protected void execute() {
