@@ -30,6 +30,7 @@ public class LocateTarget extends Command {
 				target = Robot.camera.findHighGoal();
 				System.out.println(target);
 				System.out.println(target.getCenterX());
+				SmartDashboard.putNumber("Target angle", target.getAngle());
 			} catch (Exception e) {
 				System.out.println("Target not found");
 				e.printStackTrace();
